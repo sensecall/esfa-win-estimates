@@ -1,15 +1,17 @@
-$header-user-bg: $mauve;
+$header-user-bg: #f8f8f8;
 
 .global-header-bar--white {
-	background-color: scale-color($header-user-bg, $lightness: -30%) !important;
+	background-color: $govuk-blue;
+	width: 100%;
 }
 
 .header-user {
 	background: $header-user-bg;
-	margin-top: -10px;
 	// margin-top: $gutter-half;
 	position: relative;
 	z-index: 1;
+	border-top: 10px solid $govuk-blue !important;
+	border-bottom: 1px solid #bfc1c3
 }
 
 .header-user, 
@@ -21,7 +23,7 @@ $header-user-bg: $mauve;
 .header-inner {
 	@extend #content;
 	padding: 0;
-	color: $white;
+	color: black;
 
 	h1,h2,h3,h4,h5 {
 		padding: 0;
@@ -30,6 +32,7 @@ $header-user-bg: $mauve;
 }
 
 $light-nav-color: scale-color($header-user-bg, $lightness: 80%);
+$nav-link-color: $black;
 
 #header-user--nav {
 	padding: $gutter-half 0;
@@ -43,7 +46,6 @@ $light-nav-color: scale-color($header-user-bg, $lightness: 80%);
 	}
 
 	a {
-		$nav-link-color: $white;
 		color: $nav-link-color;
 		text-decoration: none;
 		&:hover {
@@ -75,11 +77,10 @@ $light-nav-color: scale-color($header-user-bg, $lightness: 80%);
 					}
 				}
 				a {
-					$nav-link-color: $white;
 					color: $nav-link-color;
 					text-decoration: underline;
 					&:hover {
-						color: scale-color($header-user-bg, $lightness: 80%);
+						color: scale-color($nav-link-color, $lightness: -80%);
 						text-decoration: underline;
 					}
 				}
@@ -150,7 +151,7 @@ nav.global-nav {
 		list-style: none;
 		margin: 0;
 		margin-left: -$gutter-half;
-		margin-rightr: -$gutter-half;
+		margin-right: -$gutter-half;
 		padding: 0;
 		position: relative;
 		li {
