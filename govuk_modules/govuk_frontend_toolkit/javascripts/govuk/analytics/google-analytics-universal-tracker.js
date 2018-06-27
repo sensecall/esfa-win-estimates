@@ -15,11 +15,6 @@
       sendToGa('set', 'anonymizeIp', true)
     }
 
-    function disableAdTracking () {
-      // https://support.google.com/analytics/answer/2444872?hl=en
-      sendToGa('set', 'displayFeaturesTask', null)
-    }
-
     // Support legacy cookieDomain param
     if (typeof fieldsObject === 'string') {
       fieldsObject = { cookieDomain: fieldsObject }
@@ -27,7 +22,6 @@
 
     configureProfile()
     anonymizeIp()
-    disableAdTracking()
   }
 
   GoogleAnalyticsUniversalTracker.load = function () {
@@ -112,17 +106,13 @@
     target – Specifies the target of a social interaction.
              This value is typically a URL but can be any text.
   */
-  GoogleAnalyticsUniversalTracker.prototype.trackSocial = function (network, action, target, options) {
-    var trackingOptions = {
+  GoogleAnalyticsUniversalTracker.prototype.trackSocial = function (network, action, target) {
+    sendToGa('send', {
       'hitType': 'social',
       'socialNetwork': network,
       'socialAction': action,
       'socialTarget': target
-    }
-
-    $.extend(trackingOptions, options)
-
-    sendToGa('send', trackingOptions)
+    })
   }
 
   /*
@@ -145,7 +135,6 @@
     sendToGa(name + '.linker:autoLink', [domain])
 
     sendToGa(name + '.set', 'anonymizeIp', true)
-    sendToGa(name + '.set', 'displayFeaturesTask', null)
     sendToGa(name + '.send', 'pageview')
   }
 

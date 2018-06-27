@@ -1,8 +1,0 @@
-Return period {{ data["ilr-return-period"] or "6" }}
-{% if data["ilr-return-period"] < 10 %}
-(R0{{ data["ilr-return-period"] }})
-{% elif data["ilr-return-period"] >= 10 %}
-(R{{ data["ilr-return-period"] }})
-{% else %}
-(R06)
-{% endif %}

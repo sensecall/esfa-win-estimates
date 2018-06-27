@@ -8,11 +8,20 @@
   clear: left;
   position: relative;
 
-  padding: 0 0 0 38px;
+  padding: (8px $gutter-one-third 9px 50px);
   margin-bottom: $gutter-one-third;
+
+  cursor: pointer; // Encourage clicking on the label
+
+   // remove 300ms pause on mobile
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
 
   @include media(tablet) {
     float: left;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    // width: 25%; - Test : check that text within labels will wrap
   }
 
   // Absolutely position inputs within label, to allow text to wrap
@@ -34,18 +43,6 @@
 
   label {
     cursor: pointer;
-    padding: 8px $gutter-one-third 9px 12px;
-    display: block;
-
-    // remove 300ms pause on mobile
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-
-    @include media(tablet) {
-      float: left;
-      padding-top: 7px;
-      padding-bottom: 7px;
-    }
   }
 
   [type=radio] + label::before {
@@ -88,7 +85,6 @@
     border: solid;
     border-width: 0 0 5px 5px;
     background: transparent;
-    border-top-color: transparent;
     width: 17px;
     height: 7px;
     position: absolute;
@@ -117,13 +113,8 @@
   }
 
   // Disabled state
-  input:disabled {
-    cursor: default;
-  }
-
   input:disabled + label {
     @include opacity(0.5);
-    cursor: default;
   }
 
   &:last-child,

@@ -28,25 +28,12 @@ $(document).ready(function () {
 		$('.file-name').text(fileName);
 		$('.file-date').text(fileDate);
 		$('input[name="file-date"]').val(fileDate);
-		
-
-		// form submission
-		$('input[name="confirm-upload"]').on('click',function(e) {
-			e.preventDefault();
-
-			// hide the table
-			$('#submit-file-area').addClass('hidden');
-			// show the progress bar
-			$('#uploading-progress').removeClass('hidden');
-
-			setTimeout(function () {
-				$('#file-submission').submit()
-			}, 12000);
-		});
 
 		// revert the page when clicking the change button
 		var changeButton = $('#change-file');
-		changeButton.on('click',function() {
+		changeButton.on('click',function(e) {
+			e.preventDefault();
+			
 			// hide the file details
 			$('#file-details').addClass('hidden');
 
@@ -54,4 +41,37 @@ $(document).ready(function () {
 			$('#upload-select-area').removeClass('hidden');
 		})
 	})
+
+	// uploading page timeout
+	if($('#uploading-content').length){
+		var currentPage = window.location.href.split("?")[0];
+		setTimeout(function () {
+			$('#uploading-form').submit()
+		}, 9500);
+
+		var times = [
+		'4 minutes',
+		'3 minutes',
+		'2 minutes',
+		'2 minutes',
+		'1 minute',
+		'36 seconds',
+		'12 seconds',
+		'11 seconds',
+		'2 seconds',
+		'1 second'
+		];
+
+		(function cycle() { 
+			var time = times.shift();
+			$('#countdown').html(time);
+			times.push(time);
+			setTimeout(cycle,1000);
+		})();
+	}
+
+	// For opening email in another tab
+	// $('#upload-complete-button').on('click', function(e) {
+	// 	window.open('email','_blank');
+	// })
 })

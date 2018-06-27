@@ -135,8 +135,7 @@ main {
 }
 
 // Text
-p,
-.body-text {
+p {
   margin-top: em(5, 16);
   margin-bottom: em(20, 16);
 
@@ -145,10 +144,6 @@ p,
     margin-bottom: em(20);
   }
 
-}
-
-.body-text {
-  display: block;
 }
 
 // Lede, or intro text
