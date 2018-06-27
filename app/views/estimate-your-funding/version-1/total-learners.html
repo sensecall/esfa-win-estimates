@@ -1,0 +1,49 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Estimate your ESFA funding' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+<!-- {% include './includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<form action="learner-ages">
+				<fieldset>
+					<div class="form-group">
+						<legend>
+							<h1 class="heading-large">How many learners are enrolled in your organisation?</h1>
+						</legend>
+
+						<label class="form-label" for="ni-number">
+							Number of learners
+							<span class="form-hint">
+								This could be an estimate if you're not sure of the exact number
+							</span>
+						</label>
+
+						<input class="form-control" id="total-learners" type="number" name="total-learners" value="{{ data['total-learners'] }}" required>
+					</div>
+				</fieldset>
+				<input type="submit" class="button" value="Continue">
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

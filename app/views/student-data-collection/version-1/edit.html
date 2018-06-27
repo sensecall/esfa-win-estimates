@@ -1,0 +1,46 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Estimate your ESFA funding' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+<!-- {% include './includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<form action="personal-details">
+				<h1 class="heading-large">
+					Edit information
+				</h1>
+
+				<div class="form-group">
+					<fieldset>
+						<label class="form-label" for="ni-number">
+							{{data['data-title']}}
+						</label>
+
+						<input class="form-control" id="total-learners" type="text" name="{{ data['data-name'] }}" value="{{ data['data-data'] }}">
+					</fieldset>
+				</div>
+				<input type="submit" class="button" value="Save">
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

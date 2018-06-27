@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Submit learner data
+{% endblock %}
+
+{% block service_name %}
+Submit learner data
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-xlarge">
+				Manage your Earnings adjustment statement
+			</h1>
+			<h2 class="heading-large">
+				Your claims
+			</h2>
+		</div>
+	</div>
+
+	<form method="post">
+		{% set categories = ["Apprenticeships for starts before 1 May 2017", "Apprenticeships for starts on or after 1 May 2017","Apprenticeships for starts from 1 May 2017 (non-procured, non-levy contracts)","Apprenticeships funded under procured contracts for non-levy contracts","16 to 18 traineeships (not funded through a 16 to 19 contract)","Adult education – traineeships and ‘other learning’ (non-procured provision)", "Adult education – traineeships and ‘other learning’ (procured provision from 1 November 2017)","Advanced Learner Loans"] %}
+
+		<table class="table-font-xsmall">
+			<thead>
+				<tr>
+					<th scope="col">
+						Category
+					</th>
+					<th scope="col">
+						Month
+					</th>
+					<th class="numeric" scope="col">
+						Amount
+					</th>
+					<th>
+					</th>
+				</tr>
+			</thead>
+			{% set claimCount = data['claim-count'] %}
+			{% if not claimCount or claimCount == 0 %}
+			{% set claimCount = 0 %}
+			<tr>
+				<td colspan="3" style="text-align:center">
+					You have not added any claims yet
+				</td>
+			</tr>
+			{% else %}
+			{% for claim in range(0,claimCount) %}
+			{% set i = loop.index %}
+			{% if data['eas-claim-'+i+'-hidden'] == 'true' %}
+			{% else %}
+			<tr>
+				<td>
+					{{data['eas-claim-'+i+'-category']}}
+				</td>
+				<td>
+					{{data['eas-claim-'+i+'-month']}}
+				</td>
+				<td class="numeric">
+					&pound;{{data['eas-claim-'+i+'-value'] | numeral().format('0.00')}}
+				</td>
+				<td>
+					<a href="change-claim?edit-claim=true&claim-id={{i}}">
+						Change
+					</a>
+				</td>
+			</tr>
+			{% endif %}
+			{% endfor %}
+			<tr>
+				<th>
+					Total
+				</th>
+				<th></th>
+				<th class="numeric">
+					{% for claim in range(0,claimCount) %}
+					{% set i = loop.index %}
+
+					<!-- if total doesnt exist -->
+					<!-- set total to zero -->
+					{% if not total %}
+					{% set total = 0 | int %}
+					{% endif %}
+
+					<!-- then set total to value + total -->
+					{% set value = data['eas-claim-'+i+'-value'] | int %}
+					{% set total = value + total | int %}
+					{% if loop.last == true %}
+					&pound;{{total | numeral().format('0.00')}}
+					{% endif %}
+					{% endfor %}
+				</th>
+				<th>
+				</th>
+			</tr>
+			{% endif %}
+		</table>
+
+		<br>
+
+		<input type="hidden" name="claim-count" value="{{claimCount}}">
+		<p>
+			<input type="submit" class="button button-secondary" value="Add a claim" name="new-claim">
+		</p>
+
+		<div class="grid-row">
+			<div class="column-two-thirds">
+				<h2 class="heading-medium">
+					Finished adding claims
+				</h2>
+				<div class="panel panel-border-wide">
+					Additional spending can be added, changed and deleted until the end of the academic year.
+				</div>
+				<div class="form-group">
+					<input type="submit" class="button" value="Finish" name="save-finish">
+				</div>
+			</div>
+		</div>
+	</form>
+</main>
+
+{% endblock %}

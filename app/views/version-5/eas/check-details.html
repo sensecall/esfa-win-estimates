@@ -1,0 +1,147 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Earnings adjustment statement' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+
+{% block page_scripts %}
+<script>
+	{% include './frontend-js/ilr-upload.js' %}
+</script>
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+	
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-large">
+				Check your answers
+			</h1>
+
+			<dl class="govuk-check-your-answers cya-questions-short">
+				<div>
+					<dt class="cya-question">
+						Claim programme
+					</dt>
+					<dd class="cya-answer">
+						
+					</dd>
+					<dd class="cya-change">
+						<a href="#">
+							Change<span class="visually-hidden"> name</span>
+						</a>
+					</dd>
+				</div>
+
+				<div>
+					<dt class="cya-question">
+						Claim category
+					</dt>
+					<dd class="cya-answer">
+
+					</dd>
+					<dd class="cya-change">
+						<a href="#">
+							Change<span class="visually-hidden"> date of birth</span>
+						</a>
+					</dd>
+				</div>
+
+				<div>
+					<dt class="cya-question">
+						Claim sub-category
+					</dt>
+					<dd class="cya-answer">
+
+					</dd>
+					<dd class="cya-change">
+						<a href="#">
+							Change<span class="visually-hidden"> home address</span>
+						</a>
+					</dd>
+				</div>
+			</dl>
+
+
+			<h2 class="heading-medium">
+				Claim value
+			</h2>
+
+			{% set inputs = [
+				{
+					name: 'Excess Learning Support',
+					value: '0'
+				},
+				{
+					name: 'Exceptional Learning Support',
+					value: '302'
+				},
+				{
+					name: 'Audit Adjustments',
+					value: '19'
+				},
+				{
+					name: 'Authorised Claims',
+					value: '0'
+				},
+				{
+					name: 'Learner Support',
+					value: '0'
+				},
+				{
+					name: 'Vulnerable bursary',
+					value: '0'
+				},
+				{
+					name: 'Discretionary bursary',
+					value: '0'
+				},
+				{
+					name: 'Free meals',
+					value: '0'
+				},
+				{
+					name: 'Area costs audit adjustment',
+					value: '0'
+				}] %}
+
+				<dl class="govuk-check-your-answers cya-questions-long">
+					{% for input in inputs %}
+					<div>
+						<dt class="cya-question">
+							{{input.name}}
+						</dt>
+						<dd class="cya-answer">
+							&pound;{{input.value}}
+						</dd>
+						<dd class="cya-change">
+							<a href="#">
+								Change<span class="visually-hidden"> contact details</span>
+							</a>
+						</dd>
+					</div>
+					{% endfor %}
+				</dl>
+				<br>
+				<div class="form-group">
+					<p>
+						<a href="add-claim-question" class="button">
+							Continue
+						</a>
+					</p>
+				</div>
+			</div>
+
+			<div class="column-third">
+
+			</div>
+		</div>
+	</main>
+	{% endblock %}

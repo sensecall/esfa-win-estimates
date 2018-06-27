@@ -1,0 +1,53 @@
+{% extends version + "/layout.html" %}
+
+{% set serviceName = 'Submit ILR data' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include version + "/includes/_phase-banner.html" %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">		
+			<h2 class="heading-large">
+				<span class="heading-secondary">Add a learner</span>
+				About the learner's course
+			</h2>
+
+			<form action="change-learner-details">
+				<div class="form-group">
+					<fieldset>
+						<div class="form-group">
+							<label class="form-label" for="full-name-f1">Course name</label>
+							<input class="form-control" id="full-name-f1" type="text" name="full-name-f1">
+						</div>
+
+						<div class="form-group">
+							<label class="form-label" for="full-name-f1">Learning aim</label>
+							<input class="form-control" id="full-name-f1" type="text" name="full-name-f1">
+						</div>
+					</fieldset>
+				</div>
+
+				<input type="hidden" value="processed" name="ilr-submission-status">
+
+				<input type="submit" value="Continue" class="button">
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

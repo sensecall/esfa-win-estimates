@@ -1,0 +1,143 @@
+{% extends version + "/layout.html" %}
+
+{% set serviceName = 'Submit your data' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include version + '/includes/_phase-banner.html' %}
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-large">
+				<span class="heading-secondary">Individualised Learner Record (ILR) submission</span>
+				<span class="visually-hidden"> for </span>
+				{% include version + '/_return-period-text.html' %}
+			</h1>
+			<div class="grid-row">
+				<div class="column-half">
+					<div class="data">
+						<span class="data-item font-small">Estimated funding<span class="visually-hidden">: </span></span>
+						<span class="data-item bold-xlarge">
+							{% include version + '/_funding-amount.html' %}
+						</span>
+					</div>
+				</div>
+
+				<div class="column-half">
+					<div class="data">
+						<span class="data-item font-small">Learners<span class="visually-hidden">: </span></span>
+						<span class="data-item bold-xlarge">24,279</span>
+					</div>
+				</div>
+			</div>
+
+
+			<details>
+				<summary><span class="summary">Funding breakdown</span></summary>
+
+				<table class="table-font-xsmall">
+					<caption class="heading-small">Funding breakdown</caption>
+					<tbody>
+						<tr>
+							<td>16-19 (excluding Apprenticeships)</td>
+							<td>£{{ (120032-50239) | numeral().format('0,0') }}</td>
+						</tr>
+						<tr>
+							<td>Other 16-19</td>
+							<td>£{{ (50239-38282) | numeral().format('0,0') }}</td>
+						</tr>
+						<tr>
+							<td>Adult skills</td>
+							<td>£{{ (38282-9278) | numeral().format('0,0') }}</td>
+						</tr>
+						<tr>
+							<td>Community Learning</td>
+							<td>£{{ (9278-9278) | numeral().format('0,0') }}</td>
+						</tr>
+						<tr>
+							<td>ESF</td>
+							<td>£{{ (9278-9278) | numeral().format('0,0') }}</td>
+						</tr>
+						<tr>
+							<td>Other Adult</td>
+							<td>£{{ (9278-4912) | numeral().format('0,0') }}</td>
+						</tr>
+						<tr>
+							<td>Apprenticeships from 1 May 2017 or available for non-funded learning aims</td>
+							<td>£{{ (4912-0) | numeral().format('0,0') }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+
+			<br>
+
+			<details>
+				<summary><span class="summary">File submission details</span></summary>
+
+				<table class="table-font-xsmall">
+					<caption class="heading-small">File submission details</caption>
+					<tbody>
+						<tr>
+							<td>File name</td>
+							<td class="file-name">{{data['file-upload']}}</td>
+						</tr>
+						<tr>
+							<td>File size</td>
+							<td>209.8kb</td>
+						</tr>
+						<tr>
+							<td>Upload date and time</td>
+							<td class="file-date">{{ data['file-date'] }}</td>
+						</tr>
+						<tr>
+							<td>Uploaded by</td>
+							<td>{{ data['user-id'] or "Norma Jones" }}</td>
+						</tr>
+						<tr>
+							<td>Processed</td>
+							<td>{{ data['file-date'] }}</td>
+						</tr>
+						<tr>
+							<td class="font-orange">Errors found</td>
+							<td>432</td>
+						</tr>
+						<tr>
+							<td>Warnings found</td>
+							<td>2,838</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+
+
+			<h3 class="heading-medium">
+				What to do next
+			</h3>
+
+			<p>
+				If these figures are different to what you were expecting please check your submission for errors and, if you need to, <a href="/{{version}}/submit-ilr">re-submit your data.</a>
+			</p>
+
+			<p>
+				Otherwise, if we receive no further data from your organisation within the current Return period, your funding calculation for this period will be based on the data in this submission and you do not need to take any further action.
+			</p>
+
+			<p>
+				<a href="/{{version}}/data-submissions" class="button">
+					Finished
+				</a>
+			</p>
+		</div>
+
+		<div class="column-one-third">
+			{% include version + '/includes/_return-period-info.html' %}
+		</div>
+	</div>
+</main>
+{% endblock %}

@@ -1,0 +1,189 @@
+{ 
+  "return_periods": [
+    { 
+      "id": "1",
+      "name": "Return period 1",
+      "start_date": "09 August 2017",
+      "end_date": "09 August 2017",
+      "events": [
+        { 
+          "name": "Release",
+          "start": "07 August 2017",
+          "end": "09 August 2017"
+        },
+        { 
+          "name": "Learning aims reference data update",
+          "start": "08 August 2017",
+          "end": "08 August 2017"
+        },
+        { 
+          "name": "Optional Release",
+          "start": "17 August 2017",
+          "end": "22 August 2017"
+        }
+      ]
+    },
+    { 
+      "id": "2",
+      "name": "Return period 2",
+      "start_date": "09 August 2017",
+      "end_date": "09 August 2017",
+      "events": [
+        { 
+          "name": "Release",
+          "start": "09 August 2017",
+          "end": "09 August 2017"
+        },
+        { 
+          "name": "Learning aims reference data update",
+          "start": "08 August 2017",
+          "end": "08 August 2017"
+        }
+      ]
+    },
+    { 
+      "id": "3",
+      "name": "Return period 3",
+      "start_date": "09 August 2017",
+      "end_date": "09 August 2017",
+      "events": [
+        { 
+          "name": "Release",
+          "start": "07 August 2017",
+          "end": "09 August 2017"
+        },
+        { 
+          "name": "Learning aims reference data update",
+          "start": "08 August 2017",
+          "end": "08 August 2017"
+        }
+      ]
+    },
+    { 
+      "id": "4",
+      "name": "Return period 4",
+      "start_date": "09 August 2017",
+      "end_date": "09 August 2017",
+      "events": [
+        { 
+          "name": "Release",
+          "start": "09 August 2017",
+          "end": "09 August 2017"
+        },
+        { 
+          "name": "Learning aims reference data update",
+          "start": "08 August 2017",
+          "end": "08 August 2017"
+        }
+      ]
+    },
+    { 
+      "id": "5",
+      "name": "Return period 5",
+      "start_date": "09 August 2017",
+      "end_date": "09 August 2017",
+      "events": [
+        { 
+          "name": "Release",
+          "start": "09 August 2017",
+          "end": "09 August 2017"
+        },
+        { 
+          "name": "Learning aims reference data update",
+          "start": "08 August 2017",
+          "end": "08 August 2017"
+        }
+      ]
+    },
+    { 
+      "id": "6",
+      "name": "Return period 6",
+      "start_date": "09 August 2017",
+      "end_date": "09 August 2017",
+      "events": [
+        { 
+          "name": "Release",
+          "start": "09 August 2017",
+          "end": "09 August 2017"
+        },
+        { 
+          "name": "Learning aims reference data update",
+          "start": "08 August 2017",
+          "end": "08 August 2017"
+        }
+      ]
+    },
+    { 
+      "id": "7",
+      "name": "Return period 7",
+      "start_date": "09 August 2017",
+      "end_date": "09 August 2017",
+      "events": [
+        { 
+          "name": "Release",
+          "start": "09 August 2017",
+          "end": "09 August 2017"
+        },
+        { 
+          "name": "Learning aims reference data update",
+          "start": "08 August 2017",
+          "end": "08 August 2017"
+        }
+      ]
+    },
+    { 
+      "id": "8",
+      "name": "Return period 8",
+      "start_date": "09 August 2017",
+      "end_date": "09 August 2017",
+      "events": [
+        { 
+          "name": "Release",
+          "start": "09 August 2017",
+          "end": "09 August 2017"
+        },
+        { 
+          "name": "Learning aims reference data update",
+          "start": "08 August 2017",
+          "end": "08 August 2017"
+        }
+      ]
+    },
+    { 
+      "id": "9",
+      "name": "Return period 9",
+      "start_date": "09 August 2017",
+      "end_date": "09 August 2017",
+      "events": [
+        { 
+          "name": "Release",
+          "start": "09 August 2017",
+          "end": "09 August 2017"
+        },
+        { 
+          "name": "Learning aims reference data update",
+          "start": "08 August 2017",
+          "end": "08 August 2017"
+        }
+      ]
+    },
+    { 
+      "id": "10",
+      "name": "Return period 10",
+      "start_date": "09 August 2017",
+      "end_date": "09 August 2017",
+      "events": [
+        { 
+          "name": "Release",
+          "start": "09 August 2017",
+          "end": "09 August 2017"
+        },
+        { 
+          "name": "Learning aims reference data update",
+          "start": "08 August 2017",
+          "end": "08 August 2017"
+        }
+      ]
+    }
+  ]
+}

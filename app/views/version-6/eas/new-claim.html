@@ -1,0 +1,43 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Submit learner data' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+<!-- {% include './includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">	
+			<form action="choose-month">
+				<h1 class="heading-large">
+					Add a new funding claim (EAS)
+				</h1>
+
+				<p>
+					You can add lots of different funding claims or just one.
+				</p>
+
+				<input type="hidden" value="{{ data['claim-count'] or 1 }}" name="claim-count">
+
+				<input type="submit" class="button button-start" value="Add a new claim">
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "./layout-guidance.html" %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-xlarge">
+				{{serviceName}}
+			</h1>
+<p>If you receive funding directly from the Education and Skills Funding Agency (ESFA) you need to submit learner data. ESFA uses this to calculate the funding earned by providers.</p>
+			<p>Use this service to submit:</p>
+			<ul class="list list-bullet">
+				<li>Individualised Learner Records (ILR)</li>
+				<li>Earnings adjustment statements (EAS)</li>				
+			</ul>
+			
+			<p>
+				You need to have an account with the government's <a href="#" rel="external" title="This will open in a new window">Identity Management Services system</a> to use this service.
+			</p>
+			<p>
+			
+				<a href="login" class="button button-start">Sign in</a>
+			</p>
+
+
+			<h2 class="heading-medium">Before you start</h2>
+			<p>If you do not have an account you can learn <a href="https://www.gov.uk/guidance/how-to-become-an-approved-training-provider-and-bid-for-funding">how to become an approved training provider and bid for funding</a>.</p>
+
+
+		</div>
+
+		<!--<div class="column-one-third">
+			<aside class="govuk-related-items" data-module="track-click" role="complementary">
+				<h2 class="heading-medium">
+					Claiming funding for your organisation
+				</h2>
+
+				<nav role="navigation">
+					<ul>
+						<li>
+							<a href="#">How to return ILR final funding claims to the ESFA</a>
+						</li>
+						<li>
+							<a href="#">Data collection for further education providers</a>
+						</li>
+						<li>
+							<a href="#">Further education funding data</a>
+						</li>
+						<li>
+							<a href="#">ESFA: Inform newsletter</a>
+						</li>
+					</ul>
+				</nav>
+			</aside>
+		</div>-->
+	</div>
+</main>
+
+{% endblock %}

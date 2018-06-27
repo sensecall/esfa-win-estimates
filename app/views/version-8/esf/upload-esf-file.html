@@ -1,0 +1,103 @@
+{% extends "../layout.html" %}
+
+{% set serviceName = 'Submit learner data' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+	{% include '../frontend-js/ilr-upload.js' %}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include '../_common/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">			
+			<h1 class="heading-large">
+				Submit European social fund data
+			</h1>
+			
+			<!-- <p>Use our error validation tool to check your data before you submit your ILR file.</p> -->
+			
+			<p>You can use this page to upload and submit your European social fund data.</p>
+			<p>Make sure:</p>
+			<ul class="list list-bullet">
+				<li>data is entered accurately</li>
+				<li>the file should be based on the <a href="https://www.gov.uk/government/publications/sfa-esf-submitting-learner-information-delivery-statement#attachment_1966136">ESF non-ILR data return template</a></li>
+			</ul>
+			
+			<form method="post" id="file-submission">
+				<div id="upload-v2">
+					<div id="upload-select-area">
+						<label for="upload" class="button" role="button">
+							<span class="">Select a file to submit</span>
+						</label>
+						<input accept="text/xml" id="upload" class="choose-file" name="file-upload" aria-controls="progress-container" aria-required="true" type="file">
+					</div>
+
+					<div id="file-details" class="hidden">
+						<div class="info-summary">
+							<h3 class="heading-medium">
+								Selected file
+							</h3>
+							<p>
+								<span class="file-name"></span>
+								<br>
+								<a id="change-file" href="#change">Change file</a>
+							</p>
+						</div>
+
+						<div id="submit-file-area">
+							<input type="hidden" name="ilr-submission-status" value="processed">
+							<input type="hidden" name="file-date" value="">
+
+							<input type="submit" class="button" name="confirm-upload" value="Upload and submit file">
+						</div>
+					</div>
+
+					<div id="uploading-progress" class="hidden">
+						<img id="loading-spinner" src="/public/images/loading-spinner.gif" width="40px">
+						<p>Uploading <span class="file-name"></span></p>
+						<p>Estimated time remaining: 14 minutes.</p>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div class="column-one-third">
+			<div class="govuk-related-items">
+				<h2 class="heading-small">
+					Help and support
+				</h2>
+				<ul class="list font-xsmall">
+					<li>
+						<a href="/{{version}}/support">
+							Contact the ESFA service desk
+						</a>
+					</li>
+					<li>
+						<a href="https://www.gov.uk/government/publications/esf-funding-rules">
+							ESF funding rules
+						</a>
+					</li>
+					<li>
+						<a href="https://www.gov.uk/government/publications/sfa-esf-submitting-learner-information-delivery-statement">
+							How to report ESF data
+						</a>
+					</li>
+				</div>
+
+				{% include './includes/_return-period-info.html' %}
+			</div>
+		</div>
+	</main>
+
+	{% endblock %}

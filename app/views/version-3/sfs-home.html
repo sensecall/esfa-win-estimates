@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+{% set serviceName = 'Manage your education and skills funding' %}
+{{ serviceName }}
+{% endblock %}
+
+{% block content %}
+<!-- {% include version + '/includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include version + '/includes/_phase-banner.html' %}
+
+	<h1 class="heading-xlarge">
+		{{ data['provider-name'] or "Cambridge College" }}
+		<span class="heading-secondary">
+			UKPRN: 10005678
+		</span>
+	</h1>
+
+	<div class="grid-row">
+		<ul class="dashboard-group">
+			<li class="dashboard-item">
+				<a href="#" class="service-name">
+					<h2 class="heading-medium">
+						Contracts and agreements
+					</h2>
+					<p class="font-xsmall">
+						Short one-liner about this service
+					</p>
+				</a>
+			</li>
+
+			<li class="dashboard-item">
+				<a href="/{{version}}/data-submissions" class="service-name">
+					<h2 class="heading-medium">
+						Submit data about your learners
+					</h2>
+					<p class="font-xsmall">
+						Tell us about your learners to claim your funding allocation
+					</p>
+				</a>
+			</li>
+
+			<li class="dashboard-item">
+				<a href="#" class="service-name">
+					<h2 class="heading-medium">
+						Apprenticeship agreements
+					</h2>
+					<p class="font-xsmall">
+						This is a short one line description of the service found after the link
+					</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="grid-row">
+		<ul class="dashboard-group">
+			<li class="dashboard-item">
+				<a href="#" class="service-name">
+					<h2 class="heading-medium">
+						Apprenticeship service
+					</h2>
+					<p class="font-xsmall">
+						Add and update apprentices
+					</p>
+				</a>
+			</li>
+
+			<li class="dashboard-item">
+				<a href="#" class="service-name">
+					<h2 class="heading-medium">
+						Payment history
+					</h2>
+					<p class="font-xsmall">
+						View your payments
+					</p>
+				</a>
+			</li>
+
+			<li class="dashboard-item">
+				<a href="#" class="service-name">
+					<h2 class="heading-medium">
+						Funding claims
+					</h2>
+					<p class="font-xsmall">
+						Another description about what this service allows the user to do.
+					</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+</main>
+{% endblock %}

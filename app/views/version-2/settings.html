@@ -1,0 +1,175 @@
+{% extends "layout-index.html" %}
+
+{% block page_title %}
+Prototype
+{% endblock %}
+
+{% block service_name %}
+
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<form id="save-config" action="/{{version}}/claim-esfa-funding">
+		<div class="grid-row">
+			<div class="column-two-thirds">
+				<h1 class="heading-xlarge">
+					Prototype configuration
+				</h1>
+
+				<h3 class="heading-medium">User details</h3>
+				<div class="form-group">
+					<label class="form-label" for="user-id">User id</label>
+					<input class="form-control" id="user-id" type="text" name="user-id" value="{{ data['user-id'] or "J Jones" }}">
+				</div>
+
+				<h3 class="heading-medium">Provider details</h3>
+				<div class="form-group">
+					<label class="form-label" for="provider-name">
+						Organisation name
+					</label>
+					<input class="form-control" id="provider-name" type="text" name="provider-name" value="{{ data['provider-name'] or "Coventry City College" }}">
+				</div>
+
+				<div class="form-group">
+					<label class="form-label" for="ukprn-number">UKPRN number</label>
+					<input class="form-control" id="ukprn-number" type="tel" name="ukprn-number" value="{{ data['ukprn-number'] or "10003928" }}">
+				</div>
+				
+				<div class="form-group">
+					<fieldset>
+						<legend>
+							<h3 class="heading-medium">Available submission types</h3>
+						</legend>
+
+						<div class="multiple-choice" data-target="ilr-settings">
+							<input id="feature-1" name="features" type="checkbox" value="feature-1" checked>
+							<label for="feature-1">ILR</label>
+						</div>
+						<div class="form-group panel panel-border-wide" id="ilr-settings">
+							<fieldset>
+								<legend>
+									<h3 class="heading-medium">ILR settings</h3>
+								</legend>
+
+								<div class="form-group">
+									<label class="form-label" for="ilr-return-period">ILR return period</label>
+									<select class="form-control" id="ilr-return-period" name="ilr-return-period">
+										{% set ilr_periods = [1,2,3,4,5,6,7,8,9,10,11,12,13,14] %}
+										{% for i in ilr_periods %}
+										<option value="{{i}}" {{'selected=selected' if data["ilr-return-period"] == i }}>Return period {{i}}</option>
+										{% endfor %}
+									</select>
+								</div>
+
+								<div class="form-group">
+									<legend>
+										Return period status
+									</legend>
+									<fieldset class="inline">
+										<div class="multiple-choice">
+											<input id="ilr-period-status-1" type="radio" name="ilr-period-status" value="open" {{'checked' if data["ilr-period-status"] != "closed" }}>
+											<label for="ilr-period-status-1">Open</label>
+										</div>
+										<div class="multiple-choice">
+											<input id="ilr-period-status-2" type="radio" name="ilr-period-status" value="closed" {{'checked' if data["ilr-period-status"] == "closed" }}>
+											<label for="ilr-period-status-2">Closed</label>
+										</div>
+									</fieldset>
+								</div>
+
+								<div class="form-group">
+									<label class="form-label" for="ilr-submission-status">ILR Submission Status</label>
+									<select class="form-control" id="ilr-submission-status" name="ilr-submission-status">
+										<option value="" {{'selected=selected' if data["ilr-submission-status"] == "" }}>
+											Not submitted
+										</option>
+										<option value="processing" {{'selected=selected' if data["ilr-submission-status"] == "processing" }}>
+											Processing
+										</option>
+										<option value="processed" {{'selected=selected' if data["ilr-submission-status"] == "processed" }}>
+											Processed
+										</option>
+										<option value="errors" {{'selected=selected' if data["ilr-submission-status"] == "errors" }}>
+											Errors
+										</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label class="form-label" for="funding-amount">ILR funding amount</label>
+									<input class="form-control" id="funding-amount" type="tel" name="funding-amount" value="{{ data['funding-amount'] or "120000" }}">
+								</div>
+							</fieldset>
+						</div>
+
+						<div class="multiple-choice">
+							<input id="feature-eas" name="features" type="checkbox" value="feature-eas" checked>
+							<label for="feature-eas">EAS</label>
+						</div>
+
+						<div class="multiple-choice">
+							<input id="feature-1" name="features" type="checkbox" value="feature-1">
+							<label for="feature-1">QAR</label>
+						</div>
+
+						<div class="multiple-choice">
+							<input id="feature-1" name="features" type="checkbox" value="feature-1" checked>
+							<label for="feature-1">Learning aims</label>
+						</div>
+					</fieldset>
+				</div>
+
+				<div class="form-group">
+					<legend>
+						<h1 class="heading-medium">
+							Already logged in?
+						</h1>
+					</legend>
+					<fieldset class="inline">
+						<div class="multiple-choice">
+							<input id="authenticated-1" type="radio" name="authenticated" value="true" {{'checked' if data["authenticated"] != "false"}}>
+							<label for="authenticated-1">Yes</label>
+						</div>
+						<div class="multiple-choice">
+							<input id="authenticated-2" type="radio" name="authenticated" value="false" {{'checked' if data["authenticated"] == "false"}}>
+							<label for="authenticated-2">No</label>
+						</div>
+					</fieldset>
+				</div>
+
+				<p>
+					<input type="submit" class="button button-start" value="Start now">
+				</p>
+			</div>
+
+			<div class="column-one-third">
+				<aside class="govuk-related-items">
+					<h2 class="heading-large">
+						Quick links
+					</h2>
+					<p>Protoype configuration changes <span class="bold">will not be saved</span> if you visit these links without saving first.</p>
+
+					<h3 class="heading-medium">
+						Pages
+					</h3>
+					<ul class="list">
+						<li><a href="/{{version}}/data-submissions/ilr/details">ILR details</a></li>
+						<li><a href="/{{version}}/login">Login</a></li>
+					</ul>
+
+					<h3 class="heading-medium">
+						Emails
+					</h3>
+					<ul class="list">
+						<li><a href="/{{version}}/email">ILR processed</a></li>
+					</ul>
+				</aside>
+			</div>
+		</form>
+	</div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+.report-data-figures {
+	@extend .interruption-card;
+	margin-bottom: $gutter;
+	background: $green;
+	
+	.data {
+		margin: 0;
+	}
+}

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Information Management Services (IDAMS)
+{% endblock %}
+
+{% block service_name %}
+Information Management Services (IDAMS)
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<h1 class="heading-large">
+		You're signed out
+	</h1>
+
+	<form action="/{{version}}/data-submissions">
+		<input type="hidden" name="authenticated" value="true">
+
+		<p>
+			<a href="/{{version}}/login">Sign back in to your Learning Provider account</a>
+		</p>
+	</form>
+</main>
+
+{% endblock %}

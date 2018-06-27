@@ -1,0 +1,111 @@
+.dashboard-group {
+    margin-top: $gutter;
+
+    .dashboard-item {
+        @extend .column-third;
+
+        .heading-medium {
+            margin: 0;
+        }
+
+        a {
+            background: $white;
+            display: block;
+            text-decoration: none;
+        }
+
+        .service-name {
+            @extend .heading-medium;
+            margin: 0;
+            background: $link-colour;
+            border-bottom: 3px solid darken($link-colour,12%);
+            display: block;
+            min-height: $gutter * 3;
+            color: $white;
+            padding: $gutter-half;
+
+            p {
+                display: block;
+                min-height: 2.5em;
+            }
+
+            &:hover {
+                background: darken($link-colour,8%);
+                border-bottom: 3px solid darken($link-colour,20%);
+            }
+            &:active {
+                border-bottom: 3px solid darken($link-colour,10%);
+                margin-top: 3px;
+                margin-bottom: -3px;
+                position: relative;
+            }
+        }
+
+        .alert {
+            margin-top: $gutter-one-quarter;
+            color: $white;
+            display: block;
+            padding: 7px 15px;
+            // margin-left: $gutter-half;
+
+            &.alert-info {
+                $alert-background: $grey-3;
+                background: $alert-background;
+                color: $grey-1;
+            }
+
+            &.alert-important {
+                $alert-background: $orange-25;
+                background: $alert-background;
+                color: $orange;
+                font-weight: bold;
+            }
+
+            &.alert-success {
+                background: $green-25;
+                color: $green;
+                font-weight: bold;
+            }
+        }
+
+        a.alert {
+            &:hover {
+            text-decoration: underline
+        }
+    }
+
+        @include media(mobile) {
+            width: 100%;
+            margin-top: $gutter;
+
+            .service-name {
+                min-height: auto
+            }
+
+            a {
+                background: $white;
+                display: block;
+                text-decoration: none;
+
+                &:hover {
+                    .service-name {
+                        background: darken($link-colour,10%);
+                        border-bottom: 3px solid darken($link-colour,15%);
+                    }
+                }
+                &:active {
+                    .service-name {
+                        border-bottom: 3px solid darken($link-colour,10%);
+                        top: 3px;
+                        position: relative;
+                    }
+                    .alert {
+                        top: 3px;
+                        position: relative;
+                        margin-bottom: 3px;
+                    }
+                }
+            }
+        }
+    }
+}

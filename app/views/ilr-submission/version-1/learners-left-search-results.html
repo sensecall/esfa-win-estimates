@@ -1,0 +1,64 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Submit ILR data' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+	{% include './frontend-js/ilr-upload.js' %}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- {% include './includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">		
+			<form action="learners-left-reason">
+				<div class="form-group">
+					<fieldset>
+						<legend>
+							<h1 class="heading-large">Which learners have left since the last return period?</h1>
+						</legend>
+
+						<h2 class="heading-medium">4 learners found</h2>
+						<p>You searched for "{{data['learner-search']}}"</p>
+
+						<div class="multiple-choice">
+							<input id="radio-1" type="radio" name="leaver-name" value="SMITH, John">
+							<label for="radio-1">SMITH, John (ULN: 82381281)</label>
+						</div>
+
+						<div class="multiple-choice">
+							<input id="radio-2" type="radio" name="leaver-name" value="WILLIAMS, Jane">
+							<label for="radio-2">WILLIAMS, Jane (ULN: 82381281)</label>
+						</div>
+						<div class="multiple-choice">
+							<input id="radio-3" type="radio" name="leaver-name" value="WORCESTER, Ann">
+							<label for="radio-3">WORCESTER, Ann (ULN: 82381281)</label>
+						</div>
+						<div class="multiple-choice">
+							<input id="radio-4" type="radio" name="leaver-name" value="YATES, Barry">
+							<label for="radio-4">YATES, Barry (ULN: 82381281)</label>
+					</fieldset>
+				</div>
+
+				<input type="submit" value="Confirm" class="button">
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

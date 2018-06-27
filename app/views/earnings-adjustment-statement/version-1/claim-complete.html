@@ -1,0 +1,50 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Add a claim for other funding (EAS)' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+
+{% block page_scripts %}
+<script>
+	{% include './frontend-js/ilr-upload.js' %}
+</script>
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+	
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<div class="govuk-box-highlight">
+				<h1 class="heading-large">
+					Your Earnings adjustment statement has been updated
+				</h1>
+			</div>	
+			
+			<h2 class="heading-medium">What happens next?</h2>
+			
+			{% if data['email-confirmation'] %}
+			<p>You will receive an email notification once your data has been processed.</p>
+			{% endif %}
+
+			<p>If you need to make additional earnings adjustment claims, you can <a href="new-claim">add a new claim</a>. You can submit other data by returning to the <a href="./">ESFA data submission service</a> start page.</p>
+
+			<p>Otherwise, you can close this window as your data has been saved.</p>
+
+			{% if data['get-email'] == 'true' %}
+			<p>An email will be sent to <span class="bold">{{data['contact-email']}}</span> when your file has been processed.</p>
+			{% endif %}
+
+			<!-- <p><a class="button" href="data-submissions" role="button" id="upload-complete-button">Finished</a></p> -->
+		</div>
+
+		<div class="column-third">
+
+		</div>
+	</div>
+</main>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Estimate your ESFA funding' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+<!-- {% include './includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<form action="disadvantage-funding">
+				<h1 class="heading-large">How many learners are studying part-time?</h1>
+
+				<fieldset>		
+					<div class="form-group">
+						<label class="form-label" for="part-time">
+							Learners studying part time
+							<span class="form-hint">
+								This could be an estimate if you're not sure of the exact number
+							</span>
+						</label>
+						<input class="form-control" id="part-time" type="number" name="part-time" value="{{ data['part-time'] }}" max="{{ data['total-learners'] }}">
+
+						<p>
+							<details>
+								<summary><span class="summary">How many hours count as part-time?</span></summary>
+								<div class="panel panel-border-narrow">
+									<p>
+										If you’re not sure about your nationality, try to find out from an official document like a passport or national ID card.
+									</p>
+
+									<p>
+										We need to know your nationality so we can work out which elections you’re entitled to vote in. If you can’t provide your nationality, you’ll have to send copies of identity documents through the post.
+									</p>
+								</div>
+							</details>
+						</p>
+					</div>
+				</fieldset>
+
+				<input type="submit" class="button" value="Continue">
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

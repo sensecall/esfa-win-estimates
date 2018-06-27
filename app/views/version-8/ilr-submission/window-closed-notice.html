@@ -1,0 +1,31 @@
+{% extends "../layout.html" %}
+
+{% set serviceName = 'Submit learner data' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include '../_common/_phase-banner.html' %}
+	
+	<div class="grid-row">
+		<div class="column-two-thirds" id="uploading-content">
+			<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+			
+			<h1 class="heading-large">
+				The submission window is closed
+			</h1>
+
+			<p>
+				You can read about when the submission period will be open for submission by viewing the <a href="./../ilr-submission/dates">Individualised Learner Records (ILR) submission calendar</a>. 
+		</div>
+	</div>
+</main>
+
+{% endblock %}

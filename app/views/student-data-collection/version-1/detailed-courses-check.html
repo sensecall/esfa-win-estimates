@@ -1,0 +1,50 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Estimate your ESFA funding' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+<!-- {% include './includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<form method="post">
+				<div class="form-group">
+					<fieldset class="inline">
+						<legend>
+							<h1 class="heading-large">Do you want to give more detail about how many learners attend different types of course?</h1>
+						</legend>
+
+						<div class="multiple-choice">
+							<input id="radio-inline-1" type="radio" name="answer" value="Yes" required>
+							<label for="radio-inline-1">Yes</label>
+						</div>
+						<div class="multiple-choice">
+							<input id="radio-inline-2" type="radio" name="answer" value="No" required>
+							<label for="radio-inline-2">No</label>
+						</div>
+					</fieldset>
+				</div>
+				<input type="submit" class="button" value="Continue">
+
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

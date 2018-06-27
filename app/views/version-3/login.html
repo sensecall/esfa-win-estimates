@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Information Management Services (IDAMS)
+{% endblock %}
+
+{% block service_name %}
+Information Management Services (IDAMS)
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<h1 class="heading-large">
+		Sign in
+	</h1>
+
+	<form action="./sfs">
+		<input type="hidden" name="authenticated" value="true">
+
+		<div class="form-group">
+			<label class="form-label" for="full-name-f1">
+				User ID or email address
+			</label>
+			<input class="form-control" id="full-name-f1" type="text" name="login-user-id" value="your.name@youremail.org.uk">
+		</div>
+
+		<div class="form-group">
+			<label class="form-label" for="full-name-f1">
+				Password
+			</label>
+			<input class="form-control" id="full-name-f1" type="password" name="" value="your.name@youremail.org.uk">
+		</div>
+
+		<div class="form-group">
+			<input type="submit" class="button" value="Sign in">
+		</div>
+
+		<h2 class="heading-medium">Problems signing in?</h2>
+
+		<ul class="list">
+			<li><a href="/docs/tutorials-and-examples">I forgot my password</a></li>
+			<li><a href="https://github.com/alphagov/govuk_prototype_kit">I don't have an account</a></li>
+		</ul>
+	</form>
+</main>
+
+{% endblock %}

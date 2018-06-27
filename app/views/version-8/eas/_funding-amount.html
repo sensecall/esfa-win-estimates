@@ -1,0 +1,9 @@
+{% if fundingAmount < 500000 %}
+{% set formattedAmount = fundingAmount | numeral().format('0,0') %}
+{% elif fundingAmount < 999999 %}
+{% set formattedAmount = fundingAmount | numeral().format('0.0a') %}
+{% else %}
+{% set formattedAmount = fundingAmount | numeral().format('0.00a') %}
+{% endif %}
+
+&pound;{{formattedAmount}}

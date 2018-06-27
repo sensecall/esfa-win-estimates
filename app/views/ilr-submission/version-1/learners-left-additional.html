@@ -1,0 +1,67 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Submit ILR data' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+	{% include './frontend-js/ilr-upload.js' %}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- {% include './includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-large">Did any other learners leave since the last return period?</h1>
+			<p>
+				<details>
+					<summary><span class="summary">Learners you have selected already</span></summary>
+					<div class="panel panel-border-narrow">
+						<ul class="list-bullet">
+							<li>
+								Learner #1
+							</li>
+							<li>
+								Learner #1
+							</li>
+						</ul>
+					</div>
+				</details>
+			</p>
+
+			<form method="post">
+				<div class="form-group">
+					<fieldset class="inline">
+						<div class="multiple-choice">
+							<input id="learners-left-additional-yes" type="radio" name="learners-left-additional" value="true">
+							<label for="learners-left-additional-yes">Yes</label>
+						</div>
+
+						<div class="multiple-choice">
+							<input id="learners-left-additional-no" type="radio" name="learners-left-additional" value="false">
+							<label for="learners-left-additional-no">No</label>
+						</div>
+					</fieldset>
+				</div>
+
+				<input type="submit" value="Continue" class="button">
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

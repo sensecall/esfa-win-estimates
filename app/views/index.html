@@ -1,0 +1,93 @@
+{% extends "layout-index.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<div class="homepage-top">
+  <div class="homepage-top-content">
+    <h1 class="heading-xlarge">
+      Data Collections Transformation
+      <span>Prototypes</span>
+    </h1>
+  </div>
+</div>
+
+<main id="content" role="main">
+  <div class="example">
+    {% include 'summaries/version-8.html' %}
+  </div>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h2 class="heading-large">All versions</h2>
+
+      <details>
+        <summary><span class="summary">Version 6</span></summary>
+        <div class="panel">
+          {% include 'summaries/version-6.html' %}
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="summary">Version 5 (combined EAS &amp; ILR)</span></summary>
+        <div class="panel">
+          {% include 'summaries/version-5.html' %}
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="summary">ILR submission - Version 2</span></summary>
+        <div class="panel">
+          {% include 'summaries/ilr-submission/version-2.html' %}
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="summary">ILR submission - Version 1</span></summary>
+        <div class="panel">
+          {% include 'summaries/ilr-submission/version-1.html' %}
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="summary">Version 3 (with start page)</span></summary>
+        <div class="panel">
+          {% include 'summaries/version-3.html' %}
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="summary">Version 2 (SFS dashboard)</span></summary>
+        <div class="panel">
+          {% include 'summaries/version-2.html' %}
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="summary">Version 1 (with provider sub-nav)</span></summary>
+        <div class="panel">
+          {% include 'summaries/version-1.html' %}
+        </div>
+      </details>
+
+      <h2 class="heading-large">Other</h2>
+      <details>
+        <summary><span class="summary">Estimate your funding (concept)</span></summary>
+        <div class="panel">
+          {% include 'summaries/estimate-your-funding.html' %}
+        </div>
+      </details>
+
+       <details>
+        <summary><span class="summary">Learner data collection (concept)</span></summary>
+        <div class="panel">
+          {% include 'summaries/learner-data-collection.html' %}
+        </div>
+      </details>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

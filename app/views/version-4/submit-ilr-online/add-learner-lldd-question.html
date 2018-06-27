@@ -1,0 +1,51 @@
+{% extends version + "/layout.html" %}
+
+{% set serviceName = 'Submit ILR data' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include version + "/includes/_phase-banner.html" %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">		
+			<h2 class="heading-large">
+				<span class="heading-secondary">Add a learner</span>
+				Does the learner have Learning Difficulties and/or Disabilities?
+			</h2>
+
+			<form action="add-learner-final">
+				<div class="form-group">
+					<fieldset class="inline">
+						<div class="multiple-choice">
+							<input id="learners-left-additional-yes" type="radio" name="learners-left-additional" value="true">
+							<label for="learners-left-additional-yes">Yes</label>
+						</div>
+
+						<div class="multiple-choice">
+							<input id="learners-left-additional-no" type="radio" name="learners-left-additional" value="false">
+							<label for="learners-left-additional-no">No</label>
+						</div>
+					</fieldset>
+				</div>
+
+				<input type="submit" value="Continue" class="button">
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

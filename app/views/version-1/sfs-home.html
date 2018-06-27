@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+{% set serviceName = 'Manage your education and skills funding' %}
+{{ serviceName }}
+{% endblock %}
+
+{% block content %}
+<!-- {% include version + '/includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include version + '/includes/_phase-banner.html' %}
+
+	<h1 class="heading-xlarge">
+		{{ data['provider-name'] or "Cambridge College" }}
+		<span class="heading-secondary">
+			UKPRN: 10005678
+		</span>
+	</h1>
+
+	<div class="grid-row">
+		<ul class="dashboard-group">
+			<li class="dashboard-item">
+				<a href="#" class="service-name">
+					<h2 class="heading-medium">
+						Contracts and agreements
+					</h2>
+					<p class="font-xsmall">
+						Short one-liner about this service
+					</p>
+				</a>
+				<a href="#" class="alert alert-important">
+					1 new alert to review
+				</a>
+			</li>
+
+			<li class="dashboard-item">
+				<a href="/{{version}}/data-submissions" class="service-name">
+					<h2 class="heading-medium">
+						Data submission and funding reports
+					</h2>
+					<p class="font-xsmall">
+						Send data to the ESFA about your learners and other spending
+					</p>
+				</a>
+				{% if data['ilr-submission-status'] == 'errors' or data['ilr-submission-status'] == 'processed' %}
+				<a href="/{{version}}/data-submissions/ilr" class="alert alert-important">
+					1 new alert to review
+				</a>
+				{% else %}
+				<span class="alert alert-info">
+					No alerts to review
+				</span>
+				{% endif %}
+			</li>
+
+			<li class="dashboard-item">
+				<a href="#" class="service-name">
+					<h2 class="heading-medium">
+						Apprenticeship agreements
+					</h2>
+					<p class="font-xsmall">
+						This is a short one line description of the service found after the link
+					</p>
+				</a>
+				<a href="#" class="alert alert-important">
+					1 new alert to review
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="grid-row">
+		<ul class="dashboard-group">
+			<li class="dashboard-item">
+				<a href="#" class="service-name">
+					<h2 class="heading-medium">
+						Apprenticeship service
+					</h2>
+					<p class="font-xsmall">
+						Add and update apprentices
+					</p>
+				</a>
+				<span class="alert alert-info">
+					No alerts to review
+				</span>
+			</li>
+
+			<li class="dashboard-item">
+				<a href="#" class="service-name">
+					<h2 class="heading-medium">
+						Payment history
+					</h2>
+					<p class="font-xsmall">
+						View your payments
+					</p>
+				</a>
+				<span class="alert alert-info">
+					No alerts to review
+				</span>
+			</li>
+
+			<li class="dashboard-item">
+				<a href="#" class="service-name">
+					<h2 class="heading-medium">
+						Funding claims
+					</h2>
+					<p class="font-xsmall">
+						Another description about what this service allows the user to do.
+					</p>
+				</a>
+				<a href="#" class="alert alert-important">
+					3 new alerts to review
+				</a>
+			</li>
+		</ul>
+	</div>
+</main>
+{% endblock %}

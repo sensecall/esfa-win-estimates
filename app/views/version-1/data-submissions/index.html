@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+{% include '../includes/_header-nav.html' %}
+
+<main id="content" role="main">
+	{% include version + '/includes/_phase-banner.html' %}
+
+	<div class="breadcrumbs">
+		<ol>
+			<li>
+				<a href="/{{version}}/sfs">
+					{{data['provider-name'] or "Cambridge College"}}
+				</a>
+			</li>
+			<li>
+				<a href="#content">
+					Submit your data
+				</a>
+			</li>
+		</ol>
+	</div>
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-large">
+				Submit your data
+			</h1>
+
+			<h2 class="heading-medium">
+				<a href="./data-submissions/ilr">Individualised Learner Records (ILR)</a>
+			</h2>
+
+			<!-- THIS IS NOT ESFA CONTENT -->
+			<!-- TAKEN FROM: http://www.adls.ac.uk/the-information-authority/individualised-learner-record/?detail -->
+			<p>The Individualised Learner Record (ILR) is a dataset that collects information on learners and their learning in the Further Education system in England.</p>
+			<p>The ILR return is compulsory for state funded Further Education in England.</p>
+			<!-- END -->
+
+			<ul class="list">
+				<li><a href="/{{version}}/submit-your-ilr">Submit an ILR file</a></li>
+				<li><a href="/{{version}}/history?filter-submissions=true&filter-ilr=true">View your ILR history</a></li>
+			</ul>
+
+			<hr>
+
+			<h2 class="heading-medium">
+				<a href="#">Earnings Adjustment Statement (EAS)</a>
+			</h2>
+
+			<p>The Earnings Adjustment Statement (EAS) is an online process used to claim funding that is not reported in the Individualised Learner Record (ILR).</p>
+
+			<ul class="list">
+				<li><a href="#">Manage your EAS return</a></li>
+			</ul>
+
+			<!-- <hr>
+
+			<h2 class="heading-medium">Other resources</h2>
+			<ul class="list list-bullet">
+				<li>
+					<a href="https://govuk-elements.herokuapp.com/snippets/">
+						Guide to GOV.UK Elements
+					</a>
+				</li>
+				<li>
+					<a href="https://www.gov.uk/service-manual">
+						Service design manual
+					</a>
+				</li>
+				<li>
+					<a href="https://www.gov.uk/design-principles">
+						Government Digital Service Design Principles
+					</a>
+				</li>
+			</ul> -->
+		</div>
+
+		<div class="column-one-third">
+			<aside class="govuk-related-items" data-module="track-click" role="complementary">
+				<h2 class="heading-medium">
+					Claiming funding for your organisation
+				</h2>
+
+				<nav role="navigation">
+					<ul>
+						<li>
+							<a href="#">How to return ILR final funding claims to the ESFA</a>
+						</li>
+						<li>
+							<a href="#">Data collection for further education providers</a>
+						</li>
+						<li>
+							<a href="#">Further education funding data</a>
+						</li>
+						<li>
+							<a href="#">ESFA: Inform newsletter</a>
+						</li>
+					</ul>
+				</nav>
+			</aside>
+		</div>
+	</div>
+</main>
+{% endblock %}

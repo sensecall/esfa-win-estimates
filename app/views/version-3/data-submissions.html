@@ -1,0 +1,55 @@
+{% extends version + "/layout.html" %}
+
+{% set serviceName = 'Submit your data' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include version + '/includes/_phase-banner.html' %}
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h2 class="heading-large">
+				Individualised Learner Records (ILR)
+			</h2>
+
+			<!-- TAKEN FROM PDF AT: https://www.gov.uk/government/publications/ilr-guides-and-templates-for-2017-to-2018 -->
+			<p>The Individualised Learner Record (ILR) is an on-going collection of data about learners and the learning undertaken by them from learning providers in the Further Education (FE) and Skills sector.</p>
+			
+			<p>
+				<details>
+					<summary>What is the Further Education (FE) and Skills sector?</summary>
+					<p class="panel">The FE and Skills sector includes: Further Education Colleges, former External Institutions, Sixth Form Colleges, Training Organisations, Local Authorities, Academies, and Voluntary and Community Organisations.</p>
+				</details>
+			</p>
+			<!-- END SNIPPET -->
+
+			<p>
+				You can:
+			</p>
+			<ul class="list list-bullet">
+				<li><a href="/{{version}}/submit-ilr">Submit ILR data</a></li>
+				<li><a href="/{{version}}/history?filter-submissions=true&filter-ilr=true">View your ILR history</a></li>
+				<li><a href="#">Estimate your funding</a></li>
+			</ul>
+
+			<h2 class="heading-large">
+				Earnings Adjustment Statement (EAS)
+			</h2>
+
+			<p>The Earnings Adjustment Statement (EAS) is an online process used to claim funding that is not reported in the Individualised Learner Record (ILR).</p>
+
+			<p>
+				You can:
+			</p>
+			<ul class="list list-bullet">
+				<li><a href="#">Manage your EAS return</a></li>
+			</ul>
+		</div>
+	</div>
+</main>
+{% endblock %}

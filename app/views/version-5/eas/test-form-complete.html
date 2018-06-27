@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Submit learner data
+{% endblock %}
+
+{% block service_name %}
+Submit learner data
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-large">
+				Review your additional spending
+			</h1>
+		</div>
+	</div>
+
+	<form action="claim-complete">
+		{% set categories = ["Apprenticeships for starts before 1 May 2017", "Apprenticeships for starts on or after 1 May 2017","Apprenticeships for starts from 1 May 2017 (non-procured, non-levy contracts)","Apprenticeships funded under procured contracts for non-levy contracts","16 to 18 traineeships (not funded through a 16 to 19 contract)","Adult education – traineeships and ‘other learning’ (non-procured provision)", "Adult education – traineeships and ‘other learning’ (procured provision from 1 November 2017)","Advanced Learner Loans"] %}
+
+		<table>
+			<thead>
+				<tr>
+					<th>
+						Category
+					</th>
+					<th>
+						Month
+					</th>
+					<th colspan="3">
+						Amount
+					</th>
+				</tr>
+			</thead>
+			{% set claimCount = data['claim-count'] | int %}
+			{% if not data['claim-count'] or claimCount === 0 %}
+			<tr>
+				<td colspan="3" style="text-align:center">
+					You have not added any additional spendings
+				</td>
+			</tr>
+			{% else %}
+			{% for claim in range(0,claimCount-1) %}
+			{% set i = loop.index %}
+			<tr>
+				<td>
+					{{data['eas-claim-'+i+'-category']}}
+				</td>
+				<td>
+					{{data['eas-claim-'+i+'-month']}}
+				</td>
+				<td>
+					&pound;{{data['eas-claim-'+i+'-value']}}
+				</td>
+				<td>
+					<a href="#">
+						Change
+					</a>
+				</td>
+				<td>
+					<a href="#">
+						Delete
+					</a>
+				</td>
+			</tr>
+			{% endfor %}
+			{% endif %}
+		</table>
+
+		<br>
+
+		<input type="hidden" name="claim-count" value="{{data['claim-count'] or 1}}">
+
+		<div class="grid-row">
+			<div class="column-two-thirds">
+				<h2 class="heading-medium">
+					Confirm your additional spending
+				</h2>
+				<p>
+					Additional spending can be added, changed and deleted until the end of the academic year.
+				</p>
+				<div class="form-group">
+					<input type="submit" class="button" value="Save and finish" name="save-finish">
+				</div>
+			</div>
+		</div>
+	</form>
+</main>
+
+{% endblock %}

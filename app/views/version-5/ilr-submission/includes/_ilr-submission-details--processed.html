@@ -1,0 +1,98 @@
+	<div class="grid-row">
+		<div class="column-half">
+			<div class="data">
+				<h2 class="data-item font-small">
+					Estimated funding<span class="visually-hidden">: </span>
+				</h2>
+				{% set fundingPerLearner = (3191/11) %}
+				{% set learners = (data['learners'] or 37) %}
+				{% set fundingAmount = (learners * fundingPerLearner) %}
+				<span class="data-item bold-xlarge">
+					{% include './_funding-amount.html' %}
+				</span>
+			</div>
+		</div>
+
+		<div class="column-half">
+			<div class="data">
+				<h2 class="data-item font-small">
+					Learners<span class="visually-hidden">: </span>
+				</h2>
+				<span class="data-item bold-xlarge">{{learners | numeral().format('0,0')}}</span>
+			</div>
+		</div>
+	</div>
+
+	<table class="table-font-xsmall">
+		<caption class="heading-medium">Estimated funding breakdown</caption>
+		<tbody>
+			<tr>
+				<td>16-19 (excluding Apprenticeships)</td>
+				<td>£{{ (fundingAmount * 0.23) | numeral().format('0,0') }}</td>
+			</tr>
+			<tr>
+				<td>Other 16-19</td>
+				<td>£{{ (fundingAmount * 0.42) | numeral().format('0,0') }}</td>
+			</tr>
+			<tr>
+				<td>Adult skills</td>
+				<td>£{{ (fundingAmount * 0.125) | numeral().format('0,0') }}</td>
+			</tr>
+			<tr>
+				<td>Community Learning</td>
+				<td>£{{ (fundingAmount * 0.04) | numeral().format('0,0') }}</td>
+			</tr>
+			<tr>
+				<td>ESF</td>
+				<td>£{{ (fundingAmount * 0.025) | numeral().format('0,0') }}</td>
+			</tr>
+			<tr>
+				<td>Other Adult</td>
+				<td>£{{ (fundingAmount * 0) | numeral().format('0,0') }}</td>
+			</tr>
+			<tr>
+				<td>Apprenticeships from 1 May 2017<br> (or available for non-funded learning aims)</td>
+				<td>£{{ (fundingAmount * 0.16) | numeral().format('0,0') }}</td>
+			</tr>
+			<tr>
+				<td><span class="bold-small">Total</span></td>
+				<td><span class="bold-small">£{{ (fundingAmount) | numeral().format('0,0') }}</span></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h2 class="heading-medium">
+		Reports
+	</h2>
+	<ul class="list list-bullet">
+		<li>
+			<a href="#">Main Occupancy Report</a> (CSV, 70kb)
+		</li>
+		<li>
+			<a href="#">Funding Summary Report</a> (XLS, 194kb)
+		</li>
+		<li>
+			<a href="#">Apprenticeships Indicative Report</a> (CSV, 91kb)
+		</li>
+	</ul>
+
+	<h3 class="heading-medium">
+		What to do next
+	</h3>
+
+	<p>
+		You can <a href="./upload-ilr-file">check for errors</a> and re-submit your data. If you re-submit your data for processing it will overwrite the previous submission.
+	</p>
+
+	<p>
+		If we receive no further data from your organisation in return period 6, your funding calculation will be based on the this data.
+	</p>
+
+	<p>
+		If there is a problem with your funding calculation <a href="#">let us know</a>.
+	</p>
+
+<h3 class="heading-medium">
+		Other data submissions
+	</h3>
+<p>You can <a href="/{{version}}/choose-submission">submit an Earnings Adjustment Statement</a>.</p>

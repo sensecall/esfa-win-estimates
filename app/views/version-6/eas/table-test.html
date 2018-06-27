@@ -1,0 +1,247 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Submit learner data
+{% endblock %}
+
+{% block service_name %}
+Submit learner data
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-large">
+				<span class="heading-secondary">Add a new claim</span>
+				Enter the amount of funding being claimed for each funding category
+			</h1>
+		</div>
+	</div>
+
+	<form action="review-claims">
+		<div class="form-group">
+			<fieldset>
+				{% set categories = ["Apprenticeships for starts before 1 May 2017", "Apprenticeships for starts on or after 1 May 2017","Apprenticeships for starts from 1 May 2017 (non-procured, non-levy contracts)","Apprenticeships funded under procured contracts for non-levy contracts","16 to 18 traineeships (not funded through a 16 to 19 contract)","Adult education – traineeships and ‘other learning’ (non-procured provision)", "Adult education – traineeships and ‘other learning’ (procured provision from 1 November 2017)","Advanced Learner Loans"] %}
+				
+				{% set inputs = [{
+					"title": "Excess Learning Support",
+					"id": 1
+				},
+				{
+					"title": "Exceptional Learning Support",
+					"id": 2
+				},
+				{
+					"title": "Audit Adjustments",
+					"id": 3
+				},
+				{
+					"title": "Authorised Claims",
+					"id": 4
+				},
+				{
+					"title": "Learner Support",
+					"id": 5
+				}]
+				%}
+
+				{% set programmes = [{
+					"title": "Apprenticeships for starts before 1 May 2017",
+					"id": 1,
+					"categories": [
+					{
+						"title": "16-18 Apprenticeship frameworks",
+						"inputs": [1,2,3,4,5]
+					},
+					{
+						"title": "16-18 Trailblazer Apprenticeships",
+						"inputs": [1,2,3,4]
+					},
+					{
+						"title": "19-23 Apprenticeship frameworks",
+						"inputs": [1,2,3,4,5]
+					},
+					{
+						"title": "19-23 Trailblazer Apprenticeships",
+						"inputs": [1,2,3,4]
+					},
+					{
+						"title": "24+ Apprenticeship frameworks",
+						"inputs": [1,2,3,4,5]
+					},
+					{
+						"title": "24+ Trailblazer Apprenticeships",
+						"inputs": [1,2,3,4]
+					}]
+				},
+				{
+					"title": "Apprenticeships for starts before 1 May 2017",
+					"subtitle": "16 to 18 levy contracted apprenticeships",
+					"id": 2,
+					"categories": [
+					{
+						"title": "Training (excluding English \& Maths)",
+						"inputs": [3,4]
+					},
+					{
+						"title": "Additional payments for providers",
+						"inputs": [1,2,3,4]
+					},
+					{
+						"title": "Additional payments for employers",
+						"inputs": [3,4]
+					}]
+				},
+				{
+					"title": "",
+					"subtitle": "16 to 18 non-levy contracted apprenticeships (non-procured delivery)",
+					"id": 3,
+					"categories": [
+					{
+						"title": "Training (excluding English \& Maths)",
+						"inputs": [3,4]
+					},
+					{
+						"title": "Additional payments for providers",
+						"inputs": [1,2,3,4]
+					},
+					{
+						"title": "Additional payments for employers",
+						"inputs": [3,4]
+					}]
+				},
+				{
+					"title": "",
+					"subtitle": "16 to 18 non-levy contracted apprenticeships (procured delivery)",
+					"id": 4,
+					"categories": [
+					{
+						"title": "Training (excluding English \& Maths)",
+						"inputs": [3,4]
+					},
+					{
+						"title": "Additional payments for providers",
+						"inputs": [1,2,3,4]
+					},
+					{
+						"title": "Additional payments for employers",
+						"inputs": [3,4]
+					}]
+				},
+				{
+					"title": "",
+					"subtitle": "Adult levy contracted apprenticeships",
+					"id": 4,
+					"categories": [
+					{
+						"title": "Training (excluding English \& Maths)",
+						"inputs": [3,4]
+					},
+					{
+						"title": "Additional payments for providers",
+						"inputs": [1,2,3,4]
+					},
+					{
+						"title": "Additional payments for employers",
+						"inputs": [3,4]
+					}]
+				},
+				{
+					"title": "",
+					"subtitle": "Adult non-levy contracted apprenticeships (non-procured delivery)",
+					"id": 4,
+					"categories": [
+					{
+						"title": "Training (excluding English \& Maths)",
+						"inputs": [3,4]
+					},
+					{
+						"title": "Additional payments for providers",
+						"inputs": [1,2,3,4]
+					},
+					{
+						"title": "Additional payments for employers",
+						"inputs": [3,4]
+					}]
+				},
+				{
+					"title": "",
+					"subtitle": "Adult levy contracted apprenticeships (procured delivery)",
+					"id": 4,
+					"categories": [
+					{
+						"title": "Training (excluding English \& Maths)",
+						"inputs": [3,4]
+					},
+					{
+						"title": "Additional payments for providers",
+						"inputs": [1,2,3,4]
+					},
+					{
+						"title": "Additional payments for employers",
+						"inputs": [3,4]
+					}]
+				}] %}
+
+				{% for programme in programmes %}
+				{% if programme.title %}
+				<h2 class="heading-medium">
+					{{programme.title}}
+				</h2>
+				{% else %}
+				<br>
+				{% endif %}
+
+				{% if programme.subtitle %}
+				<h3 class="heading-small">
+					{{programme.subtitle}}
+				</h3>
+				{% endif %}
+				
+				<table class="table-font-xsmall">
+					<tr>
+						<td></td>
+						{% for inputType in inputs %}
+						<td>{{inputType.title}}</td>
+						{% endfor %}
+					</tr>
+
+					{% for fundingCategory in programme.categories %}
+					<tr>
+						<td>
+							{{fundingCategory.title}}
+						</td>
+
+						{% for input in inputs %}
+						<td>
+							{% if input.id in fundingCategory.inputs %}
+							<div class="govuk-currency-input__inner">
+								<span class="govuk-currency-input__inner__unit">£</span>
+								<input class="govuk-currency-input__inner__input form-control form-control-3-4" aria-label="Enter amount in pounds" name="input--{{ input.name | lower | replace(" ", "_") }}" data-non-numeric="" id="input--{{ input.name | lower | replace(" ", "_") }}" pattern="[0-9]\d*(\.\d+)?" type="text">
+							</div>
+							{% else %}
+							<input class="form-control form-control-3-4" type="text" disabled value="n/a">
+							{% endif %}
+						</td>
+
+						{% endfor %}
+					</tr>
+					{% endfor %}
+				</table>
+				{% endfor %}
+			</fieldset>
+		</div>
+
+		<input type="hidden" value="{{ (data['claim-count'] | int) + 1 }}" name="claim-count">
+
+		<input type="submit" value="Continue" class="button">
+	</form>
+</main>
+
+{% endblock %}

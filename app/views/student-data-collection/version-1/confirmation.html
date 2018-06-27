@@ -1,0 +1,40 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Estimate your ESFA funding' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+<!-- {% include './includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<div class="govuk-box-highlight">
+				<h1 class="heading-large">
+					Your details have been updated
+				</h1>
+			</div>
+
+			<h2 class="heading-medium">What you need to do now</h2>			
+			<p>
+				Any changes you made to your information have been confirmed with {{data['provider-name'] or "Cambridge College"}}
+			</p>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

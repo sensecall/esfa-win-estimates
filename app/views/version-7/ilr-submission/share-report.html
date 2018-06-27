@@ -1,0 +1,48 @@
+{% extends "../layout.html" %}
+
+{% set serviceName = 'ILR data submission' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include '../_common/_phase-banner.html' %}
+
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-large">
+				Share reports with your team
+			</h1>
+
+			<p>
+				Use this form to send reports from the latest return period with other people in your team.
+			</p> 
+
+			<div class="form-group">
+				<legend>
+					<h1 class="heading-medium">
+						Recipient's email address
+					</h1>
+				</legend>
+
+				<input class="form-control" type="email" id="contact-email" name="contact-email" value="">
+			</div>
+
+			<div class="form-group">
+				<a href="#" class="button">
+					Share reports
+				</a>
+			</div>
+		</div>
+
+		<div class="column-one-third">	
+			
+		</div>
+	</div>
+</main>
+{% endblock %}

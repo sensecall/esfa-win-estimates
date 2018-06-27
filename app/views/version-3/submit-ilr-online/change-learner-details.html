@@ -1,0 +1,51 @@
+{% extends version + "/layout.html" %}
+
+{% set serviceName = 'Submit ILR data' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include version + "/includes/_phase-banner.html" %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">		
+			<form method="post">
+				<div class="form-group">
+					<fieldset class="inline">
+
+						<legend>
+							<h1 class="heading-large">Do you need to make changes to the details of any of your learners?</h1>
+						</legend>
+
+						<div class="multiple-choice">
+							<input id="radio-learner-changes-yes" type="radio" name="learners-changed" value="true">
+							<label for="radio-learner-changes-yes">Yes</label>
+						</div>
+
+						<div class="multiple-choice">
+							<input id="radio-learner-changes-no" type="radio" name="learners-changed" value="false">
+							<label for="radio-learner-changes-no">No</label>
+						</div>
+					</fieldset>
+				</div>
+
+				<input type="submit" value="Continue" class="button">
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Submit learner data
+{% endblock %}
+
+{% block service_name %}
+Submit learner data
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-large">
+				<span class="heading-secondary">Add a new claim</span>
+				Which category is this claim for?
+			</h1>
+
+			<form method="post">
+				<div class="form-group">
+					{% if data['programme'] == 1 %}
+					<!-- Apprenticeships for starts before 1 May 2017 -->
+					{% set categories = [{
+						title: "16 to 18 apprenticeship frameworks",
+						id: 1
+					},
+					{
+						title: "16 to 18 trailblazer apprenticeships",
+						id: 2
+					},
+					{
+						title: "19 to 23 apprenticeship frameworks",
+						id: 3
+					},
+					{
+						title: "19 to 23 trailblazer apprenticeships",
+						id: 4
+					},
+					{
+						title: "24+ apprenticeship frameworks",
+						id: 5
+					},
+					{
+						title: "24+ trailblazer apprenticeships",
+						id: 6
+					}] %}
+
+					{% elseif data['programme'] == 2 %}
+					<!-- Apprenticeships for starts on or after 1 May 2017 -->
+					{% set categories = [{
+						title: "16 to 18 levy contracted apprenticeships",
+						id: 1
+					},
+					{
+						title: "adult levy contracted apprenticeships",
+						id: 2
+					}] %}
+
+					{% elseif data['programme'] == 3 or data['programme'] == 4 %}
+					<!-- Apprenticeships for starts from 1 May 2017 (non-procured, non-levy contracts) -->
+					{% set categories = [{
+						title: "16 to 18 non-levy contracted apprenticeships",
+						id: 1
+					},
+					{
+						title: "adult non-levy contracted apprenticeships",
+						id: 2
+					}] %}
+
+					{% elseif data['programme'] == 5 %}
+					<!-- 16 to 18 traineeships (not funded through a 16 to 19 contract) -->
+					{% set categories = [{
+						title: "16 to 18 traineeships",
+						id: 1
+					},
+					{
+						title: "16 to 19 traineeships bursary",
+						id: 2
+					}] %}
+
+					{% elseif data['programme'] == 6 or data['programme'] == 7 %}
+					<!-- Adult education – traineeships and ‘other learning’ (non-procured provision) -->
+					{% set categories = [{
+						title: "19 to 24 traineeships",
+						id: 1
+					},
+					{
+						title: "AEB – other learning (note this is formula funded AEB only)",
+						id: 2
+					}] %}
+
+					{% elseif data['programme'] == 8 %}
+					<!-- Advanced Learner Loans -->
+					{% set categories = [{
+						title: "Advanced Learner Loans bursary",
+						id: 1
+					}] %}
+					{% endif %}
+					{% for category in categories %}
+					<div class="multiple-choice">
+						<input id="radio-{{category.id}}" type="radio" name="category" value="{{data['programme']}}-{{category.id}}" required>
+						<label for="radio-{{category.id}}">{{category.title}}</label>
+					</div>
+					{% endfor %}
+				</div>
+
+				<input type="submit" value="Continue" class="button">
+			</form>
+		</div>
+
+		<div class="column-third">
+		</div>
+	</div>
+</main>
+
+{% endblock %}

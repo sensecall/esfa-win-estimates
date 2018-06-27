@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include version + '/includes/_phase-banner.html' %}
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-large">
+				Individualised Learner Records (ILR)
+			</h1>
+
+			{% if not data['ilr-submission-status'] %}
+			<div class="warning-summary">
+				<p class="notice">
+					<i class="icon icon-important">
+						<span class="visually-hidden">Warning</span>
+					</i>
+					<strong class="bold-small">
+						You haven't submitted an ILR file for {% include version + '/_return-period-text.html' %} yet.
+					</strong>
+				</p>
+			</div>
+
+			<div class="panel panel-border-wide">
+				<p>If you don't submit a file before <a href="#">this return period</a> closes then amet non culpa voluptate exercitation cillum in aliqua et quis eiusmod qui exercitation commodo consectetur sint do.</p>
+			</div>
+			{% elif data['ilr-submission-status'] == 'processing' %}
+			{% include './_notification-processing.html' %}
+			{% elif data['ilr-submission-status'] == 'processed' %}
+			{% include './_notification-processed.html' %}
+			{% elif data['ilr-submission-status'] == 'errors' %}
+			{% include './_notification-errors.html' %}
+			{% endif %}
+
+			<h2 class="heading-medium">
+				Submit an ILR file
+			</h2>
+
+			<div class="interruption-card">
+				<h2 class="heading-medium">15 days until {% include version + '/_return-period-text.html' %} closes</h2>
+
+				<!-- <details> -->
+					<!-- <summary style="margin: 0">
+						Return period details
+					</summary> -->
+
+					<div class="panel-border-narrow panel">
+						{% include version + '/_return-period-text.html' %} will close at: <br>
+						<span class="bold">6.00 PM on Tuesday 6th February 2018</span>
+					</div>
+					<p>
+						You will not be able to submit learner information for {% include version + '/_return-period-text.html' %} after the period has closed.
+					</p>
+					<p>
+						<a href="/{{version}}/ilr-dates">See all Return dates</a>
+					</p>
+				<!-- </details> -->
+			</div>
+
+			<p>
+				<a href="/{{version}}/submit-your-ilr" class="button button-start">Submit an ILR file</a>
+			</p>
+
+			{% if data['ilr-submission-status'] %}
+			<p class="font-xsmall">Your last upload was on {{ data['file-date'] or "6 February 2018 at 4:42 PM" }}</p>
+			{% endif %}
+
+			{% if data['ilr-submission-status'] and data['ilr-submission-status'] != 'processing' %}
+			<div class="panel panel-border-wide">
+				<p>If you don't submit any further files before <a href="/{{version}}/ilr-dates">the current return period</a> closes then we will use the information from your <a href="ilr/details">most recent file submission</a> to calculate your funding.</p>
+			</div>
+			{% endif %}	
+		</div>
+
+		<div class="column-one-third" id="sidebar">
+			<aside class="govuk-related-items">
+				<h2 class="heading-medium">Get help with your ILR return</h2>
+				<ul class="list">
+					<li>
+						<a href="https://govuk-elements.herokuapp.com/snippets/">
+							Guide to GOV.UK Elements
+						</a>
+					</li>
+					<li>
+						<a href="https://www.gov.uk/service-manual">
+							Service design manual
+						</a>
+					</li>
+					<li>
+						<a href="https://www.gov.uk/design-principles">
+							Government Digital Service Design Principles
+						</a>
+					</li>
+				</ul>
+			</aside>
+		</div>
+	</div>
+</main>
+{% endblock %}

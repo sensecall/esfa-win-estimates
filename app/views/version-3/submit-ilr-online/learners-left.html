@@ -1,0 +1,51 @@
+{% extends version + "/layout.html" %}
+
+{% set serviceName = 'Submit ILR data' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include version + '/includes/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">		
+			<form method="post">
+				<div class="form-group">
+					<fieldset class="inline">
+
+						<legend>
+							<h1 class="heading-large">Have any learners left since the last return period?</h1>
+						</legend>
+
+						<div class="multiple-choice">
+							<input id="learners-left-yes" type="radio" name="learners-left" value="true">
+							<label for="learners-left-yes">Yes</label>
+						</div>
+
+						<div class="multiple-choice">
+							<input id="learners-left-no" type="radio" name="learners-left" value="false">
+							<label for="learners-left-no">No</label>
+						</div>
+					</fieldset>
+				</div>
+
+				<input type="submit" value="Continue" class="button">
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

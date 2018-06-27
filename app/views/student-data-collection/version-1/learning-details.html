@@ -1,0 +1,81 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Estimate your ESFA funding' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+<!-- {% include './includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-large">Check the information held about your learning requirements is correct and up to date</h1>
+
+			<table>
+				<caption class="heading-small">Your learnings requirements</caption>
+				<tbody>
+					<tr>
+						<td>LLDD</td>
+						<td>No</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<form action="confirmation">
+				<fieldset>
+					<legend>
+						<h3 class="heading-medium">Confirm the information is correct</h3>
+					</legend>
+
+					<div class="form-group">
+						<div class="multiple-choice">
+							<input type="checkbox">
+							<label>
+								I confirm this information is correct
+							</label> 
+						</div>
+					</div>
+				</fieldset>
+				<div class="form-group">
+					<input type="submit" class="button" value="Continue">
+				</div>
+			</form>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

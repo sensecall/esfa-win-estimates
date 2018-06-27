@@ -1,0 +1,42 @@
+{% extends version + "/layout.html" %}
+
+{% set serviceName = 'Submit ILR data' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	{% include version + "/includes/_phase-banner.html" %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">	
+			<h1 class="heading-large">Your ILR submission</h1>
+
+			<h2 class="heading-medium">{{data['leavers-group'] | length}} learners have left:</h2>
+			<ul>
+				{% for learner in data['leavers-group'] %}
+				<!-- <li>{{learner}}</li> -->
+				{% endfor %}
+			</ul>
+
+			<h2 class="heading-medium">3 learners have joined</h2>
+
+			<h2 class="heading-medium">Details for 2 learners have changed:</h2>
+
+			<form action="/{{version}}/ilr-details">
+				<input type="hidden" value="processed" name="ilr-submission-status">
+				<input class="button" type="submit" value="Confirm submission">
+			</form>
+		</div>
+	</div>
+</main>
+
+{% endblock %}

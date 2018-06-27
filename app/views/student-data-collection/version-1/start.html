@@ -1,0 +1,60 @@
+{% extends "./layout.html" %}
+
+{% set serviceName = 'Estimate your ESFA funding' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block content %}
+<!-- {% include './includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include './includes/_phase-banner.html' %}
+	
+	<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+
+	<div class="grid-row">
+		<div class="column-two-thirds">					
+			<h1 class="heading-large">Check your personal information is accurate and up to date</h1>
+
+			<h2 class="font-medium">
+				<span class="bold">
+					Do you have a code from your learning provider?
+				</span>
+			</h2>
+
+			<p class="form-hint">
+				This is usually a 12-character code for example ABC 123 456 789. This will have been given to you by your learning provider.
+			</p>
+
+			<form class="inline">
+				<div class="form-group">
+					<div class="multiple-choice">
+						<input id="yes" type="radio" name="code">
+						<label for="yes">Yes</label>
+					</div>
+					<div class="multiple-choice">
+						<input id="no" type="radio" name="code">
+						<label for="no">No</label>
+					</div>
+				</div>
+			</form>
+
+			<p>
+				<a href="enter-code" class="button">
+					Continue
+				</a>
+			</p>
+		</div>
+
+		<div class="column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

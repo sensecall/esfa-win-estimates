@@ -1,0 +1,139 @@
+{% extends "layout.html" %}
+{% set d = '1' | esfaDummyData %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+	{% include './frontend-js/history-search.js' %}
+</script>
+{% endblock %}
+
+{% block content %}
+{% include './includes/_header-nav.html' %}
+
+<main id="content" role="main">
+	{% include version + '/includes/_phase-banner.html' %}
+
+	<h1 class="heading-large">
+		Your data reports
+	</h1>
+
+	<div class="grid-row">
+		<div class="column-third">
+			<div class="dc-history-panel-grey">
+				<h2 class="heading-medium">Filter</h2>
+				<form>
+					<fieldset>
+						<legend>
+							<h3 class="heading-small">History type</h3>
+						</legend>
+						<div class="form-group">
+							<div class="multiple-choice">
+								<input id="filter-reports" name="filter-reports" type="checkbox" value="true" {{ checked("filter-reports", "true") }} class="filter-control">
+								<label for="filter-reports">Reports</label>
+							</div>
+							<div class="multiple-choice">
+								<input id="filter-submissions" name="filter-submissions" type="checkbox" value="true" {{ checked("filter-submissions", "true") }} class="filter-control">
+								<label for="filter-submissions">Submissions</label>
+							</div>
+						</div>
+					</fieldset>
+
+					<fieldset>
+						<legend>
+							<h3 class="heading-small">Submission type</h3>
+						</legend>
+						<div class="form-group">
+							<div class="multiple-choice">
+								<input id="ilr" name="filter-ilr" type="checkbox" value="true" {{ checked("filter-ilr", "true") }} class="filter-control">
+								<label for="ilr">Individualised Learner Records</label>
+							</div>
+							<div class="multiple-choice">
+								<input id="eas" name="filter-eas" type="checkbox" value="true" {{ checked("filter-eas", "true") }} class="filter-control">
+								<label for="eas">Earnings Adjustment Statements</label>
+							</div>
+							<div class="multiple-choice">
+								<input id="funding-claims" name="filter-funding-claims" type="checkbox" value="true" {{ checked("filter-funding-claims", "true") }} class="filter-control">
+								<label for="funding-claims">Funding claims</label>
+							</div>
+
+						</div>
+					</fieldset>
+
+					<fieldset>
+						<legend>
+							<h3 class="heading-small">Return year</h3>
+						</legend>
+						<div class="form-group">
+							<div class="multiple-choice">
+								<input id="ilr" name="filter-ilr" type="checkbox" value="ilr">
+								<label for="ilr">2017/18</label>
+							</div>
+							<div class="multiple-choice">
+								<input id="eas" name="filter-eas" type="checkbox" value="eas">
+								<label for="eas">2016/17</label>
+							</div>
+							<div class="multiple-choice">
+								<input id="funding-claims" name="filter-funding-claims" type="checkbox" value="funding-claims">
+								<label for="funding-claims">2015/16</label>
+							</div>
+
+						</div>
+					</fieldset>
+
+					<input type="submit" class="button" value="Filter">
+				</form>
+			</div>
+		</div>
+
+		<div class="column-two-thirds">
+			<h3 class="heading-medium">
+				Showing <span id="history-results-count"></span> items from your history
+			</h3>
+
+			<table class="table-font-xsmall" id="history-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Submitted</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% if data['filter-reports'] == 'true' %}
+					{% for report in d.submission_history.reports %}
+					<tr>
+						<td>
+							<a href="./ilr-details?ilr-period=6&ilr-year=2017&ndash;2018">
+								{{report.name}}
+							</a>
+						</td>
+						<td>{{report.type}}</td>
+						<td>{{report.submission_date}}</td>
+					</tr>
+					{% endfor %}
+					{% endif %}
+
+					{% if data['filter-submissions'] == 'true' %}
+					{% for submission in d.submission_history.submissions %}
+					<tr>
+						<td>
+							<a href="./ilr-details?ilr-period=6&ilr-year=2017&ndash;2018">
+								{{submission.name}}
+							</a>
+						</td>
+						<td>{{submission.type}}</td>
+						<td>{{submission.submission_date}}</td>
+					</tr>
+					{% endfor %}
+					{% endif %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</main>
+{% endblock %}

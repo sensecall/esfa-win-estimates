@@ -1,0 +1,42 @@
+{% extends version + "/layout.html" %}
+
+{% set serviceName = 'Submit ILR data' %}
+
+{% block page_title %}
+{{serviceName}} - GOV.UK
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+	{% include version + '/frontend-js/ilr-upload.js' %}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- {% include version + '/includes/_header-nav.html' %} -->
+
+<main id="content" role="main">
+	{% include version + '/includes/_phase-banner.html' %}
+	
+	<div class="grid-row">
+		<div class="column-two-thirds" id="uploading-content">
+			<a class="link-back" href="javascript:history.back()">Back<span class="visuallyhidden"> to the previous page</span></a>
+			
+			<h1 class="heading-large">
+				Uploading your file
+			</h1>
+
+			<p>
+				ILR-10000747-1718-20171004-141927-01-B.xml
+			</p>
+			<img id="loading-spinner" src="/public/images/loading-spinner.gif" width="40px">
+			<p>
+				Estimated time remaining: <span id="countdown">14 minutes</span>
+			</p>
+
+			<form action="upload-complete" id="upload-complete"></form>
+		</div>
+	</div>
+</main>
+
+{% endblock %}
