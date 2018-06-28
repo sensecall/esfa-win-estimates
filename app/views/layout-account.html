@@ -114,7 +114,11 @@ with-proposition
 {% block body_end %}
 {% block scripts %}
 {% include "includes/scripts.html" %}
-{% block page_scripts %}{% endblock %}
+
+{% block page_scripts %}
+<script src="assets/javascripts/das-stuff.js"></script>
+{% endblock %}
+
 {% endblock %}
 <!-- GOV.UK Prototype kit {{releaseVersion}} -->
 {% endblock %}
