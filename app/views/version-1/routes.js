@@ -6,6 +6,11 @@ router.get('/', (req, res) => {
   res.redirect(`/${req.version}/start`)
 })
 
+router.get('/login', (req, res) => {
+  var currentPage = 'login'
+  res.render(`${req.version}/login`,{currentPage})
+})
+
 router.post('/ilr-submission/upload-ilr-file', (req, res) => {
   res.redirect(`/${req.version}/ilr-submission/uploading`)
 })
