@@ -26,6 +26,7 @@
 <style>
 #global-header-bar{ display:none !important; }
 </style>
+{% if currentPage == 'login' %}
 <div class="header-user">
   <div class="header-inner">
     <div id="header-user--nav" class="grid-row">
@@ -59,6 +60,37 @@
     </div>
   </div>
 </div>
+{% else %}
+<div id="floating-menu-holder">
+  <div class="account-information floating-menu" role="navigation">
+    <div class="js-float">
+      <p class="floating-head-text">Your employer account </p>
+      <nav id="user-nav">
+        <ul role="menubar">
+          <li><a href="/service/help">Help</a></li>
+          <li class="has-sub-menu">
+            <a href="/" role="menuitem">Settings</a>
+            <ul role="menu" class="js-hidden" id="settings-menu" aria-hidden="true">
+              <li><a href="/service/accounts" role="menuitem" class="sub-menu-item">Your accounts</a></li>
+              <li><a href="/accounts/8MGY6M/rename" role="menuitem" class="sub-menu-item">Rename account</a></li>
+              <li><a href="https://demo-login.apprenticeships.sfa.bis.gov.uk/account/changepassword?clientId=easdemo&amp;returnurl=https%3a%2f%2fdemo-eas.apprenticeships.sfa.bis.gov.uk%2fservice%2fpassword%2fchange" class="sub-menu-item">Change your password</a></li>
+              <li><a href="https://demo-login.apprenticeships.sfa.bis.gov.uk/account/changeemail?clientId=easdemo&amp;returnurl=https%3a%2f%2fdemo-eas.apprenticeships.sfa.bis.gov.uk%2fservice%2femail%2fchange" class="sub-menu-item">Change your email address</a></li>
+              <li><a href="/settings/notifications" class="sub-menu-item">Notification settings</a></li>
+            </ul>
+          </li>
+          <li><a href="/service/signOut" role="menuitem">Sign out</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="header-organisation" role="navigation">
+  <nav class="header-inner">
+    <ul role="menubar" id="global-nav-links"><li><a href="/accounts/8MGY6M/teams" class="selected" role="menuitem">Home</a></li><li><a href="/accounts/8MGY6M/finance" class="" role="menuitem">Finance</a></li><li><a href="https://demo-empc.apprenticeships.sfa.bis.gov.uk/commitments/accounts/8MGY6M/apprentices/home" class="" role="menuitem">Apprentices</a></li><li><a href="/accounts/8MGY6M/teams/view" class="" role="menuitem">Your team</a></li><li><a href="/accounts/8MGY6M/agreements" class="" role="menuitem">Your organisations and agreements</a></li><li><a href="/accounts/8MGY6M/schemes" class="" role="menuitem">PAYE schemes</a></li></ul>
+  </nav>
+</div>
+{% endif %}
 {% endblock %}
 
 {% block header_class %}

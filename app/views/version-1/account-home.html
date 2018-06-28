@@ -1,0 +1,75 @@
+{% extends "layout-account.html" %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<br>
+
+	<h1 class="heading-xlarge heading-dashboard" id="company-Name">
+		APEX ELECTRICAL ENGINEERS LIMITED
+		<span class="heading-secondary">Account ID: 7JDYMV</span>
+	</h1>
+
+	<div class="grid-row page-dashboard">
+		
+		
+		
+		<div class="column-two-thirds">
+			<div class="grid-row">
+				<div class="column-half">
+					<h2 class="heading-medium">
+						<a href="/accounts/8MGY6M/teams/view">Your team</a>
+					</h2>
+					<p>Control what your team can do and invite new team members.</p>
+					<h2 class="heading-medium">
+						<a href="/accounts/8MGY6M/agreements">Your organisations and agreements</a>
+					</h2>
+					<p>Add your organisations that will make contracts with training providers.</p>
+					<h2 class="heading-medium">
+						<a href="https://demo-empc.apprenticeships.sfa.bis.gov.uk/commitments/accounts/8MGY6M/apprentices/home">Apprentices</a>
+					</h2>
+					<p>Add apprentices, update details of existing apprentices and authorise payments to training providers.</p>
+				</div>
+				<div class="column-half">
+					<h2 class="heading-medium">
+						<a href="/accounts/8MGY6M/finance">Finance</a>
+					</h2>
+					<p>View your financial transactions, connect with other employers and send or receive transfer funds.</p>
+					<h2 class="heading-medium">
+						<a href="/accounts/8MGY6M/schemes">PAYE schemes</a>
+					</h2>
+					<p>Add or remove <abbr title="Pay as your earn">PAYE</abbr> schemes.</p>
+					<h2 class="heading-medium">
+						<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/" target="_blank" rel="external">Find apprenticeship training</a>
+					</h2>
+					<p>Search for apprenticeships and see details of approved providers who can deliver the training.</p>
+				</div>
+			</div>
+			<div class="grid-row">
+				<div class="column-full">
+					<div class="panel panel-filled">
+						<h3 class="heading-medium">Help us improve this service</h3>
+						<p><a href="https://www.surveymonkey.co.uk/r/2JPLQ9T" target="_blank">Take our 3 minute survey</a> so that we can improve this service.</p>
+						<p><a href="https://www.surveymonkey.co.uk/r/2JPLQ9T" target="_blank" class="button">Take the survey <span class="vh">so that we can improve the service</span></a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="column-one-third">
+			<section>
+				<nav>
+					<ul class="js-tabs" role="tablist">
+						<li role="tab" id="tab-tasks" aria-controls="pane-tasks"><a href="#pane-tasks" class="selected">Tasks</a></li>
+					</ul>
+				</nav>
+				<div class="panes">
+					<div class="js-tab-pane" id="pane-tasks" role="tabpanel" style="display: block;" aria-hidden="false">
+						<p>You do not have any tasks</p>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</main>
+
+{% endblock %}
