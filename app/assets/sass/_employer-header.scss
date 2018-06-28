@@ -52,12 +52,7 @@
     }
 }
 
-#global-header .header-proposition #proposition-name {
-    @include media(tablet) {
-        margin-top: 5px;
-        display: inline-block;
-    }
-}
+
 
 .phase-banner {
     position: relative;
