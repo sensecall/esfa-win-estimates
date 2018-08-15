@@ -35,8 +35,6 @@ $light-nav-color: scale-color($header-user-bg, $lightness: 80%);
 $nav-link-color: $black;
 
 #header-user--nav {
-	padding: $gutter-half 0;
-
 	.heading-small {
 		.heading-secondary {
 			color: scale-color($header-user-bg, $lightness: 80%);

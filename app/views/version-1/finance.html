@@ -1,0 +1,61 @@
+{% extends "layout-account.html" %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<div class="breadcrumbs">
+		<ol>
+			<li><a href="account-home">Home</a></li>
+			<li>Finance</li>
+		</ol>
+	</div>
+
+	<h1 class="heading-xlarge heading-dashboard" id="company-Name">
+		Finance
+	</h1>
+
+	<div class="grid-row" id="page-transactions">
+		<div class="column-half">
+			<div class="data-wrap">
+				<div class="data">
+					<dl class="transfer-funds">
+						<dt>
+							Current funds
+						</dt>
+
+						<dd class="">£0</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="grid-row">
+		<div class="column-half">
+			<h2 class="heading-medium">
+				<a title="View transactions" href="/accounts/8MGY6M/finance/2018/6">
+					View transactions
+				</a>
+			</h2>
+			<p>View payments made into and out of your apprenticeship service account. </p>
+		</div>
+		<div class="column-half">
+			<h2 class="heading-medium">
+				<a title="Download transactions" href="/accounts/8MGY6M/finance/downloadtransactions">
+					Download transactions
+				</a>
+			</h2>
+			<p>Download your financial transactions within a specific date range. </p>
+		</div>
+		<div class="column-half">
+			<h2 class="heading-medium">
+				<a title="Manage transfers" href="/accounts/8MGY6M/transfers">
+					Transfers
+				</a>
+			</h2>
+			<p>Connect with other employers and send or receive transfer funds. </p>
+		</div>
+	</div>
+</main>
+
+{% endblock %}

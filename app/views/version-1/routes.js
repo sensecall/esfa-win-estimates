@@ -11,6 +11,16 @@ router.get('/login', (req, res) => {
   res.render(`${req.version}/login`,{currentPage})
 })
 
+router.get('/account-home', (req, res) => {
+  var currentPage = 'home'
+  res.render(`${req.version}/account-home`,{currentPage})
+})
+
+router.get('/finance', (req, res) => {
+  var currentPage = 'finance'
+  res.render(`${req.version}/finance`,{currentPage})
+})
+
 router.post('/ilr-submission/upload-ilr-file', (req, res) => {
   res.redirect(`/${req.version}/ilr-submission/uploading`)
 })

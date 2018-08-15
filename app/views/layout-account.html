@@ -78,7 +78,7 @@
               <li><a href="/settings/notifications" class="sub-menu-item">Notification settings</a></li>
             </ul>
           </li>
-          <li><a href="/service/signOut" role="menuitem">Sign out</a></li>
+          <li><a href="start" role="menuitem">Sign out</a></li>
         </ul>
       </nav>
     </div>
@@ -87,7 +87,7 @@
 
 <div class="header-organisation" role="navigation">
   <nav class="header-inner">
-    <ul role="menubar" id="global-nav-links"><li><a href="/accounts/8MGY6M/teams" class="selected" role="menuitem">Home</a></li><li><a href="/accounts/8MGY6M/finance" class="" role="menuitem">Finance</a></li><li><a href="https://demo-empc.apprenticeships.sfa.bis.gov.uk/commitments/accounts/8MGY6M/apprentices/home" class="" role="menuitem">Apprentices</a></li><li><a href="/accounts/8MGY6M/teams/view" class="" role="menuitem">Your team</a></li><li><a href="/accounts/8MGY6M/agreements" class="" role="menuitem">Your organisations and agreements</a></li><li><a href="/accounts/8MGY6M/schemes" class="" role="menuitem">PAYE schemes</a></li></ul>
+    <ul role="menubar" id="global-nav-links"><li><a href="account-home" class="{% if currentPage == 'home' %}selected{% endif %}" role="menuitem">Home</a></li><li><a href="finance" class="{% if currentPage == 'finance' %}selected{% endif %}" role="menuitem">Finance</a></li><li><a href="https://demo-empc.apprenticeships.sfa.bis.gov.uk/commitments/accounts/8MGY6M/apprentices/home" class="" role="menuitem">Apprentices</a></li><li><a href="/accounts/8MGY6M/teams/view" class="" role="menuitem">Your team</a></li><li><a href="/accounts/8MGY6M/agreements" class="" role="menuitem">Your organisations and agreements</a></li><li><a href="/accounts/8MGY6M/schemes" class="" role="menuitem">PAYE schemes</a></li></ul>
   </nav>
 </div>
 {% endif %}
