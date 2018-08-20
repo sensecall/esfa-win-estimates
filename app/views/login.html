@@ -1,0 +1,210 @@
+{% extends "layout.html" %}
+
+{% set serviceName = 'Apprenticeships for employers' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			This 
+		</h1>
+		
+		<p>
+			If you are an employer who wants to take on an apprentice, you should know the following:
+		</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			<li>
+				apprentices are aged 16 or over 
+			</li>
+			<li>
+				they combine working with studying to gain skills and knowledge in a specific job  
+			</li>
+			<li>
+				they can be new or current employees
+			</li>
+		</ul>
+
+		<h2 class="govuk-heading-l">
+			Overview
+		</h2>
+
+		<p>
+			You can <a href="apprenticeship-costs">get government funding</a> to cover some of the cost of training and assessing an apprentice if you’re in England.
+		</p>
+
+		<p>
+			You need to pay the apprentice a salary that doesn’t go below <a href="https://www.gov.uk/national-minimum-wage-rates">the minimum wage</a>.
+		</p>
+		
+		<p>
+			Your apprentice must:
+		</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			<li>
+				work with experienced staff
+			</li>
+			<li>
+				learn job-specific skills
+			</li>
+			<li>
+				study during their working week (for example, at a college or training organisation)
+			</li>
+		</ul>
+
+		<h2 class="govuk-heading-l">
+			How are apprenticeships structured
+		</h2>
+
+		<p>
+			Apprentices will spend at least 20% of their time on off-the-job training with your chosen training provider - either regular day release or block release and must be able to attend special training days or workshops.  
+		</p>
+
+		<p>
+			On-the-job training helps an apprentice develop the specific skills for the workplace and they should be supported by a mentor.  
+		</p>
+
+		<p>
+			Once an apprentice finishes their training they will be assessed by an independant End Point Assessment Organisation (EPAO) to show that they have completed the apprenticeship to the standard set by industry.
+		</p>
+
+		<h2 class="govuk-heading-l">
+			Apprenticeship levels:
+		</h2>
+
+		<p>
+			There are a number of different levels of apprenticeships.  
+		</p>
+
+		{% from "table/macro.njk" import govukTable %}
+		{{ govukTable({
+			caption: "",
+			firstCellIsHeader: true,
+			head: [
+			{
+				text: "Name"
+			},
+			{
+				text: "Level"
+			},
+			{
+				text: "Equivalent educational level"
+			}
+			],
+			rows: [
+			[
+			{
+				text: "Intermediate"
+			},
+			{
+				text: "2"
+			},
+			{
+				text: "5 GCSE passes"
+			}
+			],
+			[
+			{
+				text: "Advanced"
+			},
+			{
+				text: "3"
+			},
+			{
+				text: "2 A level passes"
+			}
+			],
+			[
+			{
+				text: "Higher"
+			},
+			{
+				text: "4, 5, 6 and 7"
+			},
+			{
+				text: "Foundation degree and above"
+			}
+			],
+			[
+			{
+				text: "Degree"
+			},
+			{
+				text: "6 and 7"
+			},
+			{
+				text: "Bachelor’s or master’s degree"
+			}
+			]
+			]
+		}) }}
+
+		<hr class="govuk-section-break govuk-section-break--xl">
+
+		<h2 class="govuk-heading-m">
+			Further reading
+		</h2>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>
+				<a href="#">
+					Tempor qui occaecat.
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					Lorem ipsum id veniam ad consectetur ut.
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					Labore aliquip ex deserunt.
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					Dolore proident dolor nulla.
+				</a>
+			</li>
+		</ul>
+
+		<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+		<div class="article-nav-links">
+			<div class="previous-link">
+				<a href="../{{sprint}}">
+					<span class="govuk-!-font-weight-bold">
+						Back
+					</span>
+					<span class="govuk-caption-m">
+						Home page
+					</span>
+				</a>
+			</div>
+
+			<div class="next-link">
+				<a href="apprenticeship-costs">
+					<span class="govuk-!-font-weight-bold">
+						<span class="govuk-visually-hidden">
+							Go to the 
+						</span>
+						Next topic
+					</span>
+					<span class="govuk-caption-m">
+						How much will it cost?
+					</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="govuk-grid-column-one-third">
+
+	</div>
+</div>
+
+{% endblock %}
