@@ -1,206 +1,167 @@
-// Path to assets for use with the file-url function
-// in the govuk frontend toolkit's url-helpers partial
-$path: '/public/images/';
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
 
-$button-red-border: #790000;
-$grey333: #333;
-$grey666: #666;
-$grey999: #999;
-$pale-blue: #EDF4F7;
+// Import GOV.UK Frontend
+@import "node_modules/govuk-frontend/all";
 
-// Import GOV.UK elements from /govuk-modules/, this will import the frontend toolkit and some base styles.
-// Take a look in /govuk-modules/_govuk-elements.scss to see which files are imported.
-@import 'govuk-elements';
-@import 'conditionals2';
-@import 'header';
-@import 'notification-banner';
-@import 'check-your-answers-hmrc';
+// Patterns that aren't in Frontend
+@import "patterns/check-your-answers";
+@import "patterns/task-list";
+@import "patterns/related-items";
 
-// Take a look at in app/assets/sass/patterns/ to see which files are imported.
-@import 'patterns/check-your-answers';
-@import 'patterns/task-list';
-@import 'patterns/currency-input';
-@import 'patterns/autocomplete';
+// Patterns added by WIN team
+@import "patterns/featured-content";
+@import "patterns/step-by-step-nav";
+@import "components/homepage-top";
+@import "patterns/flash-card";
+@import "patterns/inverted-button";
+@import "patterns/autocomplete";
+@import "patterns/action-buttons";
+@import "patterns/app-content-nav";
+@import "components/global-header";
 
-@import 'find-a-payment-schedule';
-@import 'schedule';
-@import 'homepage-top';
-@import 'example';
-@import 'nav';
-@import 'nav2';
-@import 'big-links';
-@import 'bank-details';
-@import 'tabs';
-@import 'log';
-@import 'declaration';
-@import 'interruption-card';
-@import 'global-nav';
-@import 'related-items';
-@import 'history-panel';
-@import 'summary-messages';
-@import 'other-buttons';
-@import 'reports-data';
-@import 'sfs-dashboard';
-@import 'employer-header.scss';
-@import 'das-nav.scss';
-@import 'das-tabs.scss';
-@import 'das-data.scss';
-@import 'das-finance.scss';
-@import 'design-patterns/breadcrumbs.scss';
-@import 'c3-chart.scss';
+// Components that aren't in Frontend
+@import "components/cookie-banner";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.prototype-home {
+	.govuk-header__logo {
+		svg {
+			display: none;
+		}
+	}
 
-.column-full-width {
-  box-sizing: border-box;
-  padding: 0 15px;
-  width: 100%;
+	.govuk-header__container {
+		border-bottom: none;
+		padding-bottom: 10px
+	}
+
+	.govuk-header {
+		display: none;
+		border-bottom: none;
+	}
 }
 
-.data-summary {
-  @extend %contain-floats;
-
-  border-bottom: 1px solid $border-colour;
-  margin-bottom: 2em;
-  max-width: 30em;
+.article-title a {
+	text-decoration: none;
 }
 
-.data-summary-key,
-.data-summary-value {
-  @include box-sizing(border-box);
+.article-nav-links {
+	clear: both;
+	overflow: auto;
 
-  border-top: 1px solid $border-colour;
-  float: left;
-  padding: .63158em 1.05263em .47368em 0;
-  width: 50%;
+	.previous-link,
+	.next-link {
+		@extend %govuk-heading-m;
+
+		a {
+			text-decoration: none;
+			&:hover {
+				span:first-child {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	.previous-link {
+		float: left;
+		text-align: left;
+	}
+
+	.next-link {
+		float: right;
+		text-align: right;
+	}
 }
 
-.data-summary-key {
-  clear: left;
+.govuk-header--apprenticeships {
+	// border-bottom: none;
+	padding-bottom: 10px;
+
+	.govuk-header__content {
+		text-align: right;
+		float: right;
+	}
 }
 
-.payment-link {
-  float: right;
-  font-weight: 700;
-  margin: 0;
+.campaign-style {
+	$theme-colour: #ea5905;
+
+	p,
+	h1,h2,h3,h4,h5,
+	ul, ol,
+	nav,
+	a:not(.govuk-header__logotype-text),
+	.govuk-button {
+		// font-family: Arial !important;
+	}
+
+	%govuk-heading-xl,
+	%govuk-heading-l,
+	%govuk-heading-m,
+	%govuk-heading-s {
+		color: govuk-colour("grey-1");
+		font-weight: normal;
+	}
+
+	.govuk-heading--campaign {
+		color: $theme-colour;
+		font-weight: bold;
+	}
+
+	.campaign-nav {
+		margin-bottom: -10px;
+		$padding-top-bottom: 10px;
+		padding-bottom: $padding-top-bottom + 4;
+		padding-top: $padding-top-bottom;
+		background: $theme-colour;
+		clear: both;
+
+		.govuk-header__logotype {
+			display: none;
+		}
+
+		.govuk-header__container {
+			border: none;
+		}
+
+		.govuk-header__logo {
+			width: 25%;
+		}
+
+		.govuk-header__content {
+			width: 72.5%
+		}
+
+		.govuk-header__navigation {
+			float: right
+		}
+	}
+
+	.full-width-image {
+		overflow: hidden;
+		width: 100%;
+		max-height: 300px;
+		img {
+			width: 100%;
+			margin-top: -15%;
+			filter: grayscale(100%);
+		}
+	}
+
+	.app-aside {
+		background: govuk-colour("grey-4");
+		border-top: $govuk-gutter/3 solid $govuk-border-colour;
+		padding: $govuk-gutter/2 $govuk-gutter;
+	}
 }
 
-.evidence-needed {
-  display: block;
-  text-align: right;
-}
-
-.alert-default {
-  background-color: mix(white, $light-blue, 90%);
-  border-color: $light-blue;
-}
-
-.reject {
-  background: $error-colour;
-}
-
-// Time since claim
-.time-since-claim {
-  @media (min-width: 641px) {
-    padding: 45px 30px 30px;
-  }
-
-  border: 1px solid $border-colour;
-  margin-bottom: 15px;
-  margin-top: 15px;
-  overflow: hidden;
-  padding: 20px 20px 10px;
-}
-
-.short-input {
-  max-width: 150px;
-}
-
-.task-incomplete {
-  @include phase-tag;
-  background-color: $grey-1;
-  float: right;
-  margin-right: 0;
-  padding-top: 3px;
-}
-
-.indent-info-blue {
-  background-color: $pale-blue;
-  background-image: url($path + 'icon-information.png');
-  background-position: 10px center;
-  background-repeat: no-repeat;
-  border-color: $govuk-blue;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  padding-left: 50px;
-
-  @media  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    background-image: url($path + 'icon-information-2x.png');
-    background-size: 27px 27px;
-  }
-}
-
-.print-save-icons {
-  float: left;
-  margin-top: -4px;
-  padding-right: 0.6em;
-}
-
-.js-enabled .choose-file {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
-
-.email {
-  width: 640px
-}
-
-
-
-.popover {
-  .popover-link {
-    color: red;
-    background: #000;
-  }
-  .popover-content {
-    display: none;
-  }
-  &:focus {
-    outline: 3px solid red
-  }
-  &:active {
-    .popover-content {
-      display: block
-    }
-  }
-}
-
-.balancesheet {
-  tr {
-    // td, th {
-    //   &:nth-of-type(4) {
-    //     background: transparentize($grey-2,0.90)
-    //   }
-
-    //   &:nth-of-type(6) {
-    //     background: transparentize($light-blue,0.92);
-    //   }
-    // }
-    // th:nth-of-type(4) {
-    //   background: transparentize($grey-2,0.70)
-    // }
-    // th:nth-of-type(6) {
-    //   background: transparentize($light-blue,0.80)
-    // }
-
-    &:first-of-type {
-      border-top: 1px solid $border-colour;
-    }
-  }
+.govuk-button--xl {
+	padding-top: govuk-spacing(3);
+	padding-right: govuk-spacing(4);
+	padding-bottom: govuk-spacing(3);
+	padding-left: govuk-spacing(4);
+	font-weight: bold;
+	margin: $govuk-gutter 0;
 }

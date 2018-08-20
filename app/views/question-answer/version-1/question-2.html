@@ -1,0 +1,62 @@
+{% extends "./layout-qa.html" %}
+
+{% block page_title %}
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+			{% include 'includes/back-link.html' %}
+			
+			<h1 class="govuk-heading-xl">
+				Tell us about your business
+			</h1>
+
+			{% from "radios/macro.njk" import govukRadios %}
+
+			{{ govukRadios(
+				{
+					classes: "govuk-radios",
+					idPrefix: "pay-bill",
+					name: "pay-bill",
+					fieldset:
+					{
+						legend:
+						{
+							text: "Is your monthly pay bill more than £3 million?",
+							isPageHeading: no,
+							classes: "govuk-fieldset__legend--m"
+						}
+					},
+					hint:
+					{
+						html: 'This information is used to determine how your apprenticeships are funded.'
+					},
+					items:
+					[
+					{
+						value: "yes",
+						text: "Yes"
+					},
+					{
+						value: "no",
+						text: "No"
+					},
+					{
+						value: "dont-know",
+						text: "I don't know"
+					}
+					]
+				})
+			}}
+			<p>
+				<a href="question-3" class="govuk-button">
+					Continue
+				</a>
+			</p>
+		</div>
+	</div>
+</main>
+
+{% endblock %}

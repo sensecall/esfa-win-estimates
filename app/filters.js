@@ -1,8 +1,3 @@
-const {addMonths, format} = require('date-fns')
-
-var parse = require('date-fns/parse')
-var numeralFilter = require('nunjucks-numeral-filter')
-
 module.exports = function (env) {
   /**
    * Instantiate object used to store the methods registered as a
@@ -10,47 +5,41 @@ module.exports = function (env) {
    * gov.uk core filters by creating filter methods of the same name.
    * @type {Object}
    */
-   var filters = {}
+  var filters = {}
 
-  // nunjucks numeral.js
-  filters.numeral = numeralFilter
+  /* ------------------------------------------------------------------
+    add your methods to the filters obj below this comment block:
+    @example:
 
-  // nunjucks numeral.js
-  filters.parseDate = parse
-
-
-  // DWP dummy data example
-  filters.loadDummyData = (filename, feature = 'claim-capture') => {
-    const data = require(`./views/${feature}/_dummy-data/${filename}.json`)
-    if (data.schedule) {
-      const fMonth = parse(data.schedule.payments.firstMonthly)
-      const monthly = []
-      let currentDate
-      for (let i = 1; i < data.schedule.payments.number; i++) {
-        if (i === 1) {
-          currentDate = fMonth
-          monthly.push(format(currentDate, 'D MMMM YYYY'))
-        }
-        const newDate = addMonths(currentDate, 1)
-        monthly.push(format(newDate, 'D MMMM YYYY'))
-        currentDate = newDate
-      }
-      data.schedule.payments.monthly = monthly
+    filters.sayHi = function(name) {
+        return 'Hi ' + name + '!'
     }
-    return data
-  }
 
-  // ESFA dummy data
-  filters.esfaDummyData = (filename, version = 'version-2') => {
-    const data = require(`./views/${version}/_dummy-data/${filename}.json`)
-    return data
-  }
+    Which in your templates would be used as:
 
-  // ilr-submission dummy data
-  filters.loadData = (filename, feature = 'ilr-submission') => {
-    const data = require(`./views/${feature}/_dummy-data/${filename}.json`)
-    return data
-  }
+    {{ 'Paul' | sayHi }} => 'Hi Paul'
 
+    Notice the first argument of your filters method is whatever
+    gets 'piped' via '|' to the filter.
+
+    Filters can take additional arguments, for example:
+
+    filters.sayHi = function(name,tone) {
+      return (tone == 'formal' ? 'Greetings' : 'Hi') + ' ' + name + '!'
+    }
+
+    Which would be used like this:
+
+    {{ 'Joel' | sayHi('formal') }} => 'Greetings Joel!'
+    {{ 'Gemma' | sayHi }} => 'Hi Gemma!'
+
+    For more on filters and how to write them see the Nunjucks
+    documentation.
+
+  ------------------------------------------------------------------ */
+
+  /* ------------------------------------------------------------------
+    keep the following line to return your filters to the app
+  ------------------------------------------------------------------ */
   return filters
 }

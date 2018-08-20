@@ -1,0 +1,31 @@
+<div class="govuk-inset-text">
+	{% if data['business-name'] %}
+	<h2 class="govuk-heading-m">
+		{{data['business-name']}} <span class="govuk-body-m"><a href="question-2">Change</a></span>
+	</h2>
+	{% endif %}
+
+	{% if data['levy'] %}
+	<p>
+		{% if data['levy'] == 'no' %}
+		Your pay bill is less than &pound;3 million per month, so you don't pay the apprenticeship levy. <a href="question-2">Change</a>
+		{% elif data['levy'] == 'yes' %}
+		You pay the apprenticeship levy because your pay bill is over &pound;3 million per month. <a href="question-2">Change</a>
+		{% endif %}
+	</p>
+	{% endif %}
+
+	{% if data['apprentices-already'] %}
+	<p>
+		{% if data['apprentices-already'] == 'yes' %}
+		You already employ one or more apprentices. <a href="#">Change</a>
+		{% elif data['apprentices-already'] == 'no' %}
+		You do not currently employ any apprentices. <a href="#">Change</a>
+		{% endif %}
+	</p>
+	{% endif %}
+
+	{% if not data['levy'] or not data['apprentices-already'] %}
+	Nothing!
+	{% endif %}
+</div>

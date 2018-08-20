@@ -1,0 +1,114 @@
+{% extends "./layout--non-gds.html" %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block main %}
+<div class="full-width-image">
+	<img src="https://hireanapprentice.campaign.gov.uk/wp-content/uploads/sites/66/2018/01/BW-banner-apprenticeships.jpg">
+</div>
+
+<div class="govuk-width-container">
+	<main class="govuk-main-wrapper " id="main-content" role="main">
+		{% block content %}
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+				<h1 class="govuk-heading-xl govuk-heading--campaign govuk-!-margin-top-8">
+					Apprenticeships for employers
+				</h1>
+				
+				<h2 class="govuk-heading-l">					
+					What is an apprentice:
+				</h2>
+				<p>
+					If you are an employer who wants to take on an apprentice, you should know the following:
+				</p>
+				<ul class="govuk-list govuk-list--bullet">
+					<li><a href="https://www.gov.uk/apprenticeships-guide">apprentices</a> are aged 16 or over (to any age)</li>
+					<li>they combine working with studying to gain skills and knowledge in a specific job</li>
+					<li>they can be new or current employees</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-one-third">
+				<img src="https://images.pexels.com/photos/824300/pexels-photo-824300.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" width="100%" class="govuk-!-margin-bottom-8 govuk-!-margin-top-6">
+			</div>
+			<div class="govuk-grid-column-one-third">
+				<img src="https://images.pexels.com/photos/1120344/pexels-photo-1120344.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" width="100%" class="govuk-!-margin-bottom-8 govuk-!-margin-top-6">
+			</div>
+			<div class="govuk-grid-column-one-third">
+				<img src="https://images.pexels.com/photos/942418/pexels-photo-942418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" width="100%" class="govuk-!-margin-bottom-8 govuk-!-margin-top-6">
+			</div>
+		</div>
+
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+				<h2 class="govuk-heading-l">
+					Overview
+				</h2>
+				<p>
+					You can get government funding to cover some of the cost of training and assessing an apprentice if you’re in England.  Apprenticeship funding is devolved.
+				</p>
+				<p>
+					You need to pay the apprentice a salary that doesn’t go below <a href="https://www.gov.uk/national-minimum-wage-rates">the minimum wage</a>.
+				</p>
+				<p>
+					Your apprentice must:
+				</p>
+				<ul class="govuk-list govuk-list--bullet">
+					<li>work with experienced staff</li>
+					<li>learn job-specific skills</li>
+					<li>study during their working week (for example, at a college or training organisation)</li>
+				</ul>
+
+				<h2 class="govuk-heading-l">
+					Finding an apprentice for your business
+				</h2>
+				<p>
+					If you’re interested in taking on an apprentice you need to:
+				</p>
+				<ul class="govuk-list govuk-list--bullet">
+					<li>know how much it’s going to cost</li>
+					<li>which type of funding you can get</li>
+					<li>where to find an apprenticeship that suits your business needs</li>
+					<li>find a training provider who can deliver the right training</li>
+				</ul>
+			</div>
+
+			<div class="govuk-grid-column-full">
+				<hr class="govuk-section-break govuk-section-break--xl">
+
+				<div class="app-action-buttons">
+					<a class="app-action-buttons__button" href="/{{feature}}/{{sprint}}/about">
+						<span>I want to</span> find out more about types of apprenticeships
+					</a>
+
+					<a class="app-action-buttons__button" href="/{{feature}}/{{sprint}}/costs">
+						<span>I want to</span> find out how much this is going to cost me
+					</a>
+
+					<a class="app-action-buttons__button" href="/{{feature}}/{{sprint}}/costs">
+						<span>I want to</span> find an apprentice for my business
+					</a>
+
+					<a class="app-action-buttons__button" href="#">
+						<span>I want to</span> find out how the government can help me take on an apprentice
+					</a>
+
+					<a class="app-action-buttons__button" href="#">
+						<span>I want to</span> register on the apprenticeship service
+					</a>
+
+					<a class="app-action-buttons__button" href="#">
+						<span>I want to</span> leave feedback on a training provider
+					</a>
+				</div>
+			</div>
+		</div>
+		{% endblock %}
+	</main>
+</div>
+{% endblock %}

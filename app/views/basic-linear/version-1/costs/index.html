@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% set serviceName = 'Apprenticeships for employers' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{% include '../includes/_back-link.html' %}
+
+		<h1 class="govuk-heading-xl">
+			<span class="govuk-caption-l">
+				Section 2
+			</span>
+			How much will an apprenticeship cost me?
+		</h1>
+
+		<p class="govuk-body-l">
+			How to fund your apprenticeships, whether you’re a levy-paying employer, a small employer who doesn’t pay the levy, or an employer who’s receiving a transfer of apprenticeship funds.
+		</p>
+
+		<a href="costs/funding" class="govuk-button govuk-button--start">
+			Next
+		</a>
+	</div>
+	
+	<div class="govuk-grid-column-one-third">
+
+	</div>
+</div>
+{% endblock %}

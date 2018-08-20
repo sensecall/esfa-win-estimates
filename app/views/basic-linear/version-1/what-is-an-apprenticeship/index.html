@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% set serviceName = 'Apprenticeships for employers' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+			<h1 class="govuk-heading-xl">
+				<span class="govuk-caption-l">
+					Section 1
+				</span>
+				What is an apprenticeship?
+			</h1>
+
+			<p class="govuk-body-l">
+				Find out more about what an apprenticeship is and how they’re structured - additionally, which different levels of apprenticeships are available for your business. 
+			</p>
+			
+			<p>
+				If you are an employer who wants to take on an apprentice, you should know the following:
+			</p>
+
+			<ul class="govuk-list govuk-list--bullet">
+				<li>
+					apprentices are aged 16 or over 
+				</li>
+				<li>
+					they combine working with studying to gain skills and knowledge in a specific job  
+				</li>
+				<li>
+					they can be new or current employees
+				</li>
+			</ul>
+
+			<a href="what-is-an-apprenticeship/how-are-apprenticeships-structured" class="govuk-button govuk-button--start">
+				Next
+			</a>
+
+		</div>
+		
+		<div class="govuk-grid-column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

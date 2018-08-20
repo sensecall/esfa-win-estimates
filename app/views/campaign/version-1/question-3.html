@@ -1,0 +1,59 @@
+{% extends "./layout-qa.html" %}
+
+{% block page_title %}
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+			{% include 'includes/back-link.html' %}
+			
+			<h1 class="govuk-heading-xl">
+				Tell us about your business
+			</h1>
+
+			{% include './includes/_answers.html' %}
+
+			<hr class="govuk-section-break govuk-section-break--xl">
+
+			<form action="question-4">
+				{% from "radios/macro.njk" import govukRadios %}
+				{{ govukRadios(
+					{
+						classes: "govuk-radios--inline",
+						idPrefix: "apprentices-already",
+						name: "apprentices-already",
+						fieldset:
+						{
+							legend:
+							{
+								text: "Are there any apprentices already employed at your business?",
+								isPageHeading: no,
+								classes: "govuk-fieldset__legend--m"
+							}
+						},
+						items:
+						[
+						{
+							value: "yes",
+							text: "Yes"
+						},
+						{
+							value: "no",
+							text: "No"
+						}
+						]
+					})
+				}}
+
+				{% from "button/macro.njk" import govukButton %}
+				{{ govukButton({
+					text: "Save and continue"
+				}) }}
+			</form>
+		</div>
+	</div>
+</main>
+
+{% endblock %}

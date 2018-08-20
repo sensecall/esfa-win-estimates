@@ -1,7 +1,31 @@
-# 6.3.0
+# Unreleased
+
+# 7.0.0-beta.10
+
+Breaking changes:
+
+- [#512 Update to GOV.UK Frontend](https://github.com/alphagov/govuk_prototype_kit/pull/512)
 
 New features:
 
+- [#501 Add default session data](https://github.com/alphagov/govuk_prototype_kit/pull/501)
+- [#502 Add Cookies and Privacy policy text](https://github.com/alphagov/govuk_prototype_kit/pull/502)
+- [#521 Do not track users who have enabled 'DoNotTrack'](https://github.com/alphagov/govuk_prototype_kit/pull/521)
+- [#522 Add inline-code block styles](https://github.com/alphagov/govuk_prototype_kit/pull/522)
+- [#523 Track app usage](https://github.com/alphagov/govuk_prototype_kit/pull/523)
+- [#525 Add design system message to home page](https://github.com/alphagov/govuk_prototype_kit/pull/525)
+
+Bug fixes:
+- [#530 Update elements class to frontend on examples page](https://github.com/alphagov/govuk_prototype_kit/pull/530)
+- [#491 Remove redundant Google Analytics](https://github.com/alphagov/govuk_prototype_kit/pull/491)
+- [#524 Make "Prototype Kit" casing consistent](https://github.com/alphagov/govuk_prototype_kit/pull/524)
+- [#527 Update docs/index page to include same information as private beta](https://github.com/alphagov/govuk_prototype_kit/pull/527)
+
+To see the previous private beta releases see the archived [private beta repository](https://github.com/alphagov/govuk-prototype-kit-private-beta/blob/master/CHANGELOG.md#700-beta9).
+
+# 6.3.0
+
+New features:
 - [#430 Recommend Atom over Sublime text](https://github.com/alphagov/govuk_prototype_kit/pull/430)
 - [#415 Update to govuk-elements-sass v3.1.1](https://github.com/alphagov/govuk_prototype_kit/pull/415)
 - [#422 fix(package): update govuk_template_jinja to version 0.22.3](https://github.com/alphagov/govuk_prototype_kit/pull/422)

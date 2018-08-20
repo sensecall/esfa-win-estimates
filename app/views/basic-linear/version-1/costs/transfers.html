@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% set serviceName = 'Apprenticeships for employers' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+			{% include '../includes/_back-link.html' %}
+
+			<h1 class="govuk-heading-xl">
+				Paying for your apprentices using a transfer of funds from another employer
+			</h1>
+
+			<p>
+				If you’re an employer who’s received a <a href="https://www.gov.uk/guidance/transferring-apprenticeship-service-funds">transfer of funds from another employer</a>, you can use these funds to pay for your apprenticeships.
+			</p>
+
+			<p>
+				You will receive your funds and pay for your apprenticeships using the apprenticeship service.
+			</p>
+
+			<a href="levy" class="govuk-button">
+				Continue
+			</a>
+		</div>
+		
+		<div class="govuk-grid-column-one-third">
+
+		</div>
+	</div>
+</main>
+
+{% endblock %}

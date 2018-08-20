@@ -1,36 +1,44 @@
-{% extends "layout-index.html" %}
 
-{% block page_title %}
-GOV.UK prototype kit
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
 {% endblock %}
 
-{% block content %}
+{% set bodyClasses = 'prototype-home' %}
+{% set serviceName = "ESFA" %}
+
+{% block main %}
 <div class="homepage-top">
   <div class="homepage-top-content">
-    <h1 class="heading-xlarge">
-      What I need (WIN)
-      <span>Prototypes</span>
+    <h1 class="govuk-heading-xl">
+      All employers microsite (Team WIN)
+      <span class="govuk-caption-xl">Prototypes</span>
     </h1>
   </div>
 </div>
 
-<main id="content" role="main">
-  <div class="example">
-    {% include 'summaries/version-1.html' %}
-  </div>
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
-      <h2 class="heading-large">All versions</h2>
+        {% include 'summaries/microsite.html' %}
 
-      <details>
-        <summary><span class="summary">Version 1 (with provider sub-nav)</span></summary>
-        <div class="panel">
-          {% include 'summaries/version-1.html' %}
-        </div>
-      </details>
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+        {% include 'summaries/campaign.html' %}
+
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+        {% include 'summaries/branching.html' %}
+
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+        {% include 'summaries/basic-linear.html' %}
+
+      </div>
     </div>
-  </div>
-</main>
-
+  </main>
+</div>
 {% endblock %}

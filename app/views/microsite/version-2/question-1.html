@@ -1,0 +1,69 @@
+{% extends "./layout-qa.html" %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+	{% include 'includes/back-link.html' %}
+
+	<div class="flash-card">
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+				<h1 class="govuk-heading-xl">
+					Before you start
+				</h1>
+
+				<hr class="govuk-section-break govuk-section-break--xl">
+
+				<form method="post">
+					{% from "radios/macro.njk" import govukRadios %}
+
+					{{ govukRadios(
+						{
+							classes: "govuk-radios--inline",
+							idPrefix: "bespoke-guidance",
+							name: "bespoke-guidance",
+							fieldset:
+							{
+								legend:
+								{
+									text: "Do you want to tell us about your business so we only show you relevant guidance?",
+									isPageHeading: true,
+									classes: "govuk-fieldset__legend--l"
+								}
+							},
+							hint:
+							{
+								text: "Any information you provide is only used to personalise your experience, nothing else."
+							},
+							items:
+							[
+							{
+								value: "true",
+								text: "Yes",
+								checked: true if data["bespoke-guidance"] == "true"
+							},
+							{
+								value: "false",
+								text: "No",
+								checked: true if data["bespoke-guidance"] == "false"
+							}
+							]
+						})
+					}}
+
+					{% from "button/macro.njk" import govukButton %}
+
+					{{ govukButton({
+						text: "Continue",
+						classes: "app-button--inverted"
+					}) }}
+				</form>
+			</div>
+		</div>
+	</div>
+</main>
+
+{% endblock %}

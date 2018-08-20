@@ -1,0 +1,69 @@
+{% extends "./layout--non-gds.html" %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block main %}
+<div class="full-width-image">
+	<img src="https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" style="margin-top:-8%">
+</div>
+
+<div class="govuk-width-container">
+	<main class="govuk-main-wrapper " id="main-content" role="main">
+		{% block content %}
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+				<h1 class="govuk-heading-xl govuk-heading--campaign govuk-!-margin-top-8">
+					Types of apprenticeships
+				</h1>
+
+				<p>
+					Apprentices must work towards an <a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/">approved apprenticeship standard or framework</a>. Their training must last at least 12 months.
+				</p>
+
+				<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/" class="govuk-button govuk-button--xl">
+					Find apprenticeship training
+				</a>
+
+				<h2 class="govuk-heading-l govuk-!-margin-top-4">
+					Apprenticeship standards
+				</h2>
+				<p>
+					Designed by employers, they show what an apprentice will be doing and the skills required of them, by job role. The Institute for Apprenticeships publish <a href="https://www.gov.uk/government/collections/apprenticeship-standards">apprenticeship standards</a> once they have assessed them. Employers can use apprenticeship standards once they have their allocated funding band and an approved assessment plan.
+				</p>
+				<p>
+					To successfully complete an apprenticeship standard your apprentice will need to have an assessment plan and satisfy the requirements of an independent assessment conducted by an apprentice assessment organisation (called ‘end-point assessment’).
+				</p>
+				<p>
+					You will agree with the apprentice assessment organisation the cost of the end-point assessment. Your training provider will contract with your chosen independent apprentice assessment organisation and pay them on your behalf.
+				</p>
+
+				<h2 class="govuk-heading-l govuk-!-margin-top-4">
+					Apprenticeship frameworks
+				</h2>
+				<p>
+					These are available for delivery and cover all the statutory requirements for an apprenticeship programme in England.
+					There is no end-point assessment for this type of apprenticeship.
+				</p>
+				<p>
+					We are <a href="https://www.gov.uk/government/publications/removal-of-apprenticeship-frameworks">withdrawing apprenticeship frameworks</a> to move to apprenticeship standards on a phased basis as employers take on apprentices on the new standards.
+				</p>
+
+				<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/" class="govuk-button govuk-button--xl">
+					Find apprenticeship training
+				</a>
+
+				<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+				<div class="app-content-nav">
+					<a href="apprenticeship-levels" class="app-content-nav__next">
+						Next: <span>Apprenticeship levels and what they mean</span>
+					</a>
+				</p>
+			</div>
+		</div>
+		{% endblock %}
+	</main>
+</div>
+{% endblock %}

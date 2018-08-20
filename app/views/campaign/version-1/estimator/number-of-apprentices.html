@@ -1,0 +1,56 @@
+{% extends "../../../layout.html" %}
+
+{% set serviceName = "Estimate the cost of hiring an apprentice" %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{% include 'includes/back-link.html' %}
+
+		<form action="one-apprentice">
+			{% from "radios/macro.njk" import govukRadios %}
+
+			{{ govukRadios(
+				{
+					classes: "govuk-radios--inline",
+					idPrefix: "bespoke-guidance",
+					name: "bespoke-guidance",
+					fieldset:
+					{
+						legend:
+						{
+							text: "Are you planning to employ more than one apprentice?",
+							isPageHeading: true,
+							classes: "govuk-fieldset__legend--xl"
+						}
+					},
+					items:
+					[
+					{
+						value: "true",
+						text: "Yes",
+						checked: true if data["bespoke-guidance"] == "true"
+					},
+					{
+						value: "false",
+						text: "No",
+						checked: true if data["bespoke-guidance"] == "false"
+					}
+					]
+				})
+			}}
+
+			{% from "button/macro.njk" import govukButton %}
+
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}
+

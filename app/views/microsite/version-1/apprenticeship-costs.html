@@ -1,0 +1,179 @@
+{% extends "./layout--non-gds.html" %}
+
+{% set serviceName = 'Apprenticeships for employers' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+			<h1 class="govuk-heading-xl">
+				How much will an apprenticeship cost me?
+			</h1>
+
+			<h2 class="govuk-heading-l">
+				Funding your apprentice:
+			</h2>
+
+			<p>
+				You can get help from the government to pay for apprenticeship training.
+			</p>
+
+			<p>
+				The amount you get depends on whether you pay the apprenticeship levy or not. You pay the levy if you’re an employer with a <a href="https://www.gov.uk/guidance/pay-apprenticeship-levy">pay bill over £3 million each year</a>.
+			</p>
+
+			<p>
+				Additional payments of £1,000 may be available to you and your training provider.  For example, when you take on an apprentice who’s between:
+			</p>
+
+			<ul class="govuk-list govuk-list--bullet">
+				<li>
+					16-18 years old
+				</li>
+				<li>
+					19-24 years old and has previously been in care or who has a local authority education, health and care plan
+				</li>
+			</ul>
+
+			<p>
+				From August 2018, apprentices will receive a one off payment of £1000 from the government, if they have been in the care of the local authority.
+			</p>
+
+			<h2 class="govuk-heading-l">
+				If you don’t need to pay the levy
+			</h2>
+
+			<p>
+				You pay 10% towards the cost of training and assessing your apprentice. 
+			</p>
+
+			<p>
+				You need to:
+			</p>
+
+			<ul class="govuk-list govuk-list--bullet">
+				<li>
+					agree a payment schedule with the training organisation
+				</li>
+				<li>
+					pay them directly for the training
+				</li>
+			</ul>
+
+			<p>
+				The government will pay the rest (90%) up to the <a href="https://www.gov.uk/government/publications/apprenticeship-funding-bands">funding band maximum</a>. They’ll pay it directly to the training organisation.
+			</p>
+
+			<h2 class="govuk-heading-l">
+				If you pay the apprenticeship levy
+			</h2>
+
+			<p>
+				You’ll receive funds to spend on training and assessing your apprentices. The government will add 10%.
+			</p>
+
+			<p>
+				Apprenticeship funding is devolved and so how you get your funds and pay for training depends on whether you’re in:
+			</p>
+
+			<ul class="govuk-list govuk-list--bullet">
+				<li>
+					<a href="https://www.gov.uk/guidance/manage-apprenticeship-funds">
+						England
+					</a>
+				</li>
+				<li>
+					<a href="http://www.apprenticeship.scot/">
+						Scotland
+					</a>
+				</li>
+				<li>
+					<a href="https://businesswales.gov.wales/skillsgateway/apprenticeships">
+						Wales
+					</a>
+				</li>
+				<li>
+					<a href="https://www.nidirect.gov.uk/campaigns/apprenticeships">
+						Northern Ireland
+					</a>
+				</li>
+			</ul>
+
+			<h2 class="govuk-heading-l">
+				Paying for your apprentices using a transfer of funds from another employer
+			</h2>
+
+			<p>
+				If you’re an employer who’s received a <a href="https://www.gov.uk/guidance/transferring-apprenticeship-service-funds">transfer of funds from another employer</a>, you can use these funds to pay for your apprenticeships.
+			</p>
+
+			<p>
+				You will receive your funds and pay for your apprenticeships using the apprenticeship service.
+			</p>
+
+			<hr class="govuk-section-break govuk-section-break--xl">
+
+			<h2 class="govuk-heading-m">
+				Further reading
+			</h2>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>
+					<a href="#">
+						Tempor qui occaecat.
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						Lorem ipsum id veniam ad consectetur ut.
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						Labore aliquip ex deserunt.
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						Dolore proident dolor nulla.
+					</a>
+				</li>
+			</ul>
+
+			<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+			<div class="article-nav-links">
+				<div class="previous-link">
+					<a href="what-is-an-apprenticeship">
+						<span class="govuk-!-font-weight-bold">
+							&lsaquo; Previous topic
+						</span>
+						<span class="govuk-caption-m">
+							What is an apprenticeship?
+						</span>
+					</a>
+				</div>
+
+				<div class="next-link">
+					<a href="#">
+						<span class="govuk-!-font-weight-bold">
+							Next topic &rsaquo;
+						</span>
+						<span class="govuk-caption-m">
+							Things you need to know
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="govuk-grid-column-one-third">
+			{% include "./includes/_task-list.html" %}
+		</div>
+	</div>
+</main>
+
+{% endblock %}
