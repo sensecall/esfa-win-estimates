@@ -180,3 +180,20 @@ $pale-blue: #EDF4F7;
     }
   }
 }
+
+.balancesheet {
+  tr {
+    td, th {
+      &:nth-of-type(4) {
+        background: transparentize($grey-2,0.90)
+      }
+    }
+    th:nth-of-type(4) {
+      background: transparentize($grey-2,0.70)
+    }
+
+    &:first-of-type {
+      border-top: 1px solid $border-colour;
+    }
+  }
+}
