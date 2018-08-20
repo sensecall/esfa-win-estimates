@@ -183,14 +183,21 @@ $pale-blue: #EDF4F7;
 
 .balancesheet {
   tr {
-    td, th {
-      &:nth-of-type(4) {
-        background: transparentize($grey-2,0.90)
-      }
-    }
-    th:nth-of-type(4) {
-      background: transparentize($grey-2,0.70)
-    }
+    // td, th {
+    //   &:nth-of-type(4) {
+    //     background: transparentize($grey-2,0.90)
+    //   }
+
+    //   &:nth-of-type(6) {
+    //     background: transparentize($light-blue,0.92);
+    //   }
+    // }
+    // th:nth-of-type(4) {
+    //   background: transparentize($grey-2,0.70)
+    // }
+    // th:nth-of-type(6) {
+    //   background: transparentize($light-blue,0.80)
+    // }
 
     &:first-of-type {
       border-top: 1px solid $border-colour;
