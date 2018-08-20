@@ -1,0 +1,49 @@
+{% extends "layout-email.html" %}
+
+{% set serviceName = 'EMAIL' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<a href="https://www.gov.uk/government/organisations/education-and-skills-funding-agency" target="_blank">
+		<img src="/public/images/esfa-logo.png" width="180px" id="logo">
+	</a>
+
+	<h1 class="heading-large">
+		Your apprenticeship levy funds will expire soon
+	</h1>
+
+	<p>
+		Hi {{data['user-id'] or 'A Surname'}},
+	</p>
+
+	<p>
+		We wanted to let you know that some of your apprenticeship levy funds will expire soon.
+	</p>
+	<p>
+		When levy funds expire, you can not use them to pay for apprenticeship training in your organisation.
+	</p>
+
+	<p>
+		You can view detailed information about the funds that are going to expire by visiting the link below and logging in to your apprenticeships account:
+	</p>
+
+	<p class="panel panel-border-narrow font-medium">
+		{% set page = 'funding-projection' %}
+		<a href="/{{feature}}/{{page}}">{{url}}/{{feature}}/{{page}}</a>
+	</p>
+
+	<p>
+		Regards,
+	</p>
+
+	<p>
+		Apprenticeship service team,<br>
+		Education and Skills Funding Agency
+	</p>
+</main>
+{% endblock %}
