@@ -25,6 +25,8 @@ $govuk-global-styles: true;
 @import "components/floating-menu";
 @import "patterns/apprenticeship-service-misc";
 @import "components/apprenticeship-tabs";
+@import "components/das-data";
+@import "components/c3-chart";
 
 // Components that aren't in Frontend
 @import "components/cookie-banner";

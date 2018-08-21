@@ -1,0 +1,56 @@
+.data-wrap {
+	@include govuk-clearfix;
+	margin: 0 (-$govuk-gutter-half);
+}
+
+.data {
+	dl {
+		box-sizing: border-box;
+		padding: 15px; 
+		background: govuk-colour("purple");
+		color: white;
+		dt {
+			display: table-footer-group;
+			@include govuk-font($size: 19, $weight: bold);
+		}
+		dd {
+			display: table-header-group;
+			@include govuk-font($size: 48, $weight: bold);
+		}
+	}
+	@include govuk-media-query($from: tablet) { 
+		padding: 0 $govuk-gutter-half;
+		float: left;
+		width: 50%;
+		box-sizing: border-box;
+		dd.long {
+			font-size: 42px;
+			line-height: 50px;
+		}
+		dd.longer {
+			font-size: 32px;
+			line-height: 50px;
+		}
+	}
+	@include govuk-media-query($from: desktop) {
+		width: 33.33%;
+		dd.long {
+			font-size: 48px;
+			line-height: 50px;
+		}
+		dd.longer {
+			font-size: 42px;
+			line-height: 50px;
+		}
+	}
+}
+
+#page-transactions .govuk-grid-column-one-half .data {
+	width: 100%;
+
+	dl {
+		position: relative;
+		min-height: 170px;
+		padding-bottom: 50px;
+	}
+}
