@@ -37,8 +37,18 @@
     homepageUrl: "/",
     serviceName: serviceName,
     serviceUrl: "/",
-    containerClasses: "govuk-width-container"
+    classes: "app-apprentice-service-header"
   }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{% if phaseBanner != "false" %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% include 'includes/phase-banner.html' %}
+  </div>
+</div>
+{% endif %}
 {% endblock %}
 
 {% if useAutoStoreData %}

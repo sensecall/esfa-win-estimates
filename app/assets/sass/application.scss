@@ -10,6 +10,7 @@ $govuk-global-styles: true;
 @import "patterns/related-items";
 
 // Patterns added by WIN team
+@import "components/arrows";
 @import "patterns/featured-content";
 @import "patterns/step-by-step-nav";
 @import "components/homepage-top";
@@ -19,6 +20,11 @@ $govuk-global-styles: true;
 @import "patterns/action-buttons";
 @import "patterns/app-content-nav";
 @import "components/global-header";
+@import "components/header-user";
+@import "components/apprenticeship-service-header";
+@import "components/floating-menu";
+@import "patterns/apprenticeship-service-misc";
+@import "components/apprenticeship-tabs";
 
 // Components that aren't in Frontend
 @import "components/cookie-banner";
