@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% set phaseBanner = "false" %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="POST" action="/service/usedServiceBefore">
+			{% from "radios/macro.njk" import govukRadios %}
+
+			{{ govukRadios(
+				{
+					classes: "",
+					idPrefix: "changed-name",
+					name: "changed-name",
+					fieldset:
+					{
+						legend:
+						{
+							text: "Have you used this service before?",
+							isPageHeading: true,
+							classes: "govuk-fieldset__legend--xl"
+						}
+					},
+					hint:
+					{
+						text: ""
+					},
+					items:[
+					{
+						value: "yes",
+						text: "Yes, I've used this service before"
+					},
+					{
+						value: "no",
+						text: "No, this is my first time"
+					}]
+				})
+			}}
+
+			{% from "button/macro.njk" import govukButton %}
+
+			{{ govukButton({
+				text: "Continue",
+				href: "login"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

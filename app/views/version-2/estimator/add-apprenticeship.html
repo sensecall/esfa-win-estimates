@@ -1,0 +1,162 @@
+{% if data['loggedIn'] === 'true' %}
+{% extends "layout-account.html" %}
+
+{% block beforeContent %}
+{% if data['loggedIn'] === 'true' %}
+<div class="govuk-breadcrumbs">
+	<ol class="govuk-breadcrumbs__list">
+		<li class="govuk-breadcrumbs__list-item">
+			<a href="account-home" class="govuk-breadcrumbs__link">Home</a>
+		</li>
+		<li class="govuk-breadcrumbs__list-item">
+			<a href="../finance" class="govuk-breadcrumbs__link">Finance</a>
+		</li>
+		<li class="govuk-breadcrumbs__list-item">
+			<a href="#" class="govuk-breadcrumbs__link">Estimator</a>
+		</li>
+	</ol>
+</div>
+{% else %}
+{% endif %}
+{% endblock %}
+
+{% else %}
+{% extends "layout.html" %}
+{% endif %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Add apprenticeships to your estimate
+		</h1>
+
+		{% from "checkboxes/macro.njk" import govukCheckboxes %}
+
+		{{ govukCheckboxes(
+			{
+				idPrefix: "IsTransferFunded",
+				name: "IsTransferFunded",
+				fieldset:
+				{
+					legend:
+					{
+						text: "Will this apprenticeship be funded by your transfer allowance?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--s"
+					}
+				},
+				hint: {
+				text: ""
+			},
+			items: [
+			{
+				value: "true",
+				text: "Use transfer allowance"
+			}
+			]
+		}) }}
+
+
+		<div class="govuk-form-group">
+			<label class="govuk-label" for="choose-apprenticeship">
+				Choose apprenticeship
+			</label>
+			<select class="govuk-select" id="choose-apprenticeship" name="choose-apprenticeship">
+				<option value="">Select one</option>
+				{% include '../../includes/apprenticeships-options-list.html' %}
+			</select>
+		</div>
+
+		{% from "input/macro.njk" import govukInput %}
+
+		{{ govukInput({
+			label:
+			{
+				text: "Number of apprentices"
+			},
+			id: "no-of-app",
+			name: "NumberOfApprentices",
+			classes: "govuk-input--width-4"
+		}) }}
+
+		{{ govukInput({
+			label:
+			{
+				text: "Number of months"
+			},
+			hint: 
+			{
+				text: "Apprenticeships must be a minimum of 12 months"
+			},
+			id: "apprenticeship-length",
+			name: "TotalInstallments",
+			classes: "govuk-input--width-2"
+		}) }}
+
+		{% from "date-input/macro.njk" import govukDateInput %}
+
+		{{ govukDateInput({
+			id: "startDate",
+			name: "startDate",
+			fieldset:
+			{
+				legend:
+				{
+					text: "Start date",
+					isPageHeading: false,
+					classes: "govuk-fieldset__legend--s"
+				}
+			},
+			hint:
+			{
+				text: "For example, 09 2018"
+			},
+			items: [
+			{
+				name: "month"
+			},
+			{
+				name: "year"
+			}
+			]
+		}) }}
+
+		<div class="form-group">
+			<label class="form-label-bold">Government funding band maximum</label>
+
+
+			<span id="details-about-funding-calculated" class="form-hint" style="display: none;">
+				Government funding band maximum for this apprenticeship is <span id="funding-cap-details">£0</span><br>
+				Total government funding band maximum for <b id="apprentice-count-details">0</b> apprentices is <b id="total-cap-details">£0 </b>
+			</span>
+
+			<span id="details-about-funding" class="form-hint">
+				Choose an apprenticeship and number of apprentices to see this figure <br>
+				<a href="https://www.gov.uk/government/publications/apprenticeship-funding-bands" target="fundingbands">More information about maximum government funding bands</a>
+			</span>
+		</div>
+
+
+		<div class="form-group ">
+			<label class="form-label-bold" for="total-funding-cost">Total cost</label>
+			<span class="form-hint">You can change this number if the total cost is below the funding band maximum value - this is the highest amount you can transfer</span>
+
+
+			<div class="form-control-group">
+				<div class="form-control-group-prepend">
+					<span>£</span>
+				</div>
+				<input class="form-control total-funding-cost" id="total-funding-cost" name="TotalCostAsString" value="" type="text">
+			</div>
+
+
+		</div>
+	</div>
+
+	<a href="#" class="govuk-button">
+		Save and continue
+	</a>
+</div>
+</div>
+{% endblock %}

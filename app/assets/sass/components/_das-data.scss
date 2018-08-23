@@ -1,6 +1,6 @@
 .data-wrap {
 	@include govuk-clearfix;
-	margin: 0 (-$govuk-gutter-half);
+	// margin: 0 (-$govuk-gutter-half);
 }
 
 .data {
@@ -19,7 +19,6 @@
 		}
 	}
 	@include govuk-media-query($from: tablet) { 
-		padding: 0 $govuk-gutter-half;
 		float: left;
 		width: 50%;
 		box-sizing: border-box;
