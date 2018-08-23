@@ -2,6 +2,7 @@
 {% extends "layout-account.html" %}
 {% else %}
 {% extends "layout.html" %}
+{% set serviceName = "Calculate future apprenticeship costs" %}
 {% endif %}
 
 {% block beforeContent %}
@@ -11,23 +12,31 @@
 {% block content %}
 <div class="govuk-grid-row funding-projection">
 	<div class="govuk-grid-column-two-thirds">
+		{% if data["apprenticeship-added"] === 'true' %}
+		<div class="govuk-inset-text govuk-inset-text--success">
+			Apprenticeship added. Cost estimate has been updated.
+		</div>
+		{% endif %}
+
 		<h1 class="govuk-heading-xl">
-			Future spending estimate
+			Future apprenticeship costs
 		</h1>
 		<p>
 			The figures below show the estimated funds that may be available to you for the duration of your apprenticeships.
 		</p>
 
-		{% from "details/macro.njk" import govukDetails %}
-		{{ govukDetails({
-			summaryText: "More information",
-			html: "<p>
-				These figures are based on the current information in your account and the data provided by your training provider which is used to calculate funding.
-			</p>
+		<p>
+			These figures are based on the current information in your account and the data provided by your training provider which is used to calculate funding.
+		</p>
+		<p>
+			The projection doesn’t include any future apprenticeship starts or apprentices who’ve already started and payment has not yet been made to their training provider. These will be added to the funding projection soon.
+		</p>
+
+		<div class="govuk-inset-text govuk-inset-text--info">
 			<p>
-				The projection doesn’t include any future apprenticeship starts or apprentices who’ve already started and payment has not yet been made to their training provider. These will be added to the funding projection soon.
-			</p>"
-		}) }}
+				This estimate includes apprenticehips that you have added manually. You can <a href="#">change apprenticeships</a> you have added maunally.
+			</p>
+		</div>
 
 		<!-- <a class="govuk-button govuk-!-margin-top-0" href="estimator/start">
 			Estimate apprenticeship spending
@@ -45,77 +54,66 @@
 </div>
 
 <!-- CHART -->
-<div class="govuk-grid-row">
+<div class="govuk-grid-row govuk-!-margin-top-8">
 	<div class="govuk-grid-column-full">
-		<section>
-			<nav>
-				<ul class="js-tabs" role="tablist">
-					<li role="tab" id="tab-account-projection-table" aria-controls="pane-account-projection-table"><a href="#pane-account-projection-table">Future spending table</a></li>
-					<li role="tab" id="tab-apprenticeships-added" aria-controls="pane-account-projection-chart"><a href="#pane-account-projection-chart" class="selected">Future spending chart</a></li>
-				</ul>
-			</nav>
+		<h3 class="govuk-heading-l">
+			Summary of the next 12 months
+		</h3>
 
-			<div class="panes">
-				<!-- START PANE -->
-				<div class="js-tab-pane" id="pane-account-projection-table" role="tabpanel" style="display: block;" aria-hidden="false">
-					<h4 class="govuk-heading-l govuk-!-margin-top-2">Your account projection</h4>
-					<p>A month by month projection of your account balance.</p>
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-one-third">
+				<div class="data govuk-!-margin-bottom-8">
+					<dl class="transfer-funds">
+						<dt>
+							Current balance
+						</dt>
 
-					<div class="govuk-grid-row">
-						<div class="govuk-grid-column-one-half">
-							<div class="govuk-inset-text govuk-!-margin-top-0">
-								<p class="govuk-!-margin-bottom-0">
-									Current Balance:
-								</p>
-								<span class="govuk-heading-m">
-									£0
-								</span>
-							</div>
-						</div>
-
-						<div class="govuk-grid-column-one-half">
-							<div class="govuk-inset-text govuk-!-margin-top-0">
-								<p class="govuk-!-margin-bottom-0">
-									Overdue completion payments:
-								</p>
-								<span class="govuk-heading-m">£0</span>
-
-								{{ govukDetails({
-									summaryText: "What does this figure mean?",
-									html: "This is the value of your overdue completion payments where the apprenticeships have overrun the planned completion date."
-								}) }}
-							</div>
-						</div>
-					</div>
-
-					{% include './_projection-table.html' %}
+						<dd class="">£{{ data["levy-funds"] or "0" }}</dd>
+					</dl>
 				</div>
-				<!-- END PANE -->
-
-				<!-- START PANE -->
-				<div class="js-tab-pane" id="pane-account-projection-chart" role="tabpanel" style="display: block;" aria-hidden="false">
-					<h2 class="govuk-heading-l govuk-!-margin-top-2">Funding Projection Chart</h2>
-					{% include './_funding-projection-chart.html' %}
-				</div>
-				<!-- END PANE -->
 			</div>
-		</section>
+
+			<div class="govuk-grid-column-one-third">
+				<div class="data govuk-!-margin-bottom-0">
+					<dl class="overdue-completion-payments">
+						<dt>
+							Overdue completion payments
+						</dt>
+
+						<dd class="">£{{ data["levy-funds"] or "0" }}</dd>
+					</dl>
+				</div>
+			</div>
+
+			<div class="govuk-grid-column-one-third">
+				<div class="data govuk-!-margin-bottom-8">
+					<dl class="expiring-funds">
+						<dt>
+							Funds that could expire
+						</dt>
+
+						<dd class="">£{{ data["levy-funds"] or "0" }}</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
-<div class="govuk-grid-row govuk-!-margin-top-4">
-	<div class="govuk-grid-column-two-thirds">
-		{{ govukDetails({
-			summaryText: "Where is the end-point assessment cost?",
-			html: "
-			<p>
-				The end-point assessment cost is paid by your training provider to your end-point assessment organisation (EPAO).
-			</p>
-			<p>
-				The funds for this payment are included in the training and completion costs.
-			</p>"
-		}) }}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<h3 class="govuk-heading-l">
+			5-year projection
+		</h3>
+		{% include './_projection-table.html' %}
 	</div>
+
+	<!-- START PANE -->
+	<!-- <div class="js-tab-pane" id="pane-account-projection-chart" role="tabpanel" style="display: block;" aria-hidden="false">
+		<h2 class="govuk-heading-l govuk-!-margin-top-2">Projected spending chart</h2>
+		{% include './_funding-projection-chart.html' %}
+	</div> -->
+	<!-- END PANE -->
 </div>
 
 <div class="govuk-grid-row">

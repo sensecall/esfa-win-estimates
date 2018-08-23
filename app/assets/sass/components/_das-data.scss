@@ -4,23 +4,41 @@
 }
 
 .data {
+	width: 100%;
+
+	* {
+		color: #fff;
+	}
+
 	dl {
 		box-sizing: border-box;
 		padding: 15px; 
-		background: govuk-colour("purple");
+		background: govuk-colour("blue");
 		color: white;
+
 		dt {
 			display: table-footer-group;
-			@include govuk-font($size: 19, $weight: bold);
+			@include govuk-font($size: 16, $weight: bold);
 		}
 		dd {
 			display: table-header-group;
 			@include govuk-font($size: 48, $weight: bold);
 		}
+
+		&.current-balance {
+			background: govuk-colour("grey-1")
+		}
+		&.expiring-funds {
+			background: govuk-colour("brown")
+		}
+		&.overdue-completion-payments {
+			background: govuk-colour("grey-1")
+		}
 	}
+
 	@include govuk-media-query($from: tablet) { 
 		float: left;
-		width: 50%;
+		// width: 50%;
 		box-sizing: border-box;
 		dd.long {
 			font-size: 42px;
@@ -31,8 +49,9 @@
 			line-height: 50px;
 		}
 	}
+
 	@include govuk-media-query($from: desktop) {
-		width: 33.33%;
+		// width: 33.33%;
 		dd.long {
 			font-size: 48px;
 			line-height: 50px;
@@ -45,8 +64,6 @@
 }
 
 #page-transactions .govuk-grid-column-one-half .data {
-	width: 100%;
-
 	dl {
 		position: relative;
 		min-height: 170px;

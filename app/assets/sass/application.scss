@@ -27,6 +27,7 @@ $govuk-global-styles: true;
 @import "components/apprenticeship-tabs";
 @import "components/das-data";
 @import "components/c3-chart";
+@import "patterns/alerts";
 
 // Components that aren't in Frontend
 @import "components/cookie-banner";

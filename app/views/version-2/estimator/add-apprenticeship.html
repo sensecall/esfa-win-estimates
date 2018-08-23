@@ -1,28 +1,14 @@
 {% if data['loggedIn'] === 'true' %}
 {% extends "layout-account.html" %}
-
-{% block beforeContent %}
-{% if data['loggedIn'] === 'true' %}
-<div class="govuk-breadcrumbs">
-	<ol class="govuk-breadcrumbs__list">
-		<li class="govuk-breadcrumbs__list-item">
-			<a href="account-home" class="govuk-breadcrumbs__link">Home</a>
-		</li>
-		<li class="govuk-breadcrumbs__list-item">
-			<a href="../finance" class="govuk-breadcrumbs__link">Finance</a>
-		</li>
-		<li class="govuk-breadcrumbs__list-item">
-			<a href="#" class="govuk-breadcrumbs__link">Estimator</a>
-		</li>
-	</ol>
-</div>
-{% else %}
-{% endif %}
-{% endblock %}
-
 {% else %}
 {% extends "layout.html" %}
 {% endif %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% set serviceName = "Calculate future apprenticeship costs" %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -153,7 +139,7 @@
 
 		}) }}
 
-		<a href="#" class="govuk-button">
+		<a href="../funding-projection?apprenticeship-added=true" class="govuk-button">
 			Save and continue
 		</a>
 	</div>
