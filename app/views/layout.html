@@ -23,22 +23,25 @@
 {% from "warning-text/macro.njk"  import govukWarningText %}
 
 {% block head %}
-  {% include "includes/head.html" %}
+{% include "includes/head.html" %}
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/sfa.navigation.js"></script>
+<script src="/public/javascripts/sfa.tabs.js"></script>
 {% endblock %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
-  {% include "includes/cookie-banner.html" %}
-  {# Set serviceName in config.js. #}
-  {{ govukHeader({
-    homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: "/",
-    classes: "app-apprentice-service-header"
-  }) }}
+{% include "includes/cookie-banner.html" %}
+{# Set serviceName in config.js. #}
+{{ govukHeader({
+  homepageUrl: "/",
+  serviceName: serviceName,
+  serviceUrl: "/",
+  classes: "app-apprentice-service-header"
+}) }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -52,24 +55,24 @@
 {% endblock %}
 
 {% if useAutoStoreData %}
-  {% block footer %}
-    {{ govukFooter({
-      meta: {
-        items: [
-          {
-            href: "/prototype-admin/clear-data",
-            text: "Clear data"
-          }
-        ]
-      }
-    }) }}
-  {% endblock %}
+{% block footer %}
+{{ govukFooter({
+  meta: {
+  items: [
+  {
+    href: "/prototype-admin/clear-data",
+    text: "Clear data"
+  }
+  ]
+}
+}) }}
+{% endblock %}
 {% endif %}
 
 {% block bodyEnd %}
-  {% block scripts %}
-    {% include "includes/scripts.html" %}
-    {% block pageScripts %}{% endblock %}
-  {% endblock %}
-  <!-- GOV.UK Prototype Kit {{releaseVersion}} -->
+{% block scripts %}
+{% include "includes/scripts.html" %}
+{% block pageScripts %}{% endblock %}
+{% endblock %}
+<!-- GOV.UK Prototype Kit {{releaseVersion}} -->
 {% endblock %}

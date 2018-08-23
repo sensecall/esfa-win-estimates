@@ -49,3 +49,7 @@ $govuk-global-styles: true;
 		border-bottom: none;
 	}
 }
+
+.govuk-table--font-small {
+	@include govuk-font($size: 16);
+}

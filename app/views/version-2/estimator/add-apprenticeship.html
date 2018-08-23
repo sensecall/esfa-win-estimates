@@ -122,41 +122,40 @@
 			]
 		}) }}
 
-		<div class="form-group">
-			<label class="form-label-bold">Government funding band maximum</label>
+		<div class="govuk-form-group">
+			<label class="govuk-label" for="more-detail">
+				Government funding band maximum
+			</label>
 
-
-			<span id="details-about-funding-calculated" class="form-hint" style="display: none;">
+			<span class="govuk-hint govuk-visually-hidden">
 				Government funding band maximum for this apprenticeship is <span id="funding-cap-details">£0</span><br>
 				Total government funding band maximum for <b id="apprentice-count-details">0</b> apprentices is <b id="total-cap-details">£0 </b>
 			</span>
 
-			<span id="details-about-funding" class="form-hint">
+			<span class="govuk-hint">
 				Choose an apprenticeship and number of apprentices to see this figure <br>
 				<a href="https://www.gov.uk/government/publications/apprenticeship-funding-bands" target="fundingbands">More information about maximum government funding bands</a>
 			</span>
 		</div>
 
+		{{ govukInput({
+			label: 
+			{
+				text: "Total cost"
+			},
+			hint: 
+			{
+				text: "You can change this number if the total cost is below the funding band maximum value - this is the highest amount you can transfer"
+			},
+			id: "total-funding-cost",
+			name: "TotalCostAsString",
+			classes: "govuk-input--width-10"
 
-		<div class="form-group ">
-			<label class="form-label-bold" for="total-funding-cost">Total cost</label>
-			<span class="form-hint">You can change this number if the total cost is below the funding band maximum value - this is the highest amount you can transfer</span>
+		}) }}
 
-
-			<div class="form-control-group">
-				<div class="form-control-group-prepend">
-					<span>£</span>
-				</div>
-				<input class="form-control total-funding-cost" id="total-funding-cost" name="TotalCostAsString" value="" type="text">
-			</div>
-
-
-		</div>
+		<a href="#" class="govuk-button">
+			Save and continue
+		</a>
 	</div>
-
-	<a href="#" class="govuk-button">
-		Save and continue
-	</a>
-</div>
 </div>
 {% endblock %}

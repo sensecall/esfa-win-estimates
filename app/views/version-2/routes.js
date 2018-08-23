@@ -14,9 +14,9 @@ router.get('/login', (req, res) => {
 router.get('/estimator/account-check', (req, res) => {
 	var hasAccount = req.query.hasAccount
 	if (hasAccount === 'yes') {
-		res.redirect(`/${req.version}/login?redirect=estimator/estimate`)
+		res.redirect(`/${req.version}/login?redirect=funding-projection`)
 	} else if (hasAccount === 'no') {
-		res.redirect(`estimate`)
+		res.redirect(`add-apprenticeship`)
 	} else {
 		res.render(`${req.version}/estimator/account-check`)
 	}

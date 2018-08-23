@@ -1,11 +1,4 @@
-{% extends "template.njk" %}
-
-{% block head %}
-{% include "includes/head.html" %}
-<script src="/public/javascripts/jquery-1.11.3.js"></script>
-<script src="/public/javascripts/sfa.navigation.js"></script>
-<script src="/public/javascripts/sfa.tabs.js"></script>
-{% endblock %}
+{% extends "layout.html" %}
 
 {% block cookie_message %}
 <p>{{cookieText | safe }}</p>
