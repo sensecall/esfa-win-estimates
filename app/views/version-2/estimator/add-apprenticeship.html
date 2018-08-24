@@ -17,6 +17,10 @@
 			Add apprenticeships to your estimate
 		</h1>
 
+		<p class="govuk-!-margin-bottom-8">
+			Choose one or more apprenticeships to get a more detailed estimate of how much you will spend on apprenticeships every month. You will only have to pay 10% of the cost and the government will pay the rest.
+		</p>
+
 		{% from "checkboxes/macro.njk" import govukCheckboxes %}
 
 		{{ govukCheckboxes(
@@ -139,7 +143,7 @@
 
 		}) }}
 
-		<a href="../funding-projection?apprenticeship-added=true" class="govuk-button">
+		<a href="apprenticeships-list?apprenticeship-added=true" class="govuk-button">
 			Save and continue
 		</a>
 	</div>
