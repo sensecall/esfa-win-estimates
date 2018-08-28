@@ -35,11 +35,13 @@
 							Apprenticeships added by you
 						</a>
 					</li>
+					{% if data['loggedIn'] === 'true' %}
 					<li role="tab" id="tab-existing-apprenticeships" aria-controls="pane-existing-apprenticeships">
 						<a href="#pane-existing-apprenticeships">
 							Apprenticeships already in your account
 						</a>
 					</li>
+					{% endif %}
 				</ul>
 			</nav>
 
@@ -98,6 +100,10 @@
 				</div>
 
 				<div class="js-tab-pane" id="pane-existing-apprenticeships" role="tabpanel" style="display: block;" aria-hidden="false">
+					<p>
+						This shows apprentices that are already undertaking an apprenticeship with your business. It uses information from your Apprenticeships account.
+					</p>
+
 					<h2 class="govuk-heading-m">
 						Apprenticeships in your business
 					</h2>
