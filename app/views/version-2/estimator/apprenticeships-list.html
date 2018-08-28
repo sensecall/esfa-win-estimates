@@ -219,7 +219,7 @@
 			<form>
 				{% from "radios/macro.njk" import govukRadios %}
 				{{ govukRadios({
-					classes: "govuk-radios--inline",
+					classes: "",
 					idPrefix: "add-more-apprenticeships",
 					name: "addMoreApprenticeships",
 					fieldset:
@@ -238,11 +238,11 @@
 					items: [
 					{
 						value: "yes",
-						text: "Yes"
+						text: "Yes, I want to add more apprenticeships"
 					},
 					{
 						value: "no",
-						text: "No"
+						text: "No, I want to see my projected costs"
 					}
 					]
 				}) }}
