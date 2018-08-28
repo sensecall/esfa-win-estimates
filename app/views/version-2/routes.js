@@ -11,6 +11,10 @@ router.get('/login', (req, res) => {
 	res.render(`${req.version}/login`,{currentPage})
 })
 
+router.get('/estimator', (req, res) => {
+	res.redirect(`/${req.version}/estimator/start`)
+})
+
 router.get('/estimator/account-check', (req, res) => {
 	var hasAccount = req.query.hasAccount
 	if (hasAccount === 'yes') {
