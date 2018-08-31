@@ -1,0 +1,236 @@
+{% if data['loggedIn'] === 'true' %}
+{% extends "layout-account.html" %}
+{% else %}
+{% extends "./layout-estimator.html" %}
+{% endif %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{% if data["apprenticeship-added"] === 'true' %}
+		<div class="govuk-inset-text govuk-inset-text--success">
+			Apprenticeship added.
+		</div>
+		{% endif %}
+
+		{% if data["apprenticeship-removed"] === 'true' %}
+		<div class="govuk-inset-text govuk-inset-text--warning">
+			Apprenticeship removed.
+		</div>
+		{% endif %}
+
+		<h1 class="govuk-heading-xl">
+			Estimated cost of your chosen apprenticeships
+		</h1>
+	</div>
+</div>
+
+{% if data['annual-payroll'] >= 36000000 %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-third">
+		<div class="data">
+			<dl class="data--green">
+				<dt class="data__data--xl">
+					Amount you pay
+				</dt>
+
+				<dd class="data__data--xl">
+					£0
+				</dd>
+			</dl>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data">
+			<dl class="data--blue">
+				<dt class="data__data--xl">
+					Costs covered by your levy
+				</dt>
+
+				<dd class="data__data--xl">
+					£94,860
+				</dd>
+			</dl>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data">
+			<dl class="data--grey">
+				<dt class="data__data--xl">
+					Unspent levy
+				</dt>
+
+				<dd class="data__data--xl">
+					£12,020
+				</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+{% else %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-third">
+		<div class="data">
+			<dl class="data--green">
+				<dt class="data__data--xl">
+					Amount you pay
+				</dt>
+
+				<dd class="data__data--xl">
+					£10,540
+				</dd>
+			</dl>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data">
+			<dl class="data--blue">
+				<dt class="data__data--xl">
+					Amount government pays
+				</dt>
+
+				<dd class="data__data--xl">
+					£94,860
+				</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+<div class="govuk-grid-row govuk-!-margin-top-8">
+	<div class="govuk-grid-column-full">
+		<h2 class="govuk-heading-m">
+			Apprenticeships in this estimate
+		</h2>
+
+		<table class="govuk-table">
+			<caption class="govuk-table__caption">Months and rates</caption>
+			<thead class="govuk-table__head">
+				<tr class="govuk-table__row">
+					<th class="govuk-table__header" scope="col">Apprenticeship</th>
+					<th class="govuk-table__header govuk-table__header--numeric" scope="col">Number of apprentices</th>
+					<th class="govuk-table__header" scope="col">Start date</th>
+					<th class="govuk-table__header govuk-table__header--numeric" scope="col">Cost</th>
+					<th class="govuk-table__header" scope="col"></th>
+					<th class="govuk-table__header" scope="col"></th>
+				</tr>
+			</thead>
+			<tbody class="govuk-table__body">
+				<tr class="govuk-table__row">
+					<th class="govuk-table__header" scope="row">apprenticeship.name</th>
+					<td class="govuk-table__cell govuk-table__cell--numeric">apprenticeship.count</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">apprenticeship.startDate</td>
+				</tr>
+				<tr class="govuk-table__row">
+					<th class="govuk-table__header" scope="row">February</th>
+					<td class="govuk-table__cell govuk-table__cell--numeric">£75</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">£55</td>
+				</tr>
+				<tr class="govuk-table__row">
+					<th class="govuk-table__header" scope="row">March</th>
+					<td class="govuk-table__cell govuk-table__cell--numeric">£165</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">£125</td>
+				</tr>
+			</tbody>
+		</table>
+
+		{% from "table/macro.njk" import govukTable %}
+
+		{{ govukTable({
+			firstCellIsHeader: false,
+			head: [
+			{
+				text: "Apprenticeship"
+			},
+			{
+				text: "Number of apprentices"
+			},
+			{
+				text: "Start date"
+			},
+			{
+				text: "Cost"
+			},
+			{
+				text: " "
+			},
+			{
+				text: " "
+			}
+			],
+			rows: [
+			[
+			{
+				text: "Able seafarer (deck) "
+			},
+			{
+				text: "3"
+			},
+			{
+				text: "October 2019"
+			},
+			{
+				text: "£18,000"
+			},
+			{
+				html: '<a href="?apprenticeship-removed=true&apprenticeship-added=false">Remove</a>'
+			},
+			{
+				html: '<a href="#">Edit</a>'
+			}
+			],
+			[
+			{
+				text: "Able seafarer (deck) "
+			},
+			{
+				text: "3"
+			},
+			{
+				text: "October 2019"
+			},
+			{
+				text: "£18,000"
+			},
+			{
+				html: '<a href="?apprenticeship-removed=true">Remove</a>'
+			},
+			{
+				html: '<a href="#">Edit</a>'
+			}
+			]
+			]
+		}) }}
+
+		<p class="govuk-!-margin-bottom-0">
+			<a href="add-apprenticeship" class="govuk-button govuk-button--secondary">Add more apprenticeships to this estimate</a>
+		</p>
+	</div>
+</div>
+
+<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-m">
+			Register to access funds to pay for apprenticeship training
+		</h2>
+		<p>
+			If you are ready to register on the apprenticeship service, you need to set up your account.
+		</p>
+
+		<p>
+			<a href="https://manage-apprenticeships.service.gov.uk/" target="_blank" class="govuk-button">Register on the apprenticeship service</a>
+		</div>
+	</div>
+	{% endblock %}

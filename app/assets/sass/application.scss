@@ -54,3 +54,29 @@ $govuk-global-styles: true;
 .govuk-table--font-small {
 	@include govuk-font($size: 16);
 }
+
+.govuk-button {
+	&.govuk-button--secondary {
+		$govuk-button--secondary-colour: govuk-colour("grey-3");
+		$govuk-button--secondary-hover-colour: darken($govuk-button--secondary-colour,10%);
+		$govuk-button--secondary-shadow-colour: darken($govuk-button--secondary-colour,20%);
+		$govuk-button--secondary-text-colour: govuk-colour("black");
+
+		color: $govuk-button--secondary-text-colour;
+		background-color: $govuk-button--secondary-colour;
+		-webkit-box-shadow: 0 $button-shadow-size 0 $govuk-button--secondary-shadow-colour;
+		box-shadow: 0 $button-shadow-size 0 $govuk-button--secondary-shadow-colour; // s0
+
+		&:link,
+		&:visited,
+		&:active,
+		&:hover {
+			color: $govuk-button--secondary-text-colour;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: $govuk-button--secondary-hover-colour;
+		}
+	}
+}

@@ -1,0 +1,90 @@
+{% if data['loggedIn'] === 'true' %}
+{% extends "layout-account.html" %}
+{% else %}
+{% extends "layout.html" %}
+{% endif %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Add apprenticeships to your estimate
+		</h1>
+
+		<p class="govuk-!-margin-bottom-8">
+			Choose one or more apprenticeships to get a more detailed estimate of how much you will spend on apprenticeships.
+		</p>
+
+		<form action="apprenticeships-list?apprenticeship-added=true&apprenticeship-removed=false">
+			<div class="govuk-form-group">
+				<label class="govuk-label" for="choose-apprenticeship">
+					Choose apprenticeship
+				</label>
+				<select class="govuk-select" id="choose-apprenticeship" name="apprenticeship-name">
+					<option value="">Select one</option>
+					{% import '../../includes/data-apprenticeships.html' as apprenticeshipsData %}
+					{% for apprenticeship in apprenticeshipsData.apprenticeships %}
+					<option value="{{apprenticeship.value}}">
+						{{apprenticeship.name}}, Level: {{apprenticeship.level}} {{"(Standard)" if apprenticeship.standard === true}}
+					</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			{% from "input/macro.njk" import govukInput %}
+
+			{{ govukInput({
+				label:
+				{
+					text: "Number of apprentices"
+				},
+				id: "no-of-app",
+				name: "apprenticeship-count",
+				classes: "govuk-input--width-4"
+			}) }}
+
+			{% if data['annual-payroll'] >= 36000000 %}
+			{% from "date-input/macro.njk" import govukDateInput %}
+
+			{{ govukDateInput({
+				id: "startDate",
+				name: "startDate",
+				fieldset:
+				{
+					legend:
+					{
+						text: "Start date",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--s"
+					}
+				},
+				hint:
+				{
+					text: "For example, 09 2018"
+				},
+				items: [
+				{
+					name: "month"
+				},
+				{
+					name: "year"
+				}
+				]
+			}) }}
+			{% endif %}
+
+			{% from "button/macro.njk" import govukButton %}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

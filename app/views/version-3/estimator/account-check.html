@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% set phaseBanner = "true" %}
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form>
+			{% from "radios/macro.njk" import govukRadios %}
+
+			{{ govukRadios(
+				{
+					classes: "",
+					idPrefix: "hasAccount",
+					name: "hasAccount",
+					fieldset:
+					{
+						legend:
+						{
+							text: "Do you already have an apprenticeships account?",
+							isPageHeading: true,
+							classes: "govuk-fieldset__legend--xl"
+						}
+					},
+					hint:
+					{
+						text: "Logging in to your apprenticeships account allows you to use your actual financial data to make your estimate more accurate."
+					},
+					items:[
+					{
+						value: "yes",
+						text: "Yes, I have an account"
+					},
+					{
+						value: "no",
+						text: "No, I do not have an account"
+					}]
+				})
+			}}
+
+			<input type="hidden" value="false" name="loggedIn">
+			
+			{% from "button/macro.njk" import govukButton %}
+
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

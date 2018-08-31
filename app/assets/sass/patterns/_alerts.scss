@@ -8,3 +8,8 @@
   background-color: mix(white, govuk-colour("light-blue"), 90%);
 }
 
+.govuk-inset-text--warning {
+  border-color: govuk-colour("bright-red");
+  background-color: mix(white, govuk-colour("bright-red"), 90%);
+}
+

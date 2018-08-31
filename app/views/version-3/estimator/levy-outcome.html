@@ -1,0 +1,69 @@
+{% if data['loggedIn'] === 'true' %}
+{% extends "layout-account.html" %}
+{% else %}
+{% extends "layout.html" %}
+{% endif %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{% if data['annual-payroll'] >= 36000000 %}
+		
+		<h1 class="govuk-heading-xl">
+			You have to pay the Apprenticeship levy
+		</h1>
+
+		{% set annualLevy = ((data['annual-payroll'] * 0.005)-15000) // 100 * 110 %}
+		{% set monthlyLevy = annualLevy // 12 %}
+		<p>
+			You’ll receive £{{ annualLevy }} of levy credit per year. Any unused credit will expire 24 months after it arrives in your account.
+		</p>
+
+		{% from "details/macro.njk" import govukDetails %}
+		{{ govukDetails({
+			summaryText: "How this is worked out",
+			html: "
+			<p>
+				The amount you have available to spend is calculated on a monthly basis as follows:
+			</p>
+
+			<p>
+				Your levy is 0.5% of your gross annual payroll, less a £15,000 allowance. The balance is then divided by 12 and rounded down to the nearest pound. This gives a monthly levy payment of £" + monthlyLevy + " (rounded down).
+			</p>
+
+			<p>
+				100% of your pay bill goes to employees in England, so £" + monthlyLevy + " is multiplied by 100%. The government tops that up by 10%, which gives you £12,375 (rounded up) to spend each month.
+			</p>"
+		}) }}
+
+		{% else %}
+
+		<h1 class="govuk-heading-xl">
+			Government will pay 90% of your apprenticeship costs
+		</h1>
+
+		<p>
+			Because your monthly payroll is less than £3 million, you won't have to pay the apprenticeship levy.
+		</p>
+
+		<p>
+			This means that you will only have to pay 10% toward the cost of apprenticeships and the government will pay the rest.
+		</p>
+		{% endif %}
+
+		<p>
+			Next, you'll need to add some apprenticeships to find out how much they will cost your business.
+		</p>
+
+		<a href="add-apprenticeship" class="govuk-button">
+			Add apprenticeships to your estimate
+		</a>
+	</div>
+</div>
+{% endblock %}
