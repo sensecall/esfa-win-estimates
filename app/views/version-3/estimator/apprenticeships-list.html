@@ -47,6 +47,13 @@
 		</div>
 	</div>
 
+	{% set totalCost = 0 %}
+	{% for i in range(1, 999) %}
+	{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+	{% set totalCost = (data['apprenticeship_' + i + '-count'] * 9000) + totalCost %}
+	{% endif %}
+	{% endfor %}
+
 	<div class="govuk-grid-column-one-third">
 		<div class="data">
 			<dl class="data--blue">
@@ -55,7 +62,7 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					£94,860
+					£{{totalCost}}
 				</dd>
 			</dl>
 		</div>
@@ -75,7 +82,16 @@
 		</div>
 	</div>
 </div>
+
 {% else %}
+
+{% set totalCost = 0 %}
+{% for i in range(1, 999) %}
+{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * 900) + totalCost %}
+{% endif %}
+{% endfor %}
+
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-one-third">
 		<div class="data">
@@ -85,7 +101,7 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					£10,540
+					£{{totalCost}}
 				</dd>
 			</dl>
 		</div>
@@ -99,7 +115,7 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					£94,860
+					£{{totalCost // 10 * 90}}
 				</dd>
 			</dl>
 		</div>
@@ -109,108 +125,47 @@
 
 <div class="govuk-grid-row govuk-!-margin-top-8">
 	<div class="govuk-grid-column-full">
-		<h2 class="govuk-heading-m">
+		<h2 class="govuk-heading-l">
 			Apprenticeships in this estimate
 		</h2>
 
 		<table class="govuk-table">
-			<caption class="govuk-table__caption">Months and rates</caption>
 			<thead class="govuk-table__head">
 				<tr class="govuk-table__row">
 					<th class="govuk-table__header" scope="col">Apprenticeship</th>
 					<th class="govuk-table__header govuk-table__header--numeric" scope="col">Number of apprentices</th>
+					{% if data['annual-payroll'] >= 36000000 %}
 					<th class="govuk-table__header" scope="col">Start date</th>
+					{% endif %}
 					<th class="govuk-table__header govuk-table__header--numeric" scope="col">Cost</th>
 					<th class="govuk-table__header" scope="col"></th>
 					<th class="govuk-table__header" scope="col"></th>
 				</tr>
 			</thead>
 			<tbody class="govuk-table__body">
+				{% macro apprenticeship(id, attribute) %}
+				{{ data['apprenticeship_' + id + '-' + attribute] }}
+				{% endmacro %}
+
+				{% for i in range(1, 999) %}
+				{% set el = 'apprenticeship_' + i %}
+				{% if data[el + '-name'] and data[el + '-count'] %}
 				<tr class="govuk-table__row">
-					<th class="govuk-table__header" scope="row">apprenticeship.name</th>
-					<td class="govuk-table__cell govuk-table__cell--numeric">apprenticeship.count</td>
-					<td class="govuk-table__cell govuk-table__cell--numeric">apprenticeship.startDate</td>
+					<th class="govuk-table__header" scope="row">{{ apprenticeship(i,'name') }}</th>
+					<td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td>
+					{% if data['annual-payroll'] >= 36000000 %}
+					<td class="govuk-table__cell">startDate</td>
+					{% endif %}
+					<td class="govuk-table__cell govuk-table__cell--numeric">£{{ apprenticeship(i,'count') * 900}}</td>
+					<td class="govuk-table__cell"><a href="#">Edit</a></td>
+					<td class="govuk-table__cell">
+						<a href="?apprenticeship-removed=true&apprenticeship-added=false&apprenticeship_{{i}}-count=&apprenticeship_{{i}}-name=">Remove</a>
+					</td>
 				</tr>
-				<tr class="govuk-table__row">
-					<th class="govuk-table__header" scope="row">February</th>
-					<td class="govuk-table__cell govuk-table__cell--numeric">£75</td>
-					<td class="govuk-table__cell govuk-table__cell--numeric">£55</td>
-				</tr>
-				<tr class="govuk-table__row">
-					<th class="govuk-table__header" scope="row">March</th>
-					<td class="govuk-table__cell govuk-table__cell--numeric">£165</td>
-					<td class="govuk-table__cell govuk-table__cell--numeric">£125</td>
-				</tr>
+				{% endif %}
+				{% endfor %}
 			</tbody>
 		</table>
-
-		{% from "table/macro.njk" import govukTable %}
-
-		{{ govukTable({
-			firstCellIsHeader: false,
-			head: [
-			{
-				text: "Apprenticeship"
-			},
-			{
-				text: "Number of apprentices"
-			},
-			{
-				text: "Start date"
-			},
-			{
-				text: "Cost"
-			},
-			{
-				text: " "
-			},
-			{
-				text: " "
-			}
-			],
-			rows: [
-			[
-			{
-				text: "Able seafarer (deck) "
-			},
-			{
-				text: "3"
-			},
-			{
-				text: "October 2019"
-			},
-			{
-				text: "£18,000"
-			},
-			{
-				html: '<a href="?apprenticeship-removed=true&apprenticeship-added=false">Remove</a>'
-			},
-			{
-				html: '<a href="#">Edit</a>'
-			}
-			],
-			[
-			{
-				text: "Able seafarer (deck) "
-			},
-			{
-				text: "3"
-			},
-			{
-				text: "October 2019"
-			},
-			{
-				text: "£18,000"
-			},
-			{
-				html: '<a href="?apprenticeship-removed=true">Remove</a>'
-			},
-			{
-				html: '<a href="#">Edit</a>'
-			}
-			]
-			]
-		}) }}
 
 		<p class="govuk-!-margin-bottom-0">
 			<a href="add-apprenticeship" class="govuk-button govuk-button--secondary">Add more apprenticeships to this estimate</a>

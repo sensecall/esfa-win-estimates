@@ -1,7 +1,7 @@
 {% if data['loggedIn'] === 'true' %}
 {% extends "layout-account.html" %}
 {% else %}
-{% extends "layout.html" %}
+{% extends "./layout-estimator.html" %}
 {% endif %}
 
 {% block beforeContent %}
@@ -9,6 +9,11 @@
 {% endblock %}
 
 {% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% if not apprenticeshipId %}
+{% set apprenticeshipId = "1" %}
+{% else %}
+{% endif %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -21,16 +26,26 @@
 			Choose one or more apprenticeships to get a more detailed estimate of how much you will spend on apprenticeships.
 		</p>
 
-		<form action="apprenticeships-list?apprenticeship-added=true&apprenticeship-removed=false">
+		{% for i in range(1, 999) %}
+		{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+		{% set apprenticeshipId = i + 1 %}
+		{% endif %}
+		{% endfor %}
+
+		<form action="apprenticeships-list">
+			<input type="hidden" value="{{apprenticeshipId}}" name="apprenticeship-id">
+			<input type="hidden" value="false" name="apprenticeship-removed">
+			<input type="hidden" value="true" name="apprenticeship-added">
+
 			<div class="govuk-form-group">
 				<label class="govuk-label" for="choose-apprenticeship">
 					Choose apprenticeship
 				</label>
-				<select class="govuk-select" id="choose-apprenticeship" name="apprenticeship-name">
+				<select class="govuk-select" id="choose-apprenticeship" name="apprenticeship_{{apprenticeshipId}}-name">
 					<option value="">Select one</option>
 					{% import '../../includes/data-apprenticeships.html' as apprenticeshipsData %}
 					{% for apprenticeship in apprenticeshipsData.apprenticeships %}
-					<option value="{{apprenticeship.value}}">
+					<option value="{{apprenticeship.name}}">
 						{{apprenticeship.name}}, Level: {{apprenticeship.level}} {{"(Standard)" if apprenticeship.standard === true}}
 					</option>
 					{% endfor %}
@@ -45,7 +60,7 @@
 					text: "Number of apprentices"
 				},
 				id: "no-of-app",
-				name: "apprenticeship-count",
+				name: "apprenticeship_" + apprenticeshipId + "-count",
 				classes: "govuk-input--width-4"
 			}) }}
 

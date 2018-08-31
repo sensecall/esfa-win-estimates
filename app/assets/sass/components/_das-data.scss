@@ -13,19 +13,18 @@
 	dl {
 		box-sizing: border-box;
 		padding: 15px; 
-		padding-top: 3em;
 		background: govuk-colour("blue");
 		color: white;
-		min-height: 136px;
 
 		dt {
-			display: table-footer-group;
-			@include govuk-font($size: 16, $weight: bold);
+			display: table-header-group;
+			@include govuk-font($size: 19, $weight: bold);
+			height: 1.75em;
 		}
 
 		dd,
 		dd.data__data-xl {
-			display: table-header-group;
+			display: table-footer-group;
 			@include govuk-font($size: 48, $weight: bold);
 
 			&.data__data--l {
