@@ -62,7 +62,7 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					£{{totalCost | numeral().format('0,0a')}}
+					<abbr title="£{{totalCost | numeral().format('0,0')}}">£{{totalCost | numeral().format('0,0a')}}</abbr>
 				</dd>
 			</dl>
 		</div>
@@ -76,7 +76,7 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					£{{ (data['total-levy'] - totalCost) | numeral().format('0,0a') }}
+					<abbr title="£{{(data['total-levy'] - totalCost) | numeral().format('0,0')}}">£{{ (data['total-levy'] - totalCost) | numeral().format('0,0a') }}</abbr>
 				</dd>
 			</dl>
 		</div>
