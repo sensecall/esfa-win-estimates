@@ -1,7 +1,7 @@
 {% if data['loggedIn'] === 'true' %}
 {% extends "layout-account.html" %}
 {% else %}
-{% extends "layout.html" %}
+{% extends "./layout-estimator.html" %}
 {% endif %}
 
 {% block beforeContent %}
@@ -14,7 +14,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl">
-			Employees living in England? 
+			Employees living in England
 		</h1>
 
 		<form action="levy-outcome">
@@ -23,7 +23,7 @@
 			{{ govukInput({
 				label:
 				{
-					text: "What percentage of your pay bill goes to employees living in England? "
+					text: "What percentage of your pay bill goes to employees living in England?"
 				},
 				hint:
 				{

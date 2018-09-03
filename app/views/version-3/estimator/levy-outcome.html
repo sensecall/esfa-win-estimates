@@ -1,7 +1,7 @@
 {% if data['loggedIn'] === 'true' %}
 {% extends "layout-account.html" %}
 {% else %}
-{% extends "layout.html" %}
+{% extends "./layout-estimator.html" %}
 {% endif %}
 
 {% block beforeContent %}
@@ -22,6 +22,9 @@
 		{% set annualLevy = ((data['annual-payroll'] * 0.005)-15000) %}
 		{% set monthlyLevy = annualLevy // 12 %}
 		{% set englishPercentage = data['english-percentage'] or '100' %}
+
+		{% set totalAnnualLevy = annualLevy * 1.1 | round(0, "floor") %}
+
 		<p>
 			You’ll receive £{{ (annualLevy * 1.1) | numeral().format('0,0') }} of levy credit per year. Any unused credit will expire 24 months after it arrives in your account.
 		</p>
@@ -62,7 +65,7 @@
 			Next, you'll need to add some apprenticeships to find out how much they will cost your business.
 		</p>
 
-		<a href="add-apprenticeship" class="govuk-button">
+		<a href="add-apprenticeship?total-levy={{totalAnnualLevy}}" class="govuk-button">
 			Add apprenticeships to your estimate
 		</a>
 	</div>

@@ -62,7 +62,7 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					£{{totalCost}}
+					£{{totalCost | numeral().format('0,0a')}}
 				</dd>
 			</dl>
 		</div>
@@ -76,7 +76,7 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					£12,020
+					£{{ (data['total-levy'] - totalCost) | numeral().format('0,0a') }}
 				</dd>
 			</dl>
 		</div>
@@ -125,7 +125,7 @@
 
 <div class="govuk-grid-row govuk-!-margin-top-8">
 	<div class="govuk-grid-column-full">
-		<h2 class="govuk-heading-l">
+		<h2 class="govuk-heading-m">
 			Apprenticeships in this estimate
 		</h2>
 
@@ -186,7 +186,7 @@
 	</div>
 </div>
 
-<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+<hr class="govuk-section-break govuk-section-break--xl">
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
