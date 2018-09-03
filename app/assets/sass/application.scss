@@ -16,7 +16,6 @@ $govuk-global-styles: true;
 @import "components/homepage-top";
 @import "patterns/flash-card";
 @import "patterns/inverted-button";
-@import "patterns/autocomplete";
 @import "patterns/action-buttons";
 @import "patterns/app-content-nav";
 @import "components/global-header";
@@ -28,6 +27,8 @@ $govuk-global-styles: true;
 @import "components/das-data";
 @import "components/c3-chart";
 @import "patterns/alerts";
+@import "components/autocomplete";
+
 
 // Components that aren't in Frontend
 @import "components/cookie-banner";

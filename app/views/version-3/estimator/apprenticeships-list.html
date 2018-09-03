@@ -157,7 +157,9 @@
 					<td class="govuk-table__cell">startDate</td>
 					{% endif %}
 					<td class="govuk-table__cell govuk-table__cell--numeric">£{{ apprenticeship(i,'count') * 900}}</td>
-					<td class="govuk-table__cell"><a href="#">Edit</a></td>
+					<td class="govuk-table__cell">
+						<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Edit</a>
+					</td>
 					<td class="govuk-table__cell">
 						<a href="?apprenticeship-removed=true&apprenticeship-added=false&apprenticeship_{{i}}-count=&apprenticeship_{{i}}-name=">Remove</a>
 					</td>
