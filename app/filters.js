@@ -1,3 +1,6 @@
+var numeralFilter = require('nunjucks-numeral-filter')
+// var numeralFilter = require('numeral')
+
 module.exports = function (env) {
   /**
    * Instantiate object used to store the methods registered as a
@@ -39,8 +42,7 @@ module.exports = function (env) {
     ------------------------------------------------------------------ */
 
 // nunjucks numeral.js
-// var numeralFilter = require('numeral')
-// filters.numeral = numeralFilter
+filters.numeral = numeralFilter
 
 
   /* ------------------------------------------------------------------

@@ -101,7 +101,7 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					£{{totalCost}}
+					£{{totalCost | numeral().format('0,0') }}
 				</dd>
 			</dl>
 		</div>
@@ -115,7 +115,7 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					£{{totalCost // 10 * 90}}
+					£{{(totalCost // 10 * 90) | numeral().format('0,0')}}
 				</dd>
 			</dl>
 		</div>
@@ -167,7 +167,7 @@
 					{% if data['annual-payroll'] >= 36000000 %}
 					<td class="govuk-table__cell govuk-table__cell--numeric">{{data['startDate-month']}} {{data['startDate-year']}}</td>
 					{% endif %}
-					<td class="govuk-table__cell govuk-table__cell--numeric">£{{ apprenticeship(i,'count') * 900}}</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * 900) | numeral().format('0,0')}}</td>
 					<td class="govuk-table__cell">
 						<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Edit</a>
 					</td>
