@@ -14,24 +14,24 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl">
-			What is your organisation's annual payroll?
+			Employees living in England? 
 		</h1>
 
-		<form>
+		<form action="levy-outcome">
 			{% from "input/macro.njk" import govukInput %}
 
 			{{ govukInput({
 				label:
 				{
-					text: "Your organisation’s annual UK payroll"
+					text: "What percentage of your pay bill goes to employees living in England? "
 				},
 				hint:
 				{
-					text: "For example 2400000"
+					text: "This only needs to be an estimate. Enter '100' if you’re unsure"
 				},
-				id: "annual-payroll",
-				name: "annual-payroll",
-				classes: "govuk-input--width-10"
+				id: "english-percentage",
+				name: "english-percentage",
+				classes: "govuk-input--width-3"
 			}) }}
 
 			{% from "button/macro.njk" import govukButton %}

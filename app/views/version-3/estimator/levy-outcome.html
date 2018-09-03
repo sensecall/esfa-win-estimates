@@ -19,10 +19,11 @@
 			You have to pay the Apprenticeship levy
 		</h1>
 
-		{% set annualLevy = ((data['annual-payroll'] * 0.005)-15000) // 100 * 110 %}
+		{% set annualLevy = ((data['annual-payroll'] * 0.005)-15000) %}
 		{% set monthlyLevy = annualLevy // 12 %}
+		{% set englishPercentage = data['english-percentage'] or '100' %}
 		<p>
-			You’ll receive £{{ annualLevy }} of levy credit per year. Any unused credit will expire 24 months after it arrives in your account.
+			You’ll receive £{{ (annualLevy * 1.1) | numeral().format('0,0') }} of levy credit per year. Any unused credit will expire 24 months after it arrives in your account.
 		</p>
 
 		{% from "details/macro.njk" import govukDetails %}
@@ -34,11 +35,11 @@
 			</p>
 
 			<p>
-				Your levy is 0.5% of your gross annual payroll, less a £15,000 allowance. The balance is then divided by 12 and rounded down to the nearest pound. This gives a monthly levy payment of £" + monthlyLevy + " (rounded down).
+				Your levy is 0.5% of your gross annual payroll, less a £15,000 allowance. The balance is then divided by 12 and rounded down to the nearest pound. This gives a monthly levy payment of £" + monthlyLevy | round(0, "floor") | numeral().format('0,0') + " (rounded down).
 			</p>
 
 			<p>
-				100% of your pay bill goes to employees in England, so £" + monthlyLevy + " is multiplied by 100%. The government tops that up by 10%, which gives you £12,375 (rounded up) to spend each month.
+				" + englishPercentage + "% of your pay bill goes to employees in England, so £" + monthlyLevy | numeral().format('0,0') + " is multiplied by " + englishPercentage + "%. The government tops that up by 10%, which gives you £" + ((monthlyLevy * (englishPercentage / 100)) * 1.1) | round(0, "ceil") | numeral().format('0,0') + " (rounded up) to spend each month.
 			</p>"
 		}) }}
 

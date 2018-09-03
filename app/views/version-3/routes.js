@@ -26,6 +26,17 @@ router.get('/estimator/account-check', (req, res) => {
 	}
 })
 
+router.get('/estimator/business-details', (req, res) => {
+	var levy = req.session.data['annual-payroll']
+	if (levy >= 36000000) {
+		res.redirect(`/${req.version}/estimator/english-percentage`)
+	} else if (levy < 36000000) {
+		res.redirect(`levy-outcome`)
+	} else {
+		res.render(`${req.version}/estimator/business-details`)
+	}
+})
+
 router.get('/estimator/apprenticeships-list', (req, res) => {
 	var addMoreApprenticeships = req.query.addMoreApprenticeships
 	if (addMoreApprenticeships === 'no') {
