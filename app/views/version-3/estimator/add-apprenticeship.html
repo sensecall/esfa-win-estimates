@@ -16,7 +16,9 @@
 				autoselect: false,
 				defaultValue: '',
 				minLength: 2,
-				selectElement: selectEl
+				selectElement: selectEl,
+				placeholder: 'Search for an apprenticeship',
+				showAllValues: true
 			})
 		})
 	})
@@ -80,7 +82,8 @@
 				},
 				id: "no-of-app",
 				name: "apprenticeship_" + apprenticeshipId + "-count",
-				classes: "govuk-input--width-4"
+				classes: "govuk-input--width-4",
+				type: "number"
 			}) }}
 
 			{% if data['annual-payroll'] >= 36000000 %}
