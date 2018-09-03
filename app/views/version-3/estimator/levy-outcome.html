@@ -19,14 +19,13 @@
 			You have to pay the Apprenticeship levy
 		</h1>
 
-		{% set annualLevy = ((data['annual-payroll'] * 0.005)-15000) %}
-		{% set monthlyLevy = annualLevy // 12 %}
 		{% set englishPercentage = data['english-percentage'] or '100' %}
-
-		{% set totalAnnualLevy = annualLevy * 1.1 | round(0, "floor") %}
+		{% set monthlyLevyPayment = (((data['annual-payroll'] * 0.005)-15000)/12) | round(0, "floor") %}
+		{% set monthlyLevyAmount = (monthlyLevyPayment * englishPercentage / 100 * 1.1) | round(0, "ceil") %}
+		{% set annualLevyAmount = (monthlyLevyAmount * 12) | round(0) %}
 
 		<p>
-			You’ll receive £{{ (annualLevy * 1.1) | numeral().format('0,0') }} of levy credit per year. Any unused credit will expire 24 months after it arrives in your account.
+			You’ll receive £{{ annualLevyAmount | numeral().format('0,0') }} of levy credit per year. Any unused credit will expire 24 months after it arrives in your account.
 		</p>
 
 		{% from "details/macro.njk" import govukDetails %}
@@ -38,11 +37,11 @@
 			</p>
 
 			<p>
-				Your levy is 0.5% of your gross annual payroll, less a £15,000 allowance. The balance is then divided by 12 and rounded down to the nearest pound. This gives a monthly levy payment of £" + monthlyLevy | round(0, "floor") | numeral().format('0,0') + " (rounded down).
+				Your levy is 0.5% of your gross annual payroll, less a £15,000 allowance. The balance is then divided by 12 and rounded down to the nearest pound. This gives a monthly levy payment of £" + monthlyLevyPayment | numeral().format('0,0') + " (rounded down).
 			</p>
 
 			<p>
-				" + englishPercentage + "% of your pay bill goes to employees in England, so £" + monthlyLevy | numeral().format('0,0') + " is multiplied by " + englishPercentage + "%. The government tops that up by 10%, which gives you £" + ((monthlyLevy * (englishPercentage / 100)) * 1.1) | round(0, "ceil") | numeral().format('0,0') + " (rounded up) to spend each month.
+				" + englishPercentage + "% of your pay bill goes to employees in England, so £" + monthlyLevyPayment | numeral().format('0,0') + " is multiplied by " + englishPercentage + "%. The government tops that up by 10%, which gives you £" + monthlyLevyAmount | numeral().format('0,0') + " (rounded up) to spend each month.
 			</p>"
 		}) }}
 
@@ -53,16 +52,16 @@
 		</h1>
 
 		<p>
-			Because your monthly payroll is less than £3 million, you won't have to pay the apprenticeship levy.
+			Given your annual paybill is less than £3 million, you won't have to pay the apprenticeship levy.
 		</p>
 
 		<p>
-			This means that you will only have to pay 10% toward the cost of apprenticeships and the government will pay the rest.
+			This means that you will only have to pay 10% toward the cost of apprenticeship training and the government will pay the rest.
 		</p>
 		{% endif %}
 
 		<p>
-			Next, you'll need to add some apprenticeships to find out how much they will cost your business.
+			Next, you'll need to add some apprenticeships to find out how much they will cost.
 		</p>
 
 		<a href="add-apprenticeship?total-levy={{totalAnnualLevy}}" class="govuk-button">
