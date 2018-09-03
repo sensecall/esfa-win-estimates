@@ -65,7 +65,7 @@
 						<option value="">Select one</option>
 						{% import '../../includes/data-apprenticeships.html' as apprenticeshipsData %}
 						{% for apprenticeship in apprenticeshipsData.apprenticeships %}
-						<option value="{{apprenticeship.name}}, Level: {{apprenticeship.level}} {{'(Standard)' if apprenticeship.standard === true}}">{{apprenticeship.name}}, Level: {{apprenticeship.level}} {{"(Standard)" if apprenticeship.standard === true}}</option>
+						<option value="{{apprenticeship.name}}|{{apprenticeship.level}}|{{'true' if apprenticeship.standard else 'false'}}|{{apprenticeship.value}}|">{{apprenticeship.name}}, Level: {{apprenticeship.level}}{{" (Standard)" if apprenticeship.standard === true}}</option>
 						{% endfor %}
 					</select>
 				</div>
