@@ -135,10 +135,9 @@
 					<th class="govuk-table__header" scope="col">Apprenticeship</th>
 					<th class="govuk-table__header govuk-table__header--numeric" scope="col">Number <span class="govuk-visually-hidden">of apprentices</span></th>
 					{% if data['annual-payroll'] >= 36000000 %}
-					<th class="govuk-table__header" scope="col">Start date</th>
+					<th class="govuk-table__header govuk-table__header--numeric" scope="col">Start date</th>
 					{% endif %}
 					<th class="govuk-table__header govuk-table__header--numeric" scope="col">Cost</th>
-					<th class="govuk-table__header" scope="col"></th>
 					<th class="govuk-table__header" scope="col"></th>
 					<th class="govuk-table__header" scope="col"></th>
 				</tr>
@@ -156,20 +155,19 @@
 				{% set level = apprenticeship(i,'name').split("|")[1] %}
 				{% set standard = apprenticeship(i,'name').split("|")[2] %}
 				{% set id = apprenticeship(i,'name').split("|")[3] %}
+				{% set startDate = apprenticeship(i,'name').split("|")[4] %}
 
 				<tr class="govuk-table__row">
 					<th class="govuk-table__header" scope="row">
 						{{name}}{{" (Standard)" if standard === 'true'}}<br>
-						<span class="govuk-!-font-weight-regular">Level: {{level}}</span>
+						<span class="govuk-!-font-weight-regular">Level: {{level}}</span><br>
+						<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{'Standard' if standard === 'true' else 'Framework'}}/{{id}}" target="_blank" class="govuk-!-font-weight-regular">More details</a>
 					</th>
 					<td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td>
 					{% if data['annual-payroll'] >= 36000000 %}
-					<td class="govuk-table__cell">startDate</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">{{data['startDate-month']}} {{data['startDate-year']}}</td>
 					{% endif %}
 					<td class="govuk-table__cell govuk-table__cell--numeric">£{{ apprenticeship(i,'count') * 900}}</td>
-					<td class="govuk-table__cell">
-						<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{'Standard' if standard === 'true' else 'Framework'}}/{{id}}" target="_blank">Details</a>
-					</td>
 					<td class="govuk-table__cell">
 						<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Edit</a>
 					</td>
