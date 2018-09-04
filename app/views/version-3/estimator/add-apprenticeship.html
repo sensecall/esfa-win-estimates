@@ -2,6 +2,7 @@
 {% extends "layout-account.html" %}
 {% else %}
 {% extends "./layout-estimator.html" %}
+{% set serviceName = "Find out the cost of an apprenticeship" %}
 {% endif %}
 
 {% block head %}
@@ -28,8 +29,6 @@
 {% block beforeContent %}
 {% include 'includes/back-link.html' %}
 {% endblock %}
-
-{% set serviceName = "Find out the cost of an apprenticeship" %}
 
 {% if not apprenticeshipId %}
 {% set apprenticeshipId = "1" %}

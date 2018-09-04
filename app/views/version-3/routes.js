@@ -18,7 +18,7 @@ router.get('/estimator', (req, res) => {
 router.get('/estimator/account-check', (req, res) => {
 	var hasAccount = req.query.hasAccount
 	if (hasAccount === 'yes') {
-		res.redirect(`/${req.version}/login?redirect=funding-projection`)
+		res.redirect(`/${req.version}/login?redirect=estimator/use-existing-estimate`)
 	} else if (hasAccount === 'no') {
 		res.redirect(`business-details`)
 	} else {
@@ -34,6 +34,17 @@ router.get('/estimator/business-details', (req, res) => {
 		res.redirect(`levy-outcome`)
 	} else {
 		res.render(`${req.version}/estimator/business-details`)
+	}
+})
+
+router.get('/estimator/use-existing-estimate', (req, res) => {
+	var useExisting = req.session.data['use-existing-estimate']
+	if (useExisting === 'true') {
+		res.redirect(`/${req.version}/estimator/apprenticeships-list`)
+	} else if (useExisting === 'false') {
+		res.redirect(`add-apprenticeship`)
+	} else {
+		res.render(`${req.version}/estimator/use-existing-estimate`)
 	}
 })
 

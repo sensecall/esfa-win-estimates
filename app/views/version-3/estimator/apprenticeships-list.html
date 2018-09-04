@@ -2,13 +2,12 @@
 {% extends "layout-account.html" %}
 {% else %}
 {% extends "./layout-estimator.html" %}
+{% set serviceName = "Find out the cost of an apprenticeship" %}
 {% endif %}
 
 {% block beforeContent %}
 {% include 'includes/back-link.html' %}
 {% endblock %}
-
-{% set serviceName = "Find out the cost of an apprenticeship" %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -194,6 +193,7 @@
 	</div>
 </div>
 
+{% if data['loggedIn'] != 'true' %}
 <hr class="govuk-section-break govuk-section-break--xl">
 
 <div class="govuk-grid-row">
@@ -214,4 +214,5 @@
 		</p>
 	</div>
 </div>
+{% endif %}
 {% endblock %}
