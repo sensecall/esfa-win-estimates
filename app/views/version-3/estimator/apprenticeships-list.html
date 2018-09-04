@@ -32,6 +32,15 @@
 </div>
 
 {% if data['annual-payroll'] >= 36000000 %}
+{% set apprenticeshipCost = 9000 %}
+
+{% set totalCost = 0 %}
+{% for i in range(1, 999) %}
+{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
+{% endif %}
+{% endfor %}
+
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-one-third">
 		<div class="data">
@@ -41,18 +50,14 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					£0
+					{% set coinvestment = totalCost - data['total-levy'] %}
+					<abbr title="£{{ (coinvestment | numeral().format('0,0')) if coinvestment > 0 else "0" }}">
+						£{{ (coinvestment | numeral().format('0,0.0a')) if coinvestment > 0 else "0" }}
+					</abbr>
 				</dd>
 			</dl>
 		</div>
 	</div>
-
-	{% set totalCost = 0 %}
-	{% for i in range(1, 999) %}
-	{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
-	{% set totalCost = (data['apprenticeship_' + i + '-count'] * 9000) + totalCost %}
-	{% endif %}
-	{% endfor %}
 
 	<div class="govuk-grid-column-one-third">
 		<div class="data">
@@ -62,7 +67,7 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					<abbr title="£{{totalCost | numeral().format('0,0')}}">£{{totalCost | numeral().format('0,0a')}}</abbr>
+					<abbr title="£{{totalCost | numeral().format('0,0')}}">£{{totalCost | numeral().format('0,0.0a')}}</abbr>
 				</dd>
 			</dl>
 		</div>
@@ -76,7 +81,10 @@
 				</dt>
 
 				<dd class="data__data--xl">
-					<abbr title="£{{(data['total-levy'] - totalCost) | numeral().format('0,0')}}">£{{ (data['total-levy'] - totalCost) | numeral().format('0,0a') }}</abbr>
+					{% set unspent = data['total-levy'] - totalCost %}
+					<abbr title="£{{ (unspent | numeral().format('0,0')) if unspent > 0 else "0" }}">
+						£{{ (unspent | numeral().format('0,0.0a')) if unspent > 0 else "0" }}
+					</abbr>
 				</dd>
 			</dl>
 		</div>
@@ -84,11 +92,11 @@
 </div>
 
 {% else %}
-
+{% set apprenticeshipCost = 900 %}
 {% set totalCost = 0 %}
 {% for i in range(1, 999) %}
 {% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
-{% set totalCost = (data['apprenticeship_' + i + '-count'] * 900) + totalCost %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
 {% endif %}
 {% endfor %}
 
@@ -165,9 +173,9 @@
 					</th>
 					<td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td>
 					{% if data['annual-payroll'] >= 36000000 %}
-					<td class="govuk-table__cell govuk-table__cell--numeric">{{data['startDate-month']}} {{data['startDate-year']}}</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">{{data['startDate_' + i + '-month']}} {{data['startDate_' + i + '-year']}}</td>
 					{% endif %}
-					<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * 900) | numeral().format('0,0')}}</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * apprenticeshipCost) | numeral().format('0,0')}}</td>
 					<td class="govuk-table__cell">
 						<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Edit</a>
 					</td>
