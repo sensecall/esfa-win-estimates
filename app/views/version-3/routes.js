@@ -11,8 +11,18 @@ router.get('/login', (req, res) => {
 	res.render(`${req.version}/login`,{currentPage})
 })
 
+router.get('/account-home', (req, res) => {
+	var currentPage = 'account-home'
+	res.render(`${req.version}/account-home`,{currentPage})
+})
+
 router.get('/estimator', (req, res) => {
 	res.redirect(`/${req.version}/estimator/start`)
+})
+
+router.get('/finance', (req, res) => {
+	var currentPage = 'finance'
+	res.render(`${req.version}/finance`,{currentPage})
 })
 
 router.get('/estimator/account-check', (req, res) => {
@@ -39,24 +49,33 @@ router.get('/estimator/business-details', (req, res) => {
 
 router.get('/estimator/use-existing-estimate', (req, res) => {
 	var useExisting = req.session.data['use-existing-estimate']
+	var currentPage = 'finance'
+
 	if (useExisting === 'true') {
 		res.redirect(`/${req.version}/estimator/apprenticeships-list`)
 	} else if (useExisting === 'false') {
 		res.redirect(`add-apprenticeship`)
 	} else {
-		res.render(`${req.version}/estimator/use-existing-estimate`)
+		res.render(`${req.version}/estimator/use-existing-estimate`,{currentPage})
 	}
 })
 
 router.get('/estimator/apprenticeships-list', (req, res) => {
 	var addMoreApprenticeships = req.query.addMoreApprenticeships
+	var currentPage = 'finance'
+
 	if (addMoreApprenticeships === 'no') {
 		res.redirect(`/${req.version}/estimator/add-apprenticeship`)
 	} else if (addMoreApprenticeships === 'yes') {
 		res.redirect(`/${req.version}/funding-projection`)
 	} else {
-		res.render(`${req.version}/estimator/apprenticeships-list`)
+		res.render(`${req.version}/estimator/apprenticeships-list`,{currentPage})
 	}
+})
+
+router.get('/estimator/add-apprenticeship', (req, res) => {
+	var currentPage = 'finance'
+	res.render(`${req.version}/estimator/add-apprenticeship`,{currentPage})
 })
 
 module.exports = router

@@ -71,10 +71,10 @@
 	<nav class="header-inner">
 		<ul role="menubar" id="global-nav-links">
 			<li>
-				<a href="/accounts/VRB8BN/teams" class="selected" role="menuitem">Home</a>
+				<a href="/{{version}}/account-home" class="{{'selected' if currentPage == 'account-home' }}" role="menuitem">Home</a>
 			</li>
 			<li>
-				<a href="finance" class="" role="menuitem">Finance</a>
+				<a href="/{{version}}/finance" class="{{'selected' if currentPage == 'finance' }}" role="menuitem">Finance</a>
 			</li>
 			<li>
 				<a href="https://recruit.test-eas.apprenticeships.sfa.bis.gov.uk/accounts/VRB8BN/" role="menuitem">Recruitment</a>

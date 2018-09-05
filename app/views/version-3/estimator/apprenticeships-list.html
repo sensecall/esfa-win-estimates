@@ -45,7 +45,7 @@
 		<div class="data">
 			<dl class="data--blue">
 				<dt class="data__data--xl">
-					Amount you pay
+					Estimated costs to you
 				</dt>
 
 				<dd class="data__data--xl">
@@ -72,7 +72,7 @@
 		</div>
 	</div>
 
-	<div class="govuk-grid-column-one-third">
+	<!-- <div class="govuk-grid-column-one-third">
 		<div class="data">
 			<dl class="data--grey">
 				<dt class="data__data--xl">
@@ -87,29 +87,26 @@
 				</dd>
 			</dl>
 		</div>
-	</div>
+	</div> -->
 </div>
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		{{ govukDetails({
 			summaryText: "More information",
-			html: "<p>
+			html: '<p>
 				Payments for apprenticeships are paid monthly from your apprenticeship service account.
 			</p>
 
 			<p>
-				Based on the information you’ve supplied your payments will be £" + (data['total-levy']/12) | numeral().format('0,0') + " per month.
-			</p>
-
-			<p>
-				For a more accurate break down of your figures you should create an account on the apprenticeship service.
-			</p>"
+				For a more accurate break down of your figures you should <a href="#">create an account</a> on the apprenticeship service.
+			</p>'
 		}) }}
 	</div>
 </div>
 
 {% else %}
+
 {% set apprenticeshipCost = 900 %}
 {% set totalCost = 0 %}
 {% for i in range(1, 999) %}
@@ -123,7 +120,7 @@
 		<div class="data">
 			<dl class="data--green">
 				<dt class="data__data--xl">
-					Amount you pay
+					Estimated costs to you
 				</dt>
 
 				<dd class="data__data--xl">
