@@ -40,7 +40,7 @@
 {% endif %}
 {% endfor %}
 
-<div class="govuk-grid-row">
+<div class="govuk-grid-row govuk-!-margin-bottom-4">
 	<div class="govuk-grid-column-one-third">
 		<div class="data">
 			<dl class="data--blue">
@@ -87,6 +87,25 @@
 				</dd>
 			</dl>
 		</div>
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{{ govukDetails({
+			summaryText: "More information",
+			html: "<p>
+				Payments for apprenticeships are paid monthly from your apprenticeship service account.
+			</p>
+
+			<p>
+				Based on the information you’ve supplied your payments will be £" + (data['total-levy']/12) | numeral().format('0,0') + " per month.
+			</p>
+
+			<p>
+				For a more accurate break down of your figures you should create an account on the apprenticeship service.
+			</p>"
+		}) }}
 	</div>
 </div>
 
