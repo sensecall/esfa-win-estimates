@@ -1,0 +1,657 @@
+{% extends "layout-account.html" %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{% if data["apprenticeship-added"] === 'true' %}
+		<div class="govuk-inset-text govuk-inset-text--success">
+			Apprenticeships added.
+		</div>
+		{% endif %}
+
+		{% if data["apprenticeship-removed"] === 'true' %}
+		<div class="govuk-inset-text govuk-inset-text--warning">
+			Apprenticeships removed.
+		</div>
+		{% endif %}
+
+		<h1 class="govuk-heading-xl">
+			Estimated cost of your chosen apprenticeships
+		</h1>
+	</div>
+</div>
+
+{% if data['annual-payroll'] >= 36000000 %}
+{% set apprenticeshipCost = 9000 %}
+
+{% set totalCost = 0 %}
+{% for i in range(1, 999) %}
+{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
+{% endif %}
+{% endfor %}
+
+<div class="govuk-grid-row govuk-!-margin-bottom-4">
+	<div class="govuk-grid-column-one-third">
+		<div class="data">
+			<dl class="data--blue">
+				<dt class="data__data--xl">
+					Estimated costs to you
+				</dt>
+
+				<dd class="data__data--xl">
+					{% set coinvestment = totalCost - data['total-levy'] %}
+					<abbr title="£{{ (coinvestment | numeral().format('0,0')) if coinvestment > 0 else "0" }}">
+						£{{ (coinvestment | numeral().format('0,0.0a')) if coinvestment > 0 else "0" }}
+					</abbr>
+				</dd>
+			</dl>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data">
+			<dl class="data--white">
+				<dt class="data__data--xl">
+					Costs covered by your levy
+				</dt>
+
+				<dd class="data__data--xl">
+					<abbr title="£{{totalCost | numeral().format('0,0')}}">£{{totalCost | numeral().format('0,0.0a')}}</abbr>
+				</dd>
+			</dl>
+		</div>
+	</div>
+
+	<!-- <div class="govuk-grid-column-one-third">
+		<div class="data">
+			<dl class="data--grey">
+				<dt class="data__data--xl">
+					Unspent levy
+				</dt>
+
+				<dd class="data__data--xl">
+					{% set unspent = data['total-levy'] - totalCost %}
+					<abbr title="£{{ (unspent | numeral().format('0,0')) if unspent > 0 else "0" }}">
+						£{{ (unspent | numeral().format('0,0.0a')) if unspent > 0 else "0" }}
+					</abbr>
+				</dd>
+			</dl>
+		</div>
+	</div> -->
+</div>
+
+{% else %}
+
+{% set apprenticeshipCost = 900 %}
+{% set totalCost = 0 %}
+{% for i in range(1, 999) %}
+{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
+{% endif %}
+{% endfor %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-third">
+		<div class="data">
+			<dl class="data--green">
+				<dt class="data__data--xl">
+					Estimated costs to you
+				</dt>
+
+				<dd class="data__data--xl">
+					£{{totalCost | numeral().format('0,0') }}
+				</dd>
+			</dl>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data">
+			<dl class="data--blue">
+				<dt class="data__data--xl">
+					Amount government pays
+				</dt>
+
+				<dd class="data__data--xl">
+					£{{(totalCost // 10 * 90) | numeral().format('0,0')}}
+				</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+<section>
+	<nav>
+		<ul class="js-tabs" role="tablist">
+			<li role="tab" id="tab-table-1" aria-controls="pane-table-1">
+				<a href="#pane-table-1">
+					Apprenticeships added by you
+				</a>
+			</li>
+			<li role="tab" id="tab-table-2" aria-controls="pane-table-2">
+				<a href="#pane-table-2">
+					Current apprenticeships (summary)
+				</a>
+			</li>
+			<li role="tab" id="tab-table-3" aria-controls="pane-table-3">
+				<a href="#pane-table-3">
+					Monthly funding projection
+				</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="panes">
+		<!-- START PANE -->
+		<div class="js-tab-pane" id="pane-table-1" role="tabpanel">
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-full">
+					<div class="govuk-grid-row">
+						<div class="govuk-grid-column-one-half">
+							<h2 class="govuk-heading-m govuk-!-margin-top-4">
+								Apprenticeships in this estimate
+							</h2>
+						</div>
+
+						<div class="govuk-grid-column-one-half">
+							<a href="add-apprenticeship" class="govuk-button govuk-button--secondary govuk-!-margin-top-3" style="float:right">
+								Add more apprenticeships to this estimate
+							</a>
+						</div>
+					</div>
+
+					<table class="govuk-table govuk-table--font-small">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th class="govuk-table__header" scope="col">Apprenticeship</th>
+								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Number <span class="govuk-visually-hidden">of apprentices</span></th>
+								{% if data['annual-payroll'] >= 36000000 %}
+								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Start date</th>
+								{% endif %}
+								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Cost</th>
+								<th class="govuk-table__header" scope="col"></th>
+								<th class="govuk-table__header" scope="col"></th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+							{% macro apprenticeship(id, attribute) %}
+							{{ data['apprenticeship_' + id + '-' + attribute] }}
+							{% endmacro %}
+
+							{% for i in range(1, 999) %}
+							{% set el = 'apprenticeship_' + i %}
+							{% if data[el + '-name'] and data[el + '-count'] %}
+
+							{% set name = apprenticeship(i,'name').split("|")[0] %}
+							{% set level = apprenticeship(i,'name').split("|")[1] %}
+							{% set standard = apprenticeship(i,'name').split("|")[2] %}
+							{% set id = apprenticeship(i,'name').split("|")[3] %}
+							{% set startDate = apprenticeship(i,'name').split("|")[4] %}
+
+							<tr class="govuk-table__row">
+								<th class="govuk-table__header" scope="row">
+									{{name}}{{" (Standard)" if standard === 'true'}}<br>
+									<span class="govuk-!-font-weight-regular">Level: {{level}}</span><br>
+									<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{'Standard' if standard === 'true' else 'Framework'}}/{{id}}" target="_blank" class="govuk-!-font-weight-regular">More details</a>
+								</th>
+								<td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td>
+								{% if data['annual-payroll'] >= 36000000 %}
+								<td class="govuk-table__cell govuk-table__cell--numeric">{{data['startDate_' + i + '-month']}} {{data['startDate_' + i + '-year']}}</td>
+								{% endif %}
+								<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * apprenticeshipCost) | numeral().format('0,0')}}</td>
+								<td class="govuk-table__cell">
+									<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Edit</a>
+								</td>
+								<td class="govuk-table__cell">
+									<a href="?apprenticeship-removed=true&apprenticeship-added=false&apprenticeship_{{i}}-count=&apprenticeship_{{i}}-name=">Remove</a>
+								</td>
+							</tr>
+							{% endif %}
+							{% endfor %}
+						</tbody>
+					</table>
+
+					<p>
+						<a href="add-apprenticeship" class="govuk-button govuk-button--secondary">
+							Add more apprenticeships to this estimate
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="js-tab-pane" id="pane-table-2" role="tabpanel">
+			<div class="govuk-grid-row govuk-!-margin-top-4">
+				<div class="govuk-grid-column-full">
+					<p>
+						content
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="js-tab-pane" id="pane-table-3" role="tabpanel">
+			<div class="govuk-grid-row govuk-!-margin-top-4">
+				<div class="govuk-grid-column-full">
+					<h3 class="govuk-heading-m">April 2018 to March 2019</h3>
+					<table class="govuk-table govuk-table--font-small">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th class="govuk-table__header">Date</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="Cost of apprenticeships that have already started and currently being paid for.  This figure also includes any transfers you’ve made. Apprenticeships that have not started or been paid for are not included in this column">
+									Cost of training
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="This column shows the total cost of all completion payments due for the month. The completion payment is shown in the month after the apprentice plans to end their apprenticeship. It is 20% of the total cost of each apprenticeship">
+									Completion payments
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="These figures are not currently shown in the projection tool, but will be soon. Funds will start to expire from May 2019">
+									Expired funds
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="Total of the last month's received levy funds from your PAYE schemes including the 10% top up, which will be updated on the 20th of each month and any transferred funds you've received. The same figure is used throughout the forecast">
+									Funds in
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="The estimated funds you have left at the end of the month">
+									Balance
+								</th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Sep 18</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£0
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£3,300</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Oct 18</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£0
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£4,400</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Nov 18</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£0
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£5,500</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Dec 18</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£0
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£6,600</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Jan 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£0
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£7,700</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Feb 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£0
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£8,800</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Mar 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£0
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£9,900</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3 class="govuk-heading-m">April 2019 to March 2020</h3>
+					<table class="govuk-table govuk-table--font-small">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th class="govuk-table__header">Date</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="Cost of apprenticeships that have already started and currently being paid for.  This figure also includes any transfers you’ve made. Apprenticeships that have not started or been paid for are not included in this column">
+									Cost of training
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="This column shows the total cost of all completion payments due for the month. The completion payment is shown in the month after the apprentice plans to end their apprenticeship. It is 20% of the total cost of each apprenticeship">
+									Completion payments
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="These figures are not currently shown in the projection tool, but will be soon. Funds will start to expire from May 2019">
+									Expired funds
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="Total of the last month's received levy funds from your PAYE schemes including the 10% top up, which will be updated on the 20th of each month and any transferred funds you've received. The same figure is used throughout the forecast">
+									Funds in
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="The estimated funds you have left at the end of the month">
+									Balance
+								</th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Apr 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£0
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£11,000</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">May 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£12,100</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Jun 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£13,200</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Jul 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£14,300</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Aug 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£15,400</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Sep 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£16,500</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Oct 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£17,600</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Nov 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£18,700</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Dec 19</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£19,800</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Jan 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£20,900</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Feb 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£22,000</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Mar 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£23,100</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3 class="govuk-heading-m">April 2020 to March 2021</h3>
+					<table class="govuk-table govuk-table--font-small">
+						<thead class="govuk-table__head">
+							<tr class="govuk-table__row">
+								<th class="govuk-table__header">Date</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="Cost of apprenticeships that have already started and currently being paid for.  This figure also includes any transfers you’ve made. Apprenticeships that have not started or been paid for are not included in this column">
+									Cost of training
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="This column shows the total cost of all completion payments due for the month. The completion payment is shown in the month after the apprentice plans to end their apprenticeship. It is 20% of the total cost of each apprenticeship">
+									Completion payments
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="These figures are not currently shown in the projection tool, but will be soon. Funds will start to expire from May 2019">
+									Expired funds
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="Total of the last month's received levy funds from your PAYE schemes including the 10% top up, which will be updated on the 20th of each month and any transferred funds you've received. The same figure is used throughout the forecast">
+									Funds in
+								</th>
+								<th class="govuk-table__header govuk-table__header--numeric" data-original-title="The estimated funds you have left at the end of the month">
+									Balance
+								</th>
+							</tr>
+						</thead>
+						<tbody class="govuk-table__body">
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Apr 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£0
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£11,000</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">May 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£12,100</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Jun 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£13,200</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Jul 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£14,300</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Aug 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£15,400</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Sep 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£16,500</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Oct 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£17,600</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Nov 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£18,700</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Dec 20</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£19,800</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Jan 21</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£20,900</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Feb 21</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£22,000</td>
+							</tr>
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">Mar 21</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									£250
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£1,100</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£23,100</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% if data['loggedIn'] != 'true' %}
+<hr class="govuk-section-break govuk-section-break--xl">
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-m">
+			Register to access funds to pay for these apprenticeships
+		</h2>
+		<p>
+			If you are ready to register on the apprenticeship service, you need to set up your account.
+		</p>
+
+		<p class="govuk-!-margin-bottom-0">
+			<a href="https://manage-apprenticeships.service.gov.uk/" target="_blank" class="govuk-button govuk-!-margin-bottom-2">Register on the apprenticeship service</a>
+		</p>
+
+		<p class="govuk-!-font-size-14">
+			This link will open in a new tab
+		</p>
+	</div>
+</div>
+{% endif %}
+{% endblock %}

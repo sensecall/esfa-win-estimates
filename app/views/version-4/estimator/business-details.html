@@ -1,0 +1,46 @@
+{% if data['loggedIn'] === 'true' %}
+{% extends "layout-account.html" %}
+{% else %}
+{% extends "./layout-estimator.html" %}
+{% endif %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% set serviceName = "Calculate future apprenticeship costs" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			What is your organisation's annual payroll?
+		</h1>
+
+		<form>
+			{% from "input/macro.njk" import govukInput %}
+
+			{{ govukInput({
+				label:
+				{
+					text: "Your organisation’s annual UK payroll"
+				},
+				hint:
+				{
+					text: "For example 2400000"
+				},
+				id: "annual-payroll",
+				name: "annual-payroll",
+				classes: "govuk-input--width-10",
+				type: "tel"
+			}) }}
+
+			{% from "button/macro.njk" import govukButton %}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}
