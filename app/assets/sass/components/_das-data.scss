@@ -60,6 +60,16 @@
 		&.data--orange {
 			background: govuk-colour("orange")
 		}
+		&.data--turquoise {
+			background: govuk-colour("turquoise")
+		}
+		&.data--red-border {
+			background: govuk-colour("white");
+			box-shadow: inset 0 0 0 4px govuk-colour("red");
+			* {
+				color: govuk-colour("black")
+			}
+		}
 		&.data--white {
 			background: govuk-colour("white");
 			box-shadow: inset 0 0 0 4px govuk-colour("blue");

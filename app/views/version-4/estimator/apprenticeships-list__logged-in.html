@@ -20,8 +20,26 @@
 		{% endif %}
 
 		<h1 class="govuk-heading-xl">
-			Estimated cost of your chosen apprenticeships
+			Future spending
 		</h1>
+
+		<p>
+			The figures below show the estimated funds that may be available to you for the duration of your apprenticeships.
+		</p>
+
+		{% from "details/macro.njk" import govukDetails %}
+		{{ govukDetails({
+			summaryText: "More information",
+			html: "<p>
+				These figures are based on the current information in your account and the data provided by your training provider which is used to calculate funding.
+			</p>
+			<p>
+				The projection doesn’t include any future apprenticeship starts or apprentices who’ve already started and payment has not yet been made to their training provider. These will be added to the funding projection soon.
+			</p>
+			<p>
+				In the next update of this tool, you’ll be able to estimate how many apprenticeships you could fund in the future - either by transferring any remaining funds to another employer or by taking on more apprentices yourself.
+			</p>"
+		}) }}
 	</div>
 </div>
 
@@ -35,12 +53,28 @@
 {% endif %}
 {% endfor %}
 
-<div class="govuk-grid-row govuk-!-margin-bottom-4">
+<div class="govuk-grid-row govuk-!-margin-bottom-6">
 	<div class="govuk-grid-column-one-third">
 		<div class="data">
-			<dl class="data--blue">
+			<dl class="data--turquoise">
 				<dt class="data__data--xl">
-					Estimated costs to you
+					Estimated future spending
+				</dt>
+
+				<dd class="data__data--xl">
+					<abbr title="£{{ (totalCost | numeral().format('0,0')) if totalCost > 0 else "0" }}">
+						£{{ (totalCost | numeral().format('0,0.0a')) if totalCost > 0 else "0" }}
+					</abbr>
+				</dd>
+			</dl>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data">
+			<dl class="data--red-border">
+				<dt class="data__data--xl">
+					Costs you will pay
 				</dt>
 
 				<dd class="data__data--xl">
@@ -100,7 +134,7 @@
 		<div class="data">
 			<dl class="data--green">
 				<dt class="data__data--xl">
-					Estimated costs to you
+					Estimated future spending
 				</dt>
 
 				<dd class="data__data--xl">
@@ -131,17 +165,17 @@
 		<ul class="js-tabs" role="tablist">
 			<li role="tab" id="tab-table-1" aria-controls="pane-table-1">
 				<a href="#pane-table-1">
-					Apprenticeships added by you
+					Apprenticeships in this estimate
 				</a>
 			</li>
 			<li role="tab" id="tab-table-2" aria-controls="pane-table-2">
 				<a href="#pane-table-2">
-					Current apprenticeships (summary)
+					Monthly breakdown
 				</a>
 			</li>
 			<li role="tab" id="tab-table-3" aria-controls="pane-table-3">
 				<a href="#pane-table-3">
-					Monthly funding projection
+					Funding projection (chart)
 				</a>
 			</li>
 		</ul>
@@ -152,10 +186,45 @@
 		<div class="js-tab-pane" id="pane-table-1" role="tabpanel">
 			<div class="govuk-grid-row">
 				<div class="govuk-grid-column-full">
+					<h2 class="govuk-heading-m govuk-!-margin-top-4">
+						Summary of your current apprenticeships
+					</h2>	
+					<div class="govuk-grid-row govuk-!-margin-bottom-0">
+						<div class="govuk-grid-column-one-third">
+							<div class="data">
+								<dl class="data--green">
+									<dt>
+										Apprenticeships in progress
+									</dt>
+
+									<dd class="">121</dd>
+								</dl>
+							</div>
+						</div>
+
+						<!-- <div class="govuk-grid-column-one-third">
+							<div class="data">
+								<dl class="data--light-green">
+									<dt>
+										Apprenticeship finishes
+									</dt>
+
+									<dd class="">5</dd>
+								</dl>
+							</div>
+						</div> -->
+					</div>
+
+					<p>
+						You can view more details about apprenticeships in progress by viewing <a href="#">this page</a>.
+					</p>
+
+					<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
 					<div class="govuk-grid-row">
 						<div class="govuk-grid-column-one-half">
 							<h2 class="govuk-heading-m govuk-!-margin-top-4">
-								Apprenticeships in this estimate
+								Planned apprenticeships (added by you)
 							</h2>
 						</div>
 
@@ -227,16 +296,6 @@
 		</div>
 
 		<div class="js-tab-pane" id="pane-table-2" role="tabpanel">
-			<div class="govuk-grid-row govuk-!-margin-top-4">
-				<div class="govuk-grid-column-full">
-					<p>
-						content
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="js-tab-pane" id="pane-table-3" role="tabpanel">
 			<div class="govuk-grid-row govuk-!-margin-top-4">
 				<div class="govuk-grid-column-full">
 					<h3 class="govuk-heading-m">April 2018 to March 2019</h3>
@@ -626,6 +685,14 @@
 							</tr>
 						</tbody>
 					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="js-tab-pane" id="pane-table-3" role="tabpanel">
+			<div class="govuk-grid-row govuk-!-margin-top-4">
+				<div class="govuk-grid-column-full">
+					{% include '../_funding-projection-chart.html' %}
 				</div>
 			</div>
 		</div>
