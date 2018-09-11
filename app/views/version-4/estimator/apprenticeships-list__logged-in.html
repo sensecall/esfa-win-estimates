@@ -22,24 +22,6 @@
 		<h1 class="govuk-heading-xl">
 			Future spending
 		</h1>
-
-		<p>
-			The figures below show the estimated funds that may be available to you for the duration of your apprenticeships.
-		</p>
-
-		{% from "details/macro.njk" import govukDetails %}
-		{{ govukDetails({
-			summaryText: "More information",
-			html: "<p>
-				These figures are based on the current information in your account and the data provided by your training provider which is used to calculate funding.
-			</p>
-			<p>
-				The projection doesn’t include any future apprenticeship starts or apprentices who’ve already started and payment has not yet been made to their training provider. These will be added to the funding projection soon.
-			</p>
-			<p>
-				In the next update of this tool, you’ll be able to estimate how many apprenticeships you could fund in the future - either by transferring any remaining funds to another employer or by taking on more apprentices yourself.
-			</p>"
-		}) }}
 	</div>
 </div>
 
@@ -54,51 +36,28 @@
 {% endfor %}
 
 <div class="govuk-grid-row govuk-!-margin-bottom-6">
-	<div class="govuk-grid-column-one-third">
-		<div class="data">
-			<dl class="data--turquoise">
-				<dt class="data__data--xl">
-					Estimated future spending
-				</dt>
-
-				<dd class="data__data--xl">
-					<abbr title="£{{ (totalCost | numeral().format('0,0')) if totalCost > 0 else "0" }}">
-						£{{ (totalCost | numeral().format('0,0.0a')) if totalCost > 0 else "0" }}
-					</abbr>
-				</dd>
-			</dl>
+	<div class="govuk-grid-column-full">
+		<h2 class="govuk-heading-m">
+			Apprenticeship training costs
+		</h2>
+		<p class="govuk-body-l">
+			Your future apprenticeship training costs will be £{{ (totalCost | numeral().format('0,0')) if totalCost > 0 else "0" }}
+		</p>
+		{% set coinvestment = totalCost - data['total-levy'] %}
+		{% if coinvestment <= '0' %}
+		<p class="govuk-inset-text">
+			Your apprenticeship training costs are covered by your levy funds.
+		</p>
+		{% else %}
+		<div class="govuk-inset-text">
+			<p>
+				Your future apprenticeship training costs will exceed your levy funds. 
+			</p>
+			<p>
+				You will need to pay £{{ (coinvestment | numeral().format('0,0')) }} towards the cost of apprenticeship training.
+			</p>
 		</div>
-	</div>
-
-	<div class="govuk-grid-column-one-third">
-		<div class="data">
-			<dl class="data--red-border">
-				<dt class="data__data--xl">
-					Costs you will pay
-				</dt>
-
-				<dd class="data__data--xl">
-					{% set coinvestment = totalCost - data['total-levy'] %}
-					<abbr title="£{{ (coinvestment | numeral().format('0,0')) if coinvestment > 0 else "0" }}">
-						£{{ (coinvestment | numeral().format('0,0.0a')) if coinvestment > 0 else "0" }}
-					</abbr>
-				</dd>
-			</dl>
-		</div>
-	</div>
-
-	<div class="govuk-grid-column-one-third">
-		<div class="data">
-			<dl class="data--white">
-				<dt class="data__data--xl">
-					Costs covered by your levy
-				</dt>
-
-				<dd class="data__data--xl">
-					<abbr title="£{{totalCost | numeral().format('0,0')}}">£{{totalCost | numeral().format('0,0.0a')}}</abbr>
-				</dd>
-			</dl>
-		</div>
+		{% endif %}
 	</div>
 
 	<!-- <div class="govuk-grid-column-one-third">
@@ -163,19 +122,24 @@
 <section>
 	<nav>
 		<ul class="js-tabs" role="tablist">
-			<li role="tab" id="tab-table-1" aria-controls="pane-table-1">
-				<a href="#pane-table-1">
-					Apprenticeships in this estimate
+			<li role="tab" id="tab-current" aria-controls="pane-current">
+				<a href="#pane-current">
+					Current apprenticeships
 				</a>
 			</li>
-			<li role="tab" id="tab-table-2" aria-controls="pane-table-2">
-				<a href="#pane-table-2">
-					Monthly breakdown
+			<li role="tab" id="tab-planned" aria-controls="pane-planned">
+				<a href="#pane-planned">
+					Planned apprenticeships
 				</a>
 			</li>
-			<li role="tab" id="tab-table-3" aria-controls="pane-table-3">
-				<a href="#pane-table-3">
-					Funding projection (chart)
+			<li role="tab" id="tab-table" aria-controls="pane-table">
+				<a href="#pane-table">
+					Monthly breakdown table
+				</a>
+			</li>
+			<li role="tab" id="tab-chart" aria-controls="pane-chart">
+				<a href="#pane-chart">
+					Future spending chart
 				</a>
 			</li>
 		</ul>
@@ -183,7 +147,7 @@
 
 	<div class="panes">
 		<!-- START PANE -->
-		<div class="js-tab-pane" id="pane-table-1" role="tabpanel">
+		<div class="js-tab-pane" id="pane-current" role="tabpanel">
 			<div class="govuk-grid-row">
 				<div class="govuk-grid-column-full">
 					<h2 class="govuk-heading-m govuk-!-margin-top-4">
@@ -218,9 +182,13 @@
 					<p>
 						You can view more details about apprenticeships in progress by viewing <a href="#">this page</a>.
 					</p>
+				</div>
+			</div>
+		</div>
 
-					<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
+		<div class="js-tab-pane" id="pane-planned" role="tabpanel">
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-full">
 					<div class="govuk-grid-row">
 						<div class="govuk-grid-column-one-half">
 							<h2 class="govuk-heading-m govuk-!-margin-top-4">
@@ -229,7 +197,7 @@
 						</div>
 
 						<div class="govuk-grid-column-one-half">
-							<a href="add-apprenticeship" class="govuk-button govuk-button--secondary govuk-!-margin-top-3" style="float:right">
+							<a href="add-apprenticeship" class="govuk-button govuk-!-margin-top-3" style="float:right">
 								Add more apprenticeships to this estimate
 							</a>
 						</div>
@@ -287,7 +255,7 @@
 					</table>
 
 					<p>
-						<a href="add-apprenticeship" class="govuk-button govuk-button--secondary">
+						<a href="add-apprenticeship" class="govuk-button">
 							Add more apprenticeships to this estimate
 						</a>
 					</p>
@@ -295,7 +263,7 @@
 			</div>
 		</div>
 
-		<div class="js-tab-pane" id="pane-table-2" role="tabpanel">
+		<div class="js-tab-pane" id="pane-table" role="tabpanel">
 			<div class="govuk-grid-row govuk-!-margin-top-4">
 				<div class="govuk-grid-column-full">
 					<h3 class="govuk-heading-m">April 2018 to March 2019</h3>
@@ -689,7 +657,7 @@
 			</div>
 		</div>
 
-		<div class="js-tab-pane" id="pane-table-3" role="tabpanel">
+		<div class="js-tab-pane" id="pane-chart" role="tabpanel">
 			<div class="govuk-grid-row govuk-!-margin-top-4">
 				<div class="govuk-grid-column-full">
 					{% include '../_funding-projection-chart.html' %}
