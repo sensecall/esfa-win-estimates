@@ -1,0 +1,111 @@
+{% extends "layout-account.html" %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Future spending
+		</h1>
+	</div>
+</div>
+
+{% if data['annual-payroll'] >= 36000000 %}
+{% set apprenticeshipCost = 9000 %}
+
+{% set totalCost = 0 %}
+{% for i in range(1, 999) %}
+{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
+{% endif %}
+{% endfor %}
+
+<!-- <div class="govuk-grid-row govuk-!-margin-bottom-6">
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-m">
+			Apprenticeship training costs
+		</h2>
+		{% set coinvestment = totalCost - data['total-levy'] %}
+
+		{% if coinvestment <= '0' %}
+		<p>
+			Your future apprenticeship training costs will be £{{ (totalCost | numeral().format('0,0')) if totalCost > 0 else "0" }}.
+		</p>
+		<p class="govuk-inset-text">
+			You will not have to pay any additional costs as your future apprenticeship training costs will be covered by your levy funds.
+		</p>
+		{% else %}
+		<p>
+			Your future apprenticeship training costs will be £{{ (totalCost | numeral().format('0,0')) if totalCost > 0 else "0" }}. This is greater than your levy fund payments. 
+		</p>
+
+		<div class="govuk-inset-text">
+			<p>
+				You will need to pay £{{ (coinvestment | numeral().format('0,0')) }} towards the cost of apprenticeship training.
+			</p>
+		</div>
+		{% endif %}
+	</div>
+</div> -->
+
+{% else %}
+
+{% set apprenticeshipCost = 900 %}
+{% set totalCost = 0 %}
+{% for i in range(1, 999) %}
+{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
+{% endif %}
+{% endfor %}
+
+
+{% endif %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-third">
+		<ul class="govuk-list">
+			<p>
+				Your levy &#9656;
+			</p>
+			<p>
+				<a href="current-apprenticeships?apprenticeship-added=false">Current apprenticeships</a>
+			</p>
+			<p>
+				<a href="planned-apprenticeships?apprenticeship-added=false">Planned apprenticeships</a>
+			</p>
+		</ul>
+	</div>
+
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-m">
+			Your levy
+		</h2>
+
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-full">
+				<p>
+					Levy contributions:<br>
+					{% set levyContributions = 38319 %}£{{levyContributions}}
+				</p>
+			</div>
+
+			<div class="govuk-grid-column-one-half">
+				<div class="data">
+					<dl class="transfer-funds">
+						<dt>
+							Training costs
+						</dt>
+
+						<dd class="data__data--l">
+							{% set trainingCosts = 29500 %}£{{trainingCosts}}
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

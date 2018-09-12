@@ -1,0 +1,113 @@
+{% extends "layout-account.html" %}
+
+{% block beforeContent %}
+{% include 'includes/back-link.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Future spending
+		</h1>
+	</div>
+</div>
+
+{% if data['annual-payroll'] >= 36000000 %}
+{% set apprenticeshipCost = 9000 %}
+
+{% set totalCost = 0 %}
+{% for i in range(1, 999) %}
+{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
+{% endif %}
+{% endfor %}
+
+{% else %}
+
+{% set apprenticeshipCost = 900 %}
+{% set totalCost = 0 %}
+{% for i in range(1, 999) %}
+{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
+{% endif %}
+{% endfor %}
+
+
+{% endif %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-third">
+		<ul class="govuk-list">
+			<p>
+				Overview &#9656;
+			</p>
+			<p>
+				<a href="#">Current apprenticeships</a>
+			</p>
+			<p>
+				<a href="planned-apprenticeships?apprenticeships-added=false">Estimated apprenticeships</a>
+			</p>
+		</ul>
+	</div>
+
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-l">
+			Overview of your future spending
+		</h2>
+
+		<div class="govuk-grid-row govuk-!-margin-top-4">
+			<div class="govuk-grid-column-full">
+				<p class="govuk-body-m govuk-!-margin-bottom-1">
+					Your current levy account balance
+				</p>
+				<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0">
+					£{{ 18721 | numeral().format('0,0') }}
+				</p>
+
+				{% set coinvestment = totalCost - data['total-levy'] %}
+				<p class="govuk-body-m govuk-!-margin-bottom-1">
+					Estimated costs to pay for current apprenticeships
+				</p>
+				<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0">
+					£{{ (totalCost | numeral().format('0,0')) if totalCost > 0 else "0" }}
+				</p>
+
+				<p class="govuk-body-m govuk-!-margin-bottom-1">
+					Estimated future co-investment payments
+				</p>
+				<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0">
+					£{{ 0 | numeral().format('0,0') }}
+				</p>
+
+				<p class="govuk-inset-text">
+					Based on this estimate you will not need to make any co-investment payments because your levy contributions should cover the cost of current apprenticeship training.
+				</p>
+
+				<div class="govuk-!-margin-bottom-8">
+					<p>
+						<a href="#">View detailed spending</a>
+					</p>
+					<p>
+						<a href="#">Estimate the cost of taking on more apprentices</a>
+					</p>
+				</div>
+
+				<h2 class="govuk-heading-m">
+					Expired funds
+				</h2>
+				<p class="govuk-body-m govuk-!-margin-bottom-1">
+					Funds at risk of expiry in the next 6 months
+				</p>
+				<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0">
+					£{{ 3210 | numeral().format('0,0') }}
+				</p>
+				{{ govukDetails({
+					summaryText: "What does this mean?",
+					text: "Based on this estimate, some of your apprenticeship levy will expire before it is spent."
+				}) }}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

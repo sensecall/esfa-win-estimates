@@ -67,7 +67,7 @@ router.get('/estimator/apprenticeships-list', (req, res) => {
 	if (loggedIn === 'false') {
 		res.render(`${req.version}/estimator/apprenticeships-list__logged-out`,{currentPage})
 	} else {
-		res.render(`${req.version}/estimator/apprenticeships-list__logged-in`,{currentPage})
+		res.render(`${req.version}/estimator/current-apprenticeships`,{currentPage})
 	}
 })
 

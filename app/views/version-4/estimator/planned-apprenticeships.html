@@ -7,18 +7,6 @@
 {% block content %}
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		{% if data["apprenticeship-added"] === 'true' %}
-		<div class="govuk-inset-text govuk-inset-text--success">
-			Apprenticeships added.
-		</div>
-		{% endif %}
-
-		{% if data["apprenticeship-removed"] === 'true' %}
-		<div class="govuk-inset-text govuk-inset-text--warning">
-			Apprenticeships removed.
-		</div>
-		{% endif %}
-
 		<h1 class="govuk-heading-xl">
 			Future spending
 		</h1>
@@ -73,75 +61,53 @@
 {% endif %}
 {% endfor %}
 
-<div class="govuk-grid-row">
-	<div class="govuk-grid-column-one-third">
-		<div class="data">
-			<dl class="data--green">
-				<dt class="data__data--xl">
-					Estimated future spending
-				</dt>
 
-				<dd class="data__data--xl">
-					£{{totalCost | numeral().format('0,0') }}
-				</dd>
-			</dl>
-		</div>
-	</div>
-
-	<div class="govuk-grid-column-one-third">
-		<div class="data">
-			<dl class="data--blue">
-				<dt class="data__data--xl">
-					Amount government pays
-				</dt>
-
-				<dd class="data__data--xl">
-					£{{(totalCost // 10 * 90) | numeral().format('0,0')}}
-				</dd>
-			</dl>
-		</div>
-	</div>
-</div>
 {% endif %}
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-one-third">
-		<h2 class="govuk-heading-m">
-			Spending estimates
-		</h2>
 		<ul class="govuk-list">
 			<p>
-				<a href="#">Current apprenticeships</a>
+				<a href="your-levy">Your levy</a>
 			</p>
 			<p>
-				<a href="#">Planned apprenticeships</a>
+				<a href="current-apprenticeships">Current apprenticeships</a>
+			</p>
+			<p>
+				Planned apprenticeships &#9656;
 			</p>
 		</ul>
 	</div>
 
 	<div class="govuk-grid-column-two-thirds">
+		{% if data["apprenticeship-added"] === 'true' %}
+		<div class="govuk-inset-text govuk-inset-text--success govuk-!-margin-top-0">
+			Apprenticeships added.
+		</div>
+		{% endif %}
+
+		{% if data["apprenticeship-removed"] === 'true' %}
+		<div class="govuk-inset-text govuk-inset-text--warning govuk-!-margin-top-0">
+			Apprenticeships removed.
+		</div>
+		{% endif %}
+
+		<h2 class="govuk-heading-m">
+			Estimated costs for<br>
+			Planned apprenticeship training
+		</h2>
+
 		<section>
 			<nav>
 				<ul class="js-tabs" role="tablist">
-					<li role="tab" id="tab-current" aria-controls="pane-current">
-						<a href="#pane-current">
-							Current apprenticeships
+					<li role="tab" id="tab-planned" aria-controls="pane-planned">
+						<a href="#pane-planned">
+							Summary
 						</a>
 					</li>
 					<li role="tab" id="tab-table" aria-controls="pane-table">
 						<a href="#pane-table">
-							Current apprenticeships (table)
-						</a>
-					</li>
-
-					<li role="tab" id="tab-planned" aria-controls="pane-planned">
-						<a href="#pane-planned">
-							Planned apprenticeships
-						</a>
-					</li>
-					<li role="tab" id="tab-chart" aria-controls="pane-chart">
-						<a href="#pane-chart">
-							Planned apprenticeships (table)
+							Table
 						</a>
 					</li>
 				</ul>
@@ -150,34 +116,6 @@
 			<div class="panes">
 				<!-- START PANE -->
 				<div class="js-tab-pane" id="pane-current" role="tabpanel">
-					<div class="govuk-grid-row govuk-!-margin-top-4">
-						<div class="govuk-grid-column-two-thirds">
-							<h2 class="govuk-heading-l">
-								Current apprenticeship training costs
-							</h2>
-							{% set coinvestment = totalCost - data['total-levy'] %}
-
-							{% if coinvestment <= '0' %}
-							<p>
-								Future training costs for apprenticeships currently in progress is estimated to be £{{ (totalCost | numeral().format('0,0')) if totalCost > 0 else "0" }}.
-							</p>
-							<p class="govuk-inset-text">
-								Based on this estimate you will not have to pay any additional costs because your future apprenticeship training costs will be covered by your levy funds.
-							</p>
-							{% else %}
-							<p>
-								Future training costs for apprenticeships currently in progress is estimated to be £{{ (totalCost | numeral().format('0,0')) if totalCost > 0 else "0" }}. This is greater than your levy fund payments. 
-							</p>
-
-							<div class="govuk-inset-text">
-								<p>
-									Based on this estimate, you will need to pay £{{ (coinvestment | numeral().format('0,0')) }} towards the cost of apprenticeship training.
-								</p>
-							</div>
-							{% endif %}
-						</div>
-					</div>
-
 					<div class="govuk-grid-row govuk-!-margin-bottom-0">
 						<div class="govuk-grid-column-one-third">
 							<div class="data">
@@ -191,14 +129,35 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="govuk-grid-row govuk-!-margin-top-4">
+						<div class="govuk-grid-column-full">
+							{% set coinvestment = totalCost - data['total-levy'] %}
+							{% if coinvestment <= '0' %}
+							<p>
+								Future training costs for apprenticeships currently in progress are estimated to be £{{ (totalCost | numeral().format('0,0')) if totalCost > 0 else "0" }}.
+							</p>
+							<p class="govuk-inset-text">
+								Based on this estimate you will not have to pay any additional costs because your future apprenticeship training costs will be covered by your levy funds.
+							</p>
+							{% else %}
+							<p>
+								Future training costs for apprenticeships currently in progress are estimated to be £{{ (totalCost | numeral().format('0,0')) if totalCost > 0 else "0" }}. This is greater than your levy fund payments. 
+							</p>
+
+							<div class="govuk-inset-text">
+								<p>
+									Based on this estimate, you will need to pay £{{ (coinvestment | numeral().format('0,0')) }} towards the cost of apprenticeship training.
+								</p>
+							</div>
+							{% endif %}
+						</div>
+					</div>
 				</div>
 
 				<div class="js-tab-pane" id="pane-planned" role="tabpanel">
 					<div class="govuk-grid-row govuk-!-margin-top-4">
-						<div class="govuk-grid-column-two-thirds">
-							<h2 class="govuk-heading-l">
-								Planned apprenticeship training costs
-							</h2>
+						<div class="govuk-grid-column-full">
 							{% set coinvestment = totalCost - data['total-levy'] %}
 
 							{% if coinvestment <= '0' %}
@@ -224,19 +183,9 @@
 
 					<div class="govuk-grid-row">
 						<div class="govuk-grid-column-full">
-							<div class="govuk-grid-row">
-								<div class="govuk-grid-column-one-half">
-									<h2 class="govuk-heading-l">
-										Planned apprenticeships (added by you)
-									</h2>
-								</div>
-
-								<div class="govuk-grid-column-one-half">
-									<a href="add-apprenticeship" class="govuk-button govuk-!-margin-top-3" style="float:right">
-										Add more apprenticeships to this estimate
-									</a>
-								</div>
-							</div>
+							<h2 class="govuk-heading-m">
+								Planned apprenticeships (added by you)
+							</h2>
 
 							<table class="govuk-table govuk-table--font-small">
 								<thead class="govuk-table__head">
@@ -1089,27 +1038,4 @@
 		</section>
 	</div>
 </div>
-
-{% if data['loggedIn'] != 'true' %}
-<hr class="govuk-section-break govuk-section-break--xl">
-
-<div class="govuk-grid-row">
-	<div class="govuk-grid-column-two-thirds">
-		<h2 class="govuk-heading-m">
-			Register to access funds to pay for these apprenticeships
-		</h2>
-		<p>
-			If you are ready to register on the apprenticeship service, you need to set up your account.
-		</p>
-
-		<p class="govuk-!-margin-bottom-0">
-			<a href="https://manage-apprenticeships.service.gov.uk/" target="_blank" class="govuk-button govuk-!-margin-bottom-2">Register on the apprenticeship service</a>
-		</p>
-
-		<p class="govuk-!-font-size-14">
-			This link will open in a new tab
-		</p>
-	</div>
-</div>
-{% endif %}
 {% endblock %}
