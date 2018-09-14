@@ -11,6 +11,14 @@ router.get('/login', (req, res) => {
 	res.render(`${req.version}/login`,{currentPage})
 })
 
+router.post('/login', (req, res) => {
+	if (req.session.data['redirect']) {
+		res.redirect(`/${req.version}/${req.session.data['redirect']}`)
+	} else {
+		res.redirect(`account-home`)
+	}
+})
+
 router.get('/account-home', (req, res) => {
 	var currentPage = 'account-home'
 	res.render(`${req.version}/account-home`,{currentPage})
@@ -25,14 +33,13 @@ router.get('/finance', (req, res) => {
 	res.render(`${req.version}/finance`,{currentPage})
 })
 
-router.get('/estimator/account-check', (req, res) => {
-	var hasAccount = req.query.hasAccount
+router.post('/estimator/account-check', (req, res) => {
+	var hasAccount = req.session.data['has-account']
 	if (hasAccount === 'yes') {
-		res.redirect(`/${req.version}/login?redirect=estimator/use-existing-estimate`)
-	} else if (hasAccount === 'no') {
-		res.redirect(`business-details`)
+		res.redirect(`/${req.version}/login?redirect=future-spending`)
 	} else {
-		res.render(`${req.version}/estimator/account-check`)
+		req.session.data['has-account'] = 'no'
+		res.redirect(`business-details`)
 	}
 })
 
@@ -45,27 +52,12 @@ router.post('/used-service-before', (req, res) => {
 	}
 })
 
-router.get('/estimator/business-details', (req, res) => {
+router.post('/estimator/business-details', (req, res) => {
 	var levy = req.session.data['annual-payroll']
 	if (levy >= 36000000) {
 		res.redirect(`/${req.version}/estimator/english-percentage`)
-	} else if (levy < 36000000) {
+	} else {
 		res.redirect(`levy-outcome`)
-	} else {
-		res.render(`${req.version}/estimator/business-details`)
-	}
-})
-
-router.get('/estimator/use-existing-estimate', (req, res) => {
-	var useExisting = req.session.data['use-existing-estimate']
-	var currentPage = 'finance'
-
-	if (useExisting === 'true') {
-		res.redirect(`/${req.version}/estimator/apprenticeships-list`)
-	} else if (useExisting === 'false') {
-		res.redirect(`add-apprenticeship`)
-	} else {
-		res.render(`${req.version}/estimator/use-existing-estimate`,{currentPage})
 	}
 })
 

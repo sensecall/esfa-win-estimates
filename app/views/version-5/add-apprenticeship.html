@@ -1,4 +1,4 @@
-{% if data['loggedIn'] === 'true' %}
+{% if data['logged-in'] === 'true' %}
 {% extends "layout-account.html" %}
 {% else %}
 {% extends "./layout-estimator.html" %}
@@ -83,9 +83,7 @@
 				type: "tel"
 			}) }}
 
-			{% if data['annual-payroll'] >= 36000000 %}
-			{% from "date-input/macro.njk" import govukDateInput %}
-
+			{% if data['total-levy'] %}
 			{{ govukDateInput({
 				id: "startDate_" + apprenticeshipId,
 				name: "startDate_" + apprenticeshipId,

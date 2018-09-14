@@ -1,6 +1,13 @@
+{% if data['logged-in'] === 'true' %}
 {% extends "layout-account.html" %}
+{% else %}
+{% extends "./layout-estimator.html" %}
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+{% endif %}
 
 {% block beforeContent %}
+
+{% if data['logged-in'] === true %}
 {{ govukBreadcrumbs({
 	items: [
 	{
@@ -16,8 +23,10 @@
 	}
 	]
 }) }}
+{% else %}
+{% include 'includes/back-link.html' %}
+{% endif %}
 
-<!-- {% include 'includes/back-link.html' %} -->
 {% endblock %}
 
 {% set currentPage = 'finance' %}
@@ -25,7 +34,7 @@
 {% block content %}
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
-		<h1 class="govuk-heading-xl heading-dashboard govuk-!-margin-bottom-4">
+		<h1 class="govuk-heading-xl {{'heading-dashboard' if data['logged-in'] === true}} govuk-!-margin-bottom-4">
 			Future spending
 		</h1>
 	</div>
@@ -88,7 +97,7 @@
 									Funds at risk of expiry in the next 6 months
 								</p>
 								<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-									£{{ (2091) | numeral().format('0,0') }}
+									£{{ (2091) | numeral().format('0,0') }} 
 								</p>
 								<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
 									£{{ 3210 | numeral().format('0,0') }} without your planned apprenticeships
@@ -194,9 +203,7 @@
 							<tr class="govuk-table__row">
 								<th class="govuk-table__header" scope="col">Apprenticeship</th>
 								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Apprentices</th>
-								{% if data['annual-payroll'] >= 36000000 %}
 								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Start date</th>
-								{% endif %}
 								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Cost</th>
 								<th class="govuk-table__header" scope="col"></th>
 								<th class="govuk-table__header" scope="col"></th>
@@ -224,9 +231,7 @@
 									<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{'Standard' if standard === 'true' else 'Framework'}}/{{id}}" target="_blank" class="govuk-!-font-weight-regular">More details</a>
 								</th>
 								<td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td>
-								{% if data['annual-payroll'] >= 36000000 %}
 								<td class="govuk-table__cell govuk-table__cell--numeric">{{data['startDate_' + i + '-month']}} {{data['startDate_' + i + '-year']}}</td>
-								{% endif %}
 								<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * apprenticeshipCost) | numeral().format('0,0')}}</td>
 								<td class="govuk-table__cell govuk-table__cell--numeric">
 									<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Edit</a>
