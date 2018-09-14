@@ -25,92 +25,9 @@
 {% block content %}
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
-		<h1 class="govuk-heading-xl heading-dashboard">
+		<h1 class="govuk-heading-xl heading-dashboard govuk-!-margin-bottom-4">
 			Plan your future spending
 		</h1>
-
-		<div class="govuk-grid-row">
-			<div class="govuk-grid-column-two-thirds">
-				<h2 class="govuk-heading-l">
-					Account summary
-				</h2>
-
-				<p class="govuk-!-margin-bottom-0">
-					These figures are an estimate based on the future cost of any apprenticeships that are confirmed and started, as well as any planned apprenticeships that you have added manually.
-				</p>
-			</div>
-		</div>
-
-		<div class="govuk-grid-row govuk-!-margin-top-0">
-			<div class="govuk-grid-column-one-half">
-				<div class="govuk-inset-text govuk-inset-text--info govuk-!-padding-bottom-7">
-					<p class="govuk-body-m govuk-!-margin-bottom-1">
-						Your current levy account balance<span class="govuk-visually-hidden"> is: </span>
-					</p>
-					<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0">
-						£{{ 18721 | numeral().format('0,0') }}
-					</p>
-				</div>
-			</div>
-
-			<div class="govuk-grid-column-one-half">
-				<div class="govuk-inset-text govuk-inset-text--warning">
-					<p class="govuk-body-m govuk-!-margin-bottom-1">
-						Funds at risk of expiry in the next 6 months
-					</p>
-					<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-						£{{ (2091) | numeral().format('0,0') }}
-					</p>
-					<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
-						£{{ 3210 | numeral().format('0,0') }} without planned apprenticeships
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="govuk-grid-row">
-			<div class="govuk-grid-column-full">
-				<div class="govuk-grid-row">
-					<div class="govuk-grid-column-one-half">
-						<div class="govuk-inset-text govuk-!-margin-top-0">
-							{% set coinvestment = totalCost - data['total-levy'] %}
-							<p class="govuk-body-m govuk-!-margin-bottom-1">
-								Remaining cost of training
-							</p>
-							<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-								£{{ (9600) | numeral().format('0,0') }}
-							</p>
-							<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
-								£{{ 2000 | numeral().format('0,0') }} without planned apprenticeships
-							</p>
-						</div>
-					</div>
-
-					<div class="govuk-grid-column-one-half">
-						<div class="govuk-inset-text govuk-!-margin-top-0">
-							<p class="govuk-body-m govuk-!-margin-bottom-1">
-								Co-investment payments required
-							</p>
-							<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-								£{{ (1230) | numeral().format('0,0') }}
-							</p>
-							<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
-								£{{ 0 | numeral().format('0,0') }} without planned apprenticeships
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="govuk-grid-row govuk-!-margin-bottom-4">
-					<div class="govuk-grid-column-two-thirds">
-						{{ govukDetails({
-							summaryText: "Read a detailed explanation of these figures",
-							text: "Based on this estimate you will not need to make any co-investment payments because your levy contributions should cover the cost of current apprenticeship training."
-						}) }}
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 
@@ -119,6 +36,11 @@
 		<section>
 			<nav>
 				<ul class="js-tabs" role="tablist">
+					<li role="tab" id="tab-summary" aria-controls="pane-summary">
+						<a href="#pane-summary">
+							Account summary
+						</a>
+					</li>
 					<li role="tab" id="tab-current" aria-controls="pane-current">
 						<a href="#pane-current">
 							Current apprenticeships
@@ -131,7 +53,7 @@
 					</li>
 					<li role="tab" id="tab-table" aria-controls="pane-table">
 						<a href="#pane-table">
-							Monthly table
+							Monthly spending breakdown
 						</a>
 					</li>
 				</ul>
@@ -139,8 +61,92 @@
 
 			<div class="panes">
 				<!-- START PANE -->
+				<div class="js-tab-pane" id="pane-summary" role="tabpanel">
+					<div class="govuk-grid-row govuk-!-margin-top-4">
+						<div class="govuk-grid-column-two-thirds">
+							<h2 class="govuk-heading-l govuk-!-margin-bottom-0">
+								Account summary
+							</h2>						
+						</div>
+					</div>
+
+					<div class="govuk-grid-row">
+						<div class="govuk-grid-column-one-half">
+							<div class="govuk-inset-text govuk-inset-text--info govuk-!-padding-bottom-7">
+								<p class="govuk-body-m govuk-!-margin-bottom-1">
+									Your current levy account balance<span class="govuk-visually-hidden"> is: </span>
+								</p>
+								<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0">
+									£{{ 18721 | numeral().format('0,0') }}
+								</p>
+							</div>
+						</div>
+
+						<div class="govuk-grid-column-one-half">
+							<div class="govuk-inset-text govuk-inset-text--warning">
+								<p class="govuk-body-m govuk-!-margin-bottom-1">
+									Funds at risk of expiry in the next 6 months
+								</p>
+								<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
+									£{{ (2091) | numeral().format('0,0') }}
+								</p>
+								<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
+									£{{ 3210 | numeral().format('0,0') }} without planned apprenticeships
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="govuk-grid-row">
+						<div class="govuk-grid-column-full">
+							<div class="govuk-grid-row">
+								<div class="govuk-grid-column-one-half">
+									<div class="govuk-inset-text govuk-!-margin-top-0">
+										{% set coinvestment = totalCost - data['total-levy'] %}
+										<p class="govuk-body-m govuk-!-margin-bottom-1">
+											Remaining cost of training
+										</p>
+										<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
+											£{{ (9600) | numeral().format('0,0') }}
+										</p>
+										<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
+											£{{ 2000 | numeral().format('0,0') }} without planned apprenticeships
+										</p>
+									</div>
+								</div>
+
+								<div class="govuk-grid-column-one-half">
+									<div class="govuk-inset-text govuk-!-margin-top-0">
+										<p class="govuk-body-m govuk-!-margin-bottom-1">
+											Co-investment payments required
+										</p>
+										<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
+											£{{ (1230) | numeral().format('0,0') }}
+										</p>
+										<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
+											£{{ 0 | numeral().format('0,0') }} without planned apprenticeships
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="govuk-grid-row">
+								<div class="govuk-grid-column-two-thirds">
+									{{ govukDetails({
+										summaryText: "How these figures are calculated",
+										text: "These estimates are calulated using data from your apprenticeships account, including the future cost of any apprenticeships that are confirmed and started, and any planned apprenticeships that you have added manually.",
+										classes: "govuk-!-margin-top-0  govuk-!-margin-bottom-0"
+									}) }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END PANE -->
+
+				<!-- START PANE -->
 				<div class="js-tab-pane" id="pane-current" role="tabpanel">
-					<h2 class="govuk-heading-m">
+					<h2 class="govuk-heading-l govuk-!-margin-top-4">
 						Current apprenticeships
 					</h2>
 
@@ -179,7 +185,7 @@
 				</div>
 
 				<div class="js-tab-pane" id="pane-planned" role="tabpanel">
-					<h2 class="govuk-heading-m">
+					<h2 class="govuk-heading-l govuk-!-margin-top-4">
 						Planned apprenticeships
 					</h2>
 
@@ -245,7 +251,7 @@
 					<div class="govuk-grid-row govuk-!-margin-top-4">
 						<div class="govuk-grid-column-full">
 							<h2 class="govuk-heading-l">
-								Monthly spending table
+								Monthly spending breakdown
 							</h2>
 
 							<h3 class="govuk-heading-m">April 2018 to March 2019</h3>
