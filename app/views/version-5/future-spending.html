@@ -12,7 +12,7 @@
 		href: "finance"
 	},
 	{
-		text: "Plan future spending"
+		text: "Future spending"
 	}
 	]
 }) }}
@@ -26,7 +26,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
 		<h1 class="govuk-heading-xl heading-dashboard govuk-!-margin-bottom-4">
-			Plan your future spending
+			Future spending
 		</h1>
 	</div>
 </div>
@@ -38,17 +38,17 @@
 				<ul class="js-tabs" role="tablist">
 					<li role="tab" id="tab-summary" aria-controls="pane-summary">
 						<a href="#pane-summary">
-							Account summary
-						</a>
-					</li>
-					<li role="tab" id="tab-current" aria-controls="pane-current">
-						<a href="#pane-current">
-							Current apprenticeships
+							Summary
 						</a>
 					</li>
 					<li role="tab" id="tab-planned" aria-controls="pane-planned">
 						<a href="#pane-planned">
 							Planned apprenticeships
+						</a>
+					</li>
+					<li role="tab" id="tab-current" aria-controls="pane-current">
+						<a href="#pane-current">
+							Current apprenticeships
 						</a>
 					</li>
 					<li role="tab" id="tab-table" aria-controls="pane-table">
@@ -65,18 +65,18 @@
 					<div class="govuk-grid-row govuk-!-margin-top-4">
 						<div class="govuk-grid-column-two-thirds">
 							<h2 class="govuk-heading-l govuk-!-margin-bottom-0">
-								Account summary
+								Summary
 							</h2>						
 						</div>
 					</div>
 
 					<div class="govuk-grid-row">
 						<div class="govuk-grid-column-one-half">
-							<div class="govuk-inset-text govuk-inset-text--info govuk-!-padding-bottom-7">
-								<p class="govuk-body-m govuk-!-margin-bottom-1">
-									Your current levy account balance<span class="govuk-visually-hidden"> is: </span>
+							<div class="govuk-inset-text govuk-inset-text--info govuk-!-padding-bottom-5">
+								<p class="govuk-body-l govuk-!-margin-bottom-1">
+									Current levy funds
 								</p>
-								<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0">
+								<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0">
 									£{{ 18721 | numeral().format('0,0') }}
 								</p>
 							</div>
@@ -91,7 +91,7 @@
 									£{{ (2091) | numeral().format('0,0') }}
 								</p>
 								<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
-									£{{ 3210 | numeral().format('0,0') }} without planned apprenticeships
+									£{{ 3210 | numeral().format('0,0') }} without your planned apprenticeships
 								</p>
 							</div>
 						</div>
@@ -110,7 +110,7 @@
 											£{{ (9600) | numeral().format('0,0') }}
 										</p>
 										<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
-											£{{ 2000 | numeral().format('0,0') }} without planned apprenticeships
+											£{{ 2000 | numeral().format('0,0') }} without your planned apprenticeships
 										</p>
 									</div>
 								</div>
@@ -124,7 +124,7 @@
 											£{{ (1230) | numeral().format('0,0') }}
 										</p>
 										<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
-											£{{ 0 | numeral().format('0,0') }} without planned apprenticeships
+											£{{ 0 | numeral().format('0,0') }} without your planned apprenticeships
 										</p>
 									</div>
 								</div>
