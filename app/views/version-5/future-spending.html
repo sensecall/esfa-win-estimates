@@ -55,11 +55,13 @@
 							Planned apprenticeships
 						</a>
 					</li>
+					{% if data['logged-in'] === 'true' %}
 					<li role="tab" id="tab-current" aria-controls="pane-current">
 						<a href="#pane-current">
 							Current apprenticeships
 						</a>
 					</li>
+					{% endif %}
 					<li role="tab" id="tab-table" aria-controls="pane-table">
 						<a href="#pane-table">
 							Monthly spending breakdown
@@ -81,6 +83,8 @@
 
 					<div class="govuk-grid-row">
 						<div class="govuk-grid-column-one-half">
+							{% if data['logged-in'] === 'true' %}
+							{% if data['annual-levy-amount'] %}
 							<div class="govuk-inset-text govuk-inset-text--info govuk-!-padding-bottom-5">
 								<p class="govuk-body-l govuk-!-margin-bottom-1">
 									Current levy funds
@@ -89,6 +93,20 @@
 									£{{ 18721 | numeral().format('0,0') }}
 								</p>
 							</div>
+							{% endif %}
+
+							{% else %}
+							{% if data['annual-levy-amount'] %}
+							<div class="govuk-inset-text govuk-inset-text--info govuk-!-padding-bottom-5">
+								<p class="govuk-body-l govuk-!-margin-bottom-1">
+									Annual levy credit
+								</p>
+								<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0">
+									£{{ data['annual-levy-amount'] | numeral().format('0,0') }}
+								</p>
+							</div>
+							{% endif %}
+							{% endif %}
 						</div>
 
 						<div class="govuk-grid-column-one-half">

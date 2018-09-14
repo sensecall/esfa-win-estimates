@@ -61,6 +61,20 @@ router.post('/estimator/business-details', (req, res) => {
 	}
 })
 
+router.post('/estimator/english-percentage', (req, res) => {
+	var englishPercentage = req.session.data['english-percentage'] || '100'
+	var monthlyLevyPayment = Math.floor(((req.session.data['annual-payroll'] * 0.005)-15000)/12)
+	var monthlyLevyAmount = Math.ceil(monthlyLevyPayment * englishPercentage / 100 * 1.1)
+	var annualLevyAmount = Math.round(monthlyLevyAmount * 12)
+
+	req.session.data['english-percentage'] = englishPercentage
+	req.session.data['monthly-levy-payment'] = monthlyLevyPayment
+	req.session.data['monthly-levy-amount'] = monthlyLevyAmount
+	req.session.data['annual-levy-amount'] = annualLevyAmount
+
+	res.redirect(`/${req.version}/estimator/levy-outcome`)
+})
+
 // router.get('/estimator/apprenticeships-list', (req, res) => {
 // 	var loggedIn = req.session.data['loggedIn']
 // 	var currentPage = 'finance'
