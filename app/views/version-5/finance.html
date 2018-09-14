@@ -1,16 +1,17 @@
 {% extends "layout-account.html" %}
 
 {% block beforeContent %}
-<div class="govuk-breadcrumbs">
-	<ol class="govuk-breadcrumbs__list">
-		<li class="govuk-breadcrumbs__list-item">
-			<a href="account-home" class="govuk-breadcrumbs__link">Home</a>
-		</li>
-		<li class="govuk-breadcrumbs__list-item">
-			<a href="#" class="govuk-breadcrumbs__link">Finance</a>
-		</li>
-	</ol>
-</div>
+{{ govukBreadcrumbs({
+	  items: [
+	    {
+	      text: "Home",
+	      href: "account-home"
+	    },
+	    {
+	      text: "Finance"
+	    }
+	  ]
+	}) }}
 {% endblock %}
 
 {% block content %}
@@ -51,7 +52,7 @@
 	</div>
 	<div class="govuk-grid-column-one-half">
 		<h2 class="govuk-heading-m">
-			<a title="Download transactions" href="/{{version}}/estimator/future-spending-v1">
+			<a title="Download transactions" href="/{{version}}/future-spending">
 				Plan future spending
 			</a>
 		</h2>

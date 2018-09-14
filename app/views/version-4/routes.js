@@ -25,17 +25,6 @@ router.get('/finance', (req, res) => {
 	res.render(`${req.version}/finance`,{currentPage})
 })
 
-router.get('/estimator/account-check', (req, res) => {
-	var hasAccount = req.query.hasAccount
-	if (hasAccount === 'yes') {
-		res.redirect(`/${req.version}/login?redirect=estimator/use-existing-estimate`)
-	} else if (hasAccount === 'no') {
-		res.redirect(`business-details`)
-	} else {
-		res.render(`${req.version}/estimator/account-check`)
-	}
-})
-
 router.get('/estimator/business-details', (req, res) => {
 	var levy = req.session.data['annual-payroll']
 	if (levy >= 36000000) {
@@ -44,19 +33,6 @@ router.get('/estimator/business-details', (req, res) => {
 		res.redirect(`levy-outcome`)
 	} else {
 		res.render(`${req.version}/estimator/business-details`)
-	}
-})
-
-router.get('/estimator/use-existing-estimate', (req, res) => {
-	var useExisting = req.session.data['use-existing-estimate']
-	var currentPage = 'finance'
-
-	if (useExisting === 'true') {
-		res.redirect(`/${req.version}/estimator/apprenticeships-list`)
-	} else if (useExisting === 'false') {
-		res.redirect(`add-apprenticeship`)
-	} else {
-		res.render(`${req.version}/estimator/use-existing-estimate`,{currentPage})
 	}
 })
 
