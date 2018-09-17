@@ -5,7 +5,7 @@
 				Estimated cost of training
 			</p>
 			<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-				£{{ (9600) | numeral().format('0,0') }}
+				£{{ (totalCost) | numeral().format('0,0') }}
 			</p>
 		</div>
 	</div>
@@ -51,7 +51,7 @@
 						Your unspent apprenticeship funds
 					</p>
 					<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-						£{{ (1230) | numeral().format('0,0') }}
+						£{{ (data['annual-levy-amount'] - totalCost) | numeral().format('0,0') }}
 					</p>
 				</div>
 			</div>

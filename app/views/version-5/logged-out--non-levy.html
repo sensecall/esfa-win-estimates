@@ -18,18 +18,18 @@
 						What you have to pay
 					</p>
 					<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-						£{{ (9600) | numeral().format('0,0') }}
+						£{{ (totalCost) | numeral().format('0,0') }}
 					</p>
 				</div>
 			</div>
 
 			<div class="govuk-grid-column-one-half">
-				<div class="govuk-inset-text govuk-!-margin-top-0 govuk-!-padding-bottom-6">
-					<p class="govuk-body-m govuk-!-margin-bottom-1">
+				<div class="govuk-inset-text govuk-!-margin-top-0">
+					<p class="govuk-body-l govuk-!-margin-bottom-1">
 						What Government will pay
 					</p>
-					<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-						£{{ (9600/10*90) | numeral().format('0,0') }}
+					<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
+						£{{ (totalCost*9) | numeral().format('0,0') }}
 					</p>
 				</div>
 			</div>

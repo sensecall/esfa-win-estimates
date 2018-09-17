@@ -18,7 +18,7 @@
 						Total cost of your current and planned training
 					</p>
 					<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-						£{{ (9320) | numeral().format('0,0') }}
+						£{{ (totalCost) | numeral().format('0,0') }}
 					</p>
 					<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
 						Total cost without your planned training is £{{ 2000 | numeral().format('0,0') }}
@@ -32,7 +32,7 @@
 						What Government will pay towards your current and planned training 
 					</p>
 					<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-						£{{ (9600/10*90) | numeral().format('0,0') }}
+						£{{ (totalCost*9) | numeral().format('0,0') }}
 					</p>
 					<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
 						Government will contribute £{{ 0 | numeral().format('0,0') }} without your planned training
