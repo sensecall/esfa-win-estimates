@@ -10,10 +10,13 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		{% if data['annual-payroll'] >= 36000000 %}
-		
-		<h1 class="govuk-heading-xl">
+
+		{{ govukPanel({
+			titleText: "You have to pay the Apprenticeship levy"
+		}) }}
+		<!-- <h1 class="govuk-heading-xl">
 			You have to pay the Apprenticeship levy
-		</h1>
+		</h1> -->
 
 		<p>
 			You’ll receive £{{ data['annual-levy-amount'] | numeral().format('0,0') }} of levy credit per year. Any unused credit will expire 24 months after it arrives in your account.
@@ -38,9 +41,13 @@
 
 		{% else %}
 
-		<h1 class="govuk-heading-xl">
+		{{ govukPanel({
+			titleText: "Government will pay 90% of your apprenticeship costs"
+		}) }}
+
+		<!-- <h1 class="govuk-heading-xl">
 			Government will pay 90% of your apprenticeship costs
-		</h1>
+		</h1> -->
 
 		<p>
 			Given your annual paybill is less than £3 million, you won't have to pay the apprenticeship levy.
@@ -52,7 +59,7 @@
 		{% endif %}
 
 		<p>
-			Next, you'll need to add some apprenticeships to find out how much they will cost.
+			You can add some apprenticeships to your estimate to find out how much they will cost.
 		</p>
 
 		<a href="/{{version}}/add-apprenticeship" class="govuk-button">

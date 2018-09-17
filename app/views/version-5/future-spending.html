@@ -28,14 +28,14 @@
 {% endblock %}
 
 {% set currentPage = 'finance' %}
-{% set loggedIn = data['logged-in'] %}
+{% set loggedIn = data['logged-in'] === 'true' %}
 {% set levyPayer = data['annual-levy-amount'] != '' %}
 
 {% block content %}
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
 		<h1 class="govuk-heading-xl {{'heading-dashboard' if data['logged-in'] === true}} govuk-!-margin-bottom-4">
-			Future spending
+			{{"Future spending" if data['logged-in'] === 'true' else "Estimated cost of your apprenticeships"}}
 		</h1>
 	</div>
 </div>
@@ -75,105 +75,28 @@
 				<div class="js-tab-pane" id="pane-summary" role="tabpanel">
 					<div class="govuk-grid-row govuk-!-margin-top-4">
 						<div class="govuk-grid-column-two-thirds">
-							<h2 class="govuk-heading-l govuk-!-margin-bottom-0">
+							<h2 class="govuk-heading-l govuk-!-margin-bottom-4">
 								Summary
 							</h2>						
 						</div>
 					</div>
 
-					<div class="govuk-grid-row">
-						<div class="govuk-grid-column-one-half">
-							{% if loggedIn %}
-							{% if levyPayer %}
-							<!-- LOGGED IN LEVY -->
-							<div class="govuk-inset-text govuk-inset-text--info govuk-!-padding-bottom-5">
-								<p class="govuk-body-l govuk-!-margin-bottom-1">
-									Current levy funds
-								</p>
-								<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0">
-									£{{ 18721 | numeral().format('0,0') }}
-								</p>
-							</div>
-							{% endif %}
+					{% if loggedIn and levyPayer %}
+					{% include './logged-in--levy.html' %}
+					{% endif %}
 
-							{% else %}
-							<!-- LOGGED OUT LEVY -->
-							{% if levyPayer %}
-							<div class="govuk-inset-text govuk-inset-text--info govuk-!-padding-bottom-5">
-								<p class="govuk-body-l govuk-!-margin-bottom-1">
-									Annual levy credit
-								</p>
-								<p class="govuk-!-font-size-48 govuk-!-font-weight-bold govuk-!-margin-top-0">
-									£{{ data['annual-levy-amount'] | numeral().format('0,0') }}
-								</p>
-							</div>
-							{% else %}
-							<!-- LOGGED OUT NON LEVY -->
-							{% endif %}
-							{% endif %}
-						</div>
+					{% if loggedIn and not levyPayer %}
+					{% include './logged-in--non-levy.html' %}
+					{% endif %}
 
-						{% if levyPayer %}
-						<div class="govuk-grid-column-one-half">
-							<div class="govuk-inset-text govuk-inset-text--warning">
-								<p class="govuk-body-m govuk-!-margin-bottom-1">
-									Funds at risk of expiry in the next 6 months
-								</p>
-								<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-									£{{ (2091) | numeral().format('0,0') }} 
-								</p>
-								<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
-									£{{ 3210 | numeral().format('0,0') }} without your planned apprenticeships
-								</p>
-							</div>
-						</div>
-						{% endif %}
-					</div>
+					{% if not loggedIn and levyPayer %}
+					{% include './logged-out--levy.html' %}
+					{% endif %}
 
-					<div class="govuk-grid-row">
-						<div class="govuk-grid-column-full">
-							<div class="govuk-grid-row">
-								<div class="govuk-grid-column-one-half">
-									<div class="govuk-inset-text govuk-!-margin-top-0">
-										{% set coinvestment = totalCost - data['total-levy'] %}
-										<p class="govuk-body-m govuk-!-margin-bottom-1">
-											Remaining cost of training
-										</p>
-										<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-											£{{ (9600) | numeral().format('0,0') }}
-										</p>
-										<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
-											£{{ 2000 | numeral().format('0,0') }} without your planned apprenticeships
-										</p>
-									</div>
-								</div>
+					{% if not loggedIn and not levyPayer %}
+					{% include './logged-out--non-levy.html' %}
+					{% endif %}
 
-								<div class="govuk-grid-column-one-half">
-									<div class="govuk-inset-text govuk-!-margin-top-0">
-										<p class="govuk-body-m govuk-!-margin-bottom-1">
-											Co-investment payments required
-										</p>
-										<p class="govuk-!-font-size-36 govuk-!-font-weight-bold govuk-!-margin-top-0 govuk-!-margin-bottom-1">
-											£{{ (1230) | numeral().format('0,0') }}
-										</p>
-										<p class="govuk-body-m govuk-!-margin-top-0 govuk-body-s">
-											£{{ 0 | numeral().format('0,0') }} without your planned apprenticeships
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="govuk-grid-row">
-								<div class="govuk-grid-column-two-thirds">
-									{{ govukDetails({
-										summaryText: "How these figures are calculated",
-										text: "These estimates are calulated using data from your apprenticeships account, including the future cost of any apprenticeships that are confirmed and started, and any planned apprenticeships that you have added manually.",
-										classes: "govuk-!-margin-top-0  govuk-!-margin-bottom-0"
-									}) }}
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 				<!-- END PANE -->
 
