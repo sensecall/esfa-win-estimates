@@ -6,7 +6,6 @@
 {% endif %}
 
 {% block beforeContent %}
-
 {% if data['logged-in'] === true %}
 {{ govukBreadcrumbs({
 	items: [
@@ -26,10 +25,11 @@
 {% else %}
 {% include 'includes/back-link.html' %}
 {% endif %}
-
 {% endblock %}
 
 {% set currentPage = 'finance' %}
+{% set loggedIn = data['logged-in'] %}
+{% set levyPayer = data['annual-levy-amount'] != '' %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -83,8 +83,9 @@
 
 					<div class="govuk-grid-row">
 						<div class="govuk-grid-column-one-half">
-							{% if data['logged-in'] === 'true' %}
-							{% if data['annual-levy-amount'] %}
+							{% if loggedIn %}
+							{% if levyPayer %}
+							<!-- LOGGED IN LEVY -->
 							<div class="govuk-inset-text govuk-inset-text--info govuk-!-padding-bottom-5">
 								<p class="govuk-body-l govuk-!-margin-bottom-1">
 									Current levy funds
@@ -96,7 +97,8 @@
 							{% endif %}
 
 							{% else %}
-							{% if data['annual-levy-amount'] %}
+							<!-- LOGGED OUT LEVY -->
+							{% if levyPayer %}
 							<div class="govuk-inset-text govuk-inset-text--info govuk-!-padding-bottom-5">
 								<p class="govuk-body-l govuk-!-margin-bottom-1">
 									Annual levy credit
@@ -105,10 +107,13 @@
 									£{{ data['annual-levy-amount'] | numeral().format('0,0') }}
 								</p>
 							</div>
+							{% else %}
+							<!-- LOGGED OUT NON LEVY -->
 							{% endif %}
 							{% endif %}
 						</div>
 
+						{% if levyPayer %}
 						<div class="govuk-grid-column-one-half">
 							<div class="govuk-inset-text govuk-inset-text--warning">
 								<p class="govuk-body-m govuk-!-margin-bottom-1">
@@ -122,6 +127,7 @@
 								</p>
 							</div>
 						</div>
+						{% endif %}
 					</div>
 
 					<div class="govuk-grid-row">

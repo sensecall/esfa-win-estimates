@@ -57,6 +57,7 @@ router.post('/estimator/business-details', (req, res) => {
 	if (levy >= 36000000) {
 		res.redirect(`/${req.version}/estimator/english-percentage`)
 	} else {
+		req.session.data['annual-levy-amount'] = ''
 		res.redirect(`levy-outcome`)
 	}
 })
