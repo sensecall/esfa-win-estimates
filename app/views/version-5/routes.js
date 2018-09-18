@@ -39,6 +39,7 @@ router.post('/estimator/account-check', (req, res) => {
 		res.redirect(`/${req.version}/login?redirect=future-spending`)
 	} else {
 		req.session.data['has-account'] = 'no'
+		req.session.data['logged-in'] = 'false'
 		res.redirect(`business-details`)
 	}
 })

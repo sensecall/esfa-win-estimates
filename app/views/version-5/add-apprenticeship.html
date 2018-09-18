@@ -80,7 +80,12 @@
 				id: "no-of-app",
 				name: "apprenticeship_" + apprenticeshipId + "-count",
 				classes: "govuk-input--width-4",
-				type: "tel"
+				type: "number",
+				attributes:
+				{
+					min: 0,
+					required: "required"
+				}
 			}) }}
 
 			{% if data['annual-levy-amount'] %}

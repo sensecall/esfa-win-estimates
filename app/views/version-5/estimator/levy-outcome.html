@@ -12,7 +12,8 @@
 		{% if data['annual-payroll'] >= 36000000 %}
 
 		{{ govukPanel({
-			titleText: "You have to pay the Apprenticeship levy"
+			titleText: "You have to pay the Apprenticeship levy",
+			classes: "govuk-!-margin-bottom-6"
 		}) }}
 		<!-- <h1 class="govuk-heading-xl">
 			You have to pay the Apprenticeship levy
@@ -42,7 +43,8 @@
 		{% else %}
 
 		{{ govukPanel({
-			titleText: "Government will pay 90% of your apprenticeship costs"
+			titleText: "Government will pay 90% of your apprenticeship costs",
+			classes: "govuk-!-margin-bottom-6"
 		}) }}
 
 		<!-- <h1 class="govuk-heading-xl">
