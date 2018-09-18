@@ -54,8 +54,20 @@ router.post('/used-service-before', (req, res) => {
 })
 
 router.post('/estimator/business-details', (req, res) => {
-	var levy = req.session.data['annual-payroll']
-	if (levy >= 36000000) {
+	var payroll = req.session.data['annual-payroll']
+
+	if (payroll < 36000000) {
+		req.session.data['annual-levy-amount'] = ''
+	}
+
+	res.redirect(`employees`)
+})
+
+router.post('/estimator/employees', (req, res) => {
+	var employees = req.session.data['employees']
+	var payroll = req.session.data['annual-payroll']
+
+	if (employees == "over-50" && payroll >= 36000000) {
 		res.redirect(`/${req.version}/estimator/english-percentage`)
 	} else {
 		req.session.data['annual-levy-amount'] = ''
@@ -74,7 +86,13 @@ router.post('/estimator/english-percentage', (req, res) => {
 	req.session.data['monthly-levy-amount'] = monthlyLevyAmount
 	req.session.data['annual-levy-amount'] = annualLevyAmount
 
-	res.redirect(`/${req.version}/estimator/levy-outcome`)
+	var employees = req.session.data['employees']
+
+	if (employees == "under-50") {
+		req.session.data['annual-levy-amount'] = ''	
+	}
+
+	res.redirect(`levy-outcome`)
 })
 
 // router.get('/estimator/apprenticeships-list', (req, res) => {

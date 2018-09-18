@@ -13,31 +13,38 @@
 {% block content %}
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		<h1 class="govuk-heading-xl">
-			Does your organisation have less than 50 employees?
-		</h1>
-
 		<form method="post">
 			{% from "input/macro.njk" import govukInput %}
 
-			{{ govukInput({
-				label:
+			{{ govukRadios({
+				id: "employees",
+				name: "employees",
+				fieldset:
 				{
-					text: "Your organisation’s annual UK payroll"
+					legend:
+					{
+						text: "Does your organisation have more than 50 employees?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
 				},
 				hint:
 				{
-					text: "For example 2400000. Enter '0' if you’re unsure"
+					text: ""
 				},
-				id: "annual-payroll",
-				name: "annual-payroll",
-				classes: "govuk-input--width-10",
-				type: "number",
+				items:[
+				{
+					value: "over-50",
+					text: "Yes"
+				},
+				{
+					value: "under-50",
+					text: "No"
+				}],
 				attributes:
 				{
-					min: 0
-				},
-				value: data['annual-payroll']
+					required: "required"
+				}
 			}) }}
 
 			{% from "button/macro.njk" import govukButton %}

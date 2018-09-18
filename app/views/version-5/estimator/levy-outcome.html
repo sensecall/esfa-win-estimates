@@ -9,7 +9,7 @@
 {% block content %}
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		{% if data['annual-payroll'] >= 36000000 %}
+		{% if data['annual-levy-amount'] > 0 %}
 
 		{{ govukPanel({
 			titleText: "You have to pay the Apprenticeship levy",
