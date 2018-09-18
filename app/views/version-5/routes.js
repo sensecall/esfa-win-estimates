@@ -115,6 +115,7 @@ router.post('/add-apprenticeship', (req, res) => {
 	req.session.data['apprenticeship-added'] = 'true'
 	req.session.data['apprenticeship-updated'] = 'false'
 	req.session.data['apprenticeship-removed'] = 'false'
+
 	res.redirect('future-spending')
 })
 
@@ -122,6 +123,7 @@ router.post('/edit-apprenticeship', (req, res) => {
 	req.session.data['apprenticeship-updated'] = 'true'
 	req.session.data['apprenticeship-added'] = 'false'
 	req.session.data['apprenticeship-removed'] = 'false'
+	
 	res.redirect('future-spending')
 })
 

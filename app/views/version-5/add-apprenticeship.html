@@ -70,8 +70,6 @@
 				</div>
 			</div>
 
-			{% from "input/macro.njk" import govukInput %}
-
 			{{ govukInput({
 				label:
 				{
@@ -115,8 +113,6 @@
 				]
 			}) }}
 			{% endif %}
-
-			{% from "button/macro.njk" import govukButton %}
 
 			{{ govukButton({
 				text: "Save and continue"
