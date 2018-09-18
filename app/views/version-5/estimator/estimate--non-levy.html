@@ -1,0 +1,133 @@
+{% extends "../layout-estimator.html" %}
+{% set phaseBanner = true %}
+{% set serviceName = "Find out the cost of an apprenticeship" %}
+
+{% set currentPage = 'finance' %}
+{% set loggedIn = data['logged-in'] === 'true' %}
+{% set levyPayer = data['annual-levy-amount'] != '' %}
+
+{% block content %}
+
+{% if levyPayer %}
+{% set apprenticeshipCost = 9000 %}
+{% else %}
+{% set apprenticeshipCost = 900 %}
+{% endif %}
+
+{% set totalCost = 0 %}
+
+{% for i in range(1, 999) %}
+{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
+{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
+{% endif %}
+{% endfor %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<h1 class="govuk-heading-l">
+			Estimated cost of your apprenticeships
+		</h1>
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		{% if data["apprenticeship-added"] === 'true' %}
+		<!-- <div class="govuk-inset-text govuk-inset-text--success">
+			Apprenticeships added.
+		</div> -->
+		{% endif %}
+
+		{% if data["apprenticeship-removed"] === 'true' %}
+		<!-- <div class="govuk-inset-text govuk-inset-text--warning">
+			Apprenticeships removed.
+		</div> -->
+		{% endif %}
+
+		{% if data["apprenticeship-updated"] === 'true' %}
+		<!-- <div class="govuk-inset-text govuk-inset-text--info">
+			Apprenticeships updated.
+		</div> -->
+		{% endif %}
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		{{ govukPanel({
+			titleText: 'You would pay no more than £' + (totalCost) | numeral().format('0,0'),
+			text: "Government will pay at least £" + (totalCost * 9) | numeral().format('0,0') + " towards the cost of your apprenticeship training",
+			classes: "govuk-!-margin-bottom-6"
+		}) }}
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{{ govukDetails({
+			summaryText: "What you told us",
+			html: 'Your annual payroll is £' + (data['annual-payroll'] | numeral().format('0,0')) + ' <a href="estimator/business-details">Change</a>'
+		}) }}
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<h2 class="govuk-heading-l govuk-!-margin-top-4">
+			Apprenticeships
+		</h2>
+
+		<table class="govuk-table">
+			<thead class="govuk-table__head">
+				<tr class="govuk-table__row">
+					<th class="govuk-table__header" scope="col">Apprenticeship</th>
+					<th class="govuk-table__header govuk-table__header--numeric" scope="col">Apprentices</th>
+					<th class="govuk-table__header govuk-table__header--numeric" scope="col">Cost</th>
+					<th class="govuk-table__header" scope="col"></th>
+					<th class="govuk-table__header" scope="col"></th>
+				</tr>
+			</thead>
+			<tbody class="govuk-table__body">
+				{% macro apprenticeship(id, attribute) %}
+				{{ data['apprenticeship_' + id + '-' + attribute] }}
+				{% endmacro %}
+
+				{% for i in range(1, 999) %}
+				{% set el = 'apprenticeship_' + i %}
+				{% if data[el + '-name'] and data[el + '-count'] %}
+
+				{% set name = apprenticeship(i,'name').split("|")[0] %}
+				{% set level = apprenticeship(i,'name').split("|")[1] %}
+				{% set standard = apprenticeship(i,'name').split("|")[2] %}
+				{% set id = apprenticeship(i,'name').split("|")[3] %}
+				{% set startDate = apprenticeship(i,'name').split("|")[4] %}
+
+				<tr class="govuk-table__row">
+					<th class="govuk-table__header" scope="row">
+						{{name}}{{" (Standard)" if standard === 'true'}}<br>
+						<span class="govuk-!-font-weight-regular">Level: {{level}}</span><br>
+						<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{'Standard' if standard === 'true' else 'Framework'}}/{{id}}" target="_blank" class="govuk-!-font-weight-regular">More details</a>
+					</th>
+					<td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * apprenticeshipCost) | numeral().format('0,0')}}</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">
+						<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Edit</a>
+					</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">
+						<a href="?apprenticeship-removed=true&apprenticeship-added=false&apprenticeship_{{i}}-count=&apprenticeship_{{i}}-name=">Remove</a>
+					</td>
+				</tr>
+				{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<p>
+			<a href="../add-apprenticeship" class="govuk-button">
+				Add more apprenticeships
+			</a>
+		</p>
+
+	</div>
+</div>
+{% endblock %}

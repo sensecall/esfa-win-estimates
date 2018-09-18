@@ -86,7 +86,7 @@
 				}
 			}) }}
 
-			{% if data['annual-levy-amount'] %}
+			{% if data['logged-in'] == 'true' %}
 			{{ govukDateInput({
 				id: "startDate_" + apprenticeshipId,
 				name: "startDate_" + apprenticeshipId,

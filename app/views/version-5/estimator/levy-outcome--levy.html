@@ -9,19 +9,14 @@
 {% block content %}
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		{% if data['annual-levy-amount'] > 0 %}
-
 		{{ govukPanel({
 			titleText: "You have to pay the Apprenticeship levy",
+			html: '<span class="govuk-!-font-size-24">You’ll have <strong>£' + (data['annual-levy-amount'] / 12) | numeral().format('0,0') + '</strong> to spend on apprenticeship training per month</span>',
 			classes: "govuk-!-margin-bottom-6"
 		}) }}
 		<!-- <h1 class="govuk-heading-xl">
 			You have to pay the Apprenticeship levy
 		</h1> -->
-
-		<p>
-			You’ll receive £{{ data['annual-levy-amount'] | numeral().format('0,0') }} of levy credit per year. Any unused credit will expire 24 months after it arrives in your account.
-		</p>
 
 		{% from "details/macro.njk" import govukDetails %}
 		{{ govukDetails({
@@ -40,33 +35,25 @@
 			</p>"
 		}) }}
 
-		{% else %}
+		<div class="govuk-inset-text">
+			<h2 class="govuk-heading-m">
+				Example
+			</h2>
+			<ul class="govuk-list">
+				<li>
+					Business Administrator Level: 3 (equivalent to A-level)
+				</li>
+				<li>
+					Monthly cost: £{{9000/12}} for 23 months
+				</li>
+				<li>
+					Final payment: £{{(9000 * 0.2) | numeral().format('0,0')}}
+				</li>
+			</div>
 
-		{{ govukPanel({
-			titleText: "Government will pay 90% of your apprenticeship costs",
-			classes: "govuk-!-margin-bottom-6"
-		}) }}
-
-		<!-- <h1 class="govuk-heading-xl">
-			Government will pay 90% of your apprenticeship costs
-		</h1> -->
-
-		<p>
-			Given your annual paybill is less than £3 million, you won't have to pay the apprenticeship levy.
-		</p>
-
-		<p>
-			This means that you will only have to pay 10% toward the cost of apprenticeship training and the government will pay the rest.
-		</p>
-		{% endif %}
-
-		<p>
-			You can add some apprenticeships to your estimate to find out how much they will cost.
-		</p>
-
-		<a href="/{{version}}/add-apprenticeship" class="govuk-button">
-			Add apprenticeships to your estimate
-		</a>
+			<a href="/{{version}}/add-apprenticeship" class="govuk-button">
+				Show me the costs of other apprenticeships
+			</a>
+		</div>
 	</div>
-</div>
-{% endblock %}
+	{% endblock %}

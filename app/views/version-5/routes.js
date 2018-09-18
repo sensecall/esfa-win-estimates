@@ -58,9 +58,28 @@ router.post('/estimator/business-details', (req, res) => {
 
 	if (payroll < 36000000) {
 		req.session.data['annual-levy-amount'] = ''
+		res.redirect(`levy-outcome`)
+	} else {
+		res.redirect(`english-percentage`)
 	}
+})
 
-	res.redirect(`employees`)
+router.get('/estimator/levy-outcome', (req, res) => {
+	var payroll = req.session.data['annual-payroll']
+
+	if (payroll < 36000000) {
+		res.render(`${req.version}/estimator/levy-outcome--non-levy`)
+	} else {
+		res.render(`${req.version}/estimator/levy-outcome--levy`)
+	}
+})
+
+router.get('/estimator/estimate', (req, res) => {
+	if (req.session.data['annual-payroll'] >= 36000000) {
+		res.render(`${req.version}/estimator/estimate--levy`)
+	} else {
+		res.render(`${req.version}/estimator/estimate--non-levy`)
+	}
 })
 
 router.post('/estimator/employees', (req, res) => {
@@ -116,7 +135,11 @@ router.post('/add-apprenticeship', (req, res) => {
 	req.session.data['apprenticeship-updated'] = 'false'
 	req.session.data['apprenticeship-removed'] = 'false'
 
-	res.redirect('future-spending')
+	if (req.session.data['logged-in'] == 'true') {
+		res.redirect('future-spending')
+	} else {
+		res.redirect('estimator/estimate')
+	}
 })
 
 router.post('/edit-apprenticeship', (req, res) => {

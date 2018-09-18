@@ -1,9 +1,5 @@
-{% if data['logged-in'] === 'true' %}
-{% extends "layout-account.html" %}
-{% else %}
-{% extends "./layout-estimator.html" %}
+{% extends "../layout-estimator.html" %}
 {% set serviceName = "Find out the cost of an apprenticeship" %}
-{% endif %}
 
 {% block beforeContent %}
 {% if data['logged-in'] === true %}
@@ -88,12 +84,7 @@
 							Planned apprenticeships
 						</a>
 					</li>
-					<li role="tab" id="tab-current" aria-controls="pane-current">
-						<a href="#pane-current">
-							Current apprenticeships
-						</a>
-					</li>
-					{% if data['annual-payroll'] > 36000000 %}
+					{% if data['annual-payroll'] < 36000000 %}
 					<li role="tab" id="tab-table" aria-controls="pane-table">
 						<a href="#pane-table">
 							Monthly spending breakdown
@@ -113,14 +104,6 @@
 							</h2>						
 						</div>
 					</div>
-
-					{% if loggedIn and levyPayer %}
-					{% include './logged-in--levy.html' %}
-					{% endif %}
-
-					{% if loggedIn and not levyPayer %}
-					{% include './logged-in--non-levy.html' %}
-					{% endif %}
 
 					{% if not loggedIn and levyPayer %}
 					{% include './logged-out--levy.html' %}

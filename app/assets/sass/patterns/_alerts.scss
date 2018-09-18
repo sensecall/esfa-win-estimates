@@ -13,3 +13,10 @@
   background-color: mix(white, govuk-colour("bright-red"), 90%);
 }
 
+.govuk-inset-text--cost {
+  border-color: mix(white, govuk-colour("turquoise"), 60%);
+  background-color: govuk-colour("turquoise");
+  * {
+  	color: govuk-colour("white")
+  }
+}
