@@ -147,7 +147,11 @@ router.post('/edit-apprenticeship', (req, res) => {
 	req.session.data['apprenticeship-added'] = 'false'
 	req.session.data['apprenticeship-removed'] = 'false'
 	
-	res.redirect('future-spending')
+	if (req.session.data['logged-in'] == 'true') {
+		res.redirect('future-spending')
+	} else {
+		res.redirect('estimator/estimate')
+	}
 })
 
 module.exports = router

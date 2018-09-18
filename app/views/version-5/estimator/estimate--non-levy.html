@@ -66,14 +66,14 @@
 	<div class="govuk-grid-column-two-thirds">
 		{{ govukDetails({
 			summaryText: "What you told us",
-			html: 'Your annual payroll is £' + (data['annual-payroll'] | numeral().format('0,0')) + ' <a href="estimator/business-details">Change</a>'
+			html: 'Your annual payroll is £' + (data['annual-payroll'] | numeral().format('0,0')) + ' <a href="business-details">Change</a>'
 		}) }}
 	</div>
 </div>
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
-		<h2 class="govuk-heading-l govuk-!-margin-top-4">
+		<h2 class="govuk-heading-m govuk-!-margin-top-4">
 			Apprenticeships
 		</h2>
 
@@ -111,7 +111,7 @@
 					<td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td>
 					<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * apprenticeshipCost) | numeral().format('0,0')}}</td>
 					<td class="govuk-table__cell govuk-table__cell--numeric">
-						<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Edit</a>
+						<a href="../edit-apprenticeship?edit-apprenticeship_id={{i}}">Edit</a>
 					</td>
 					<td class="govuk-table__cell govuk-table__cell--numeric">
 						<a href="?apprenticeship-removed=true&apprenticeship-added=false&apprenticeship_{{i}}-count=&apprenticeship_{{i}}-name=">Remove</a>

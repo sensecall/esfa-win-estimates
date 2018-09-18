@@ -11,7 +11,7 @@
 	<div class="govuk-grid-column-two-thirds">
 		{{ govukPanel({
 			titleText: "You have to pay the Apprenticeship levy",
-			html: '<span class="govuk-!-font-size-24">You’ll have <strong>£' + (data['annual-levy-amount'] / 12) | numeral().format('0,0') + '</strong> to spend on apprenticeship training per month</span>',
+			html: '<span class="govuk-!-font-size-24">You’ll have about <strong>£' + (data['annual-levy-amount'] / 12) | numeral().format('0,0') + '</strong> to spend on apprenticeship training each month</span>',
 			classes: "govuk-!-margin-bottom-6"
 		}) }}
 		<!-- <h1 class="govuk-heading-xl">
