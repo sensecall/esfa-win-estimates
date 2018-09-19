@@ -54,8 +54,9 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
+		{% if totalCost < data['annual-levy-amount'] %}
 		{{ govukPanel({
-			titleText: 'You could afford your chosen apprenticeship training',
+			titleText: 'You can afford your chosen apprenticeship training',
 			classes: "govuk-!-margin-bottom-0"
 		}) }}
 
@@ -63,7 +64,7 @@
 			<div class="govuk-grid-column-two-thirds">
 				<div class="govuk-inset-text">
 					<p>
-						Your chosen apprenticeship training would cost no more than £{{(totalCost / 12) | numeral().format("0,0")}}.
+						The cost of your chosen apprenticeship training would be no more than £{{(totalCost / 12) | numeral().format("0,0")}} per month.
 					</p>
 					<p>
 						This cost would be deducted from your levy balance, leaving around £{{ ((data['annual-levy-amount'] / 12) - (totalCost / 12)) | numeral().format("0,0") }} to spend each month.
@@ -71,6 +72,25 @@
 				</div>
 			</div>
 		</div>
+		{% else %}
+		{{ govukPanel({
+			titleText: 'You would have to make additional payments for your chosen apprenticeship training',
+			classes: "govuk-!-margin-bottom-0"
+		}) }}
+
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+				<div class="govuk-inset-text">
+					<p>
+						The cost of your chosen apprenticeship training would be no more than £{{(totalCost / 12) | numeral().format("0,0")}} per month.
+					</p>
+					<p>
+						This cost would be deducted from your levy balance and you would then have to make additional monthly co-investment payments of around £{{ -((data['annual-levy-amount'] / 12) - (totalCost / 12)) | numeral().format("0,0") }}.
+					</p>
+				</div>
+			</div>
+		</div>
+		{% endif %}
 	</div>
 </div>
 
@@ -78,7 +98,7 @@
 	<div class="govuk-grid-column-two-thirds">
 		{{ govukDetails({
 			summaryText: "What you told us",
-			html: '<p>Your annual payroll is £' + (data["annual-payroll"] | numeral().format("0,0")) + ' <a href="estimator/business-details">Change</a></p><p>The percentage of your workforce living in England is ' + (data["english-percentage"] | numeral().format("0,0")) + '% <a href="business-details">Change</a></p>'
+			html: '<p>Your annual payroll is £' + (data["annual-payroll"] | numeral().format("0,0")) + ' <a href="business-details">Change</a></p><p>The percentage of your workforce living in England is ' + (data["english-percentage"] | numeral().format("0,0")) + '% <a href="business-details">Change</a></p>'
 		}) }}
 	</div>
 </div>
@@ -131,15 +151,34 @@
 				</tr>
 				{% endif %}
 				{% endfor %}
+				<tr class="govuk-table__row">
+					<td class="govuk-table__cell" colspan="5">
+						<a href="../add-apprenticeship" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-2 govuk-!-margin-top-2">
+							Add more apprenticeships
+						</a>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 
-		<p>
-			<a href="../add-apprenticeship" class="govuk-button">
-				Add more apprenticeships
-			</a>
-		</p>
+		<div class="govuk-grid-row govuk-!-margin-top-8">
+			<div class="govuk-grid-column-two-thirds">
+				<h2 class="govuk-heading-m">
+					Register to start these apprenticeships
+				</h2>
+				<p>
+					If you are ready to register on the apprenticeship service, you need to set up your account.
+				</p>
 
+				<p class="govuk-!-margin-bottom-0">
+					<a href="https://manage-apprenticeships.service.gov.uk/" target="_blank" class="govuk-button govuk-!-margin-bottom-2">Register on the apprenticeship service</a>
+				</p>
+
+				<p class="govuk-!-font-size-14">
+					This link will open in a new tab
+				</p>
+			</div>
+		</div>
 	</div>
 </div>
 {% endblock %}

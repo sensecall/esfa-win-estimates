@@ -54,12 +54,15 @@ router.post('/used-service-before', (req, res) => {
 })
 
 router.post('/estimator/business-details', (req, res) => {
-	var payroll = req.session.data['annual-payroll']
+	var payroll = req.session.data['payroll']
+	var monthlyPayroll = req.session.data['monthly-payroll']
 
-	if (payroll < 36000000) {
+	if (payroll == 'under-3million') {
 		req.session.data['annual-levy-amount'] = ''
+		req.session.data['annual-payroll'] = '0'
 		res.redirect(`levy-outcome`)
 	} else {
+		req.session.data['annual-payroll'] = monthlyPayroll * 12
 		res.redirect(`english-percentage`)
 	}
 })
