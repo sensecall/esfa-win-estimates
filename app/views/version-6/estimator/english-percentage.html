@@ -13,35 +13,30 @@
 {% block content %}
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Employees living in England
+		</h1>
+
 		<form method="post">
-			{{ govukRadios({
-				id: "employees",
-				name: "employees",
-				fieldset:
+			{% from "input/macro.njk" import govukInput %}
+
+			{{ govukInput({
+				label:
 				{
-					legend:
-					{
-						text: "Does your organisation have more than 50 employees?",
-						isPageHeading: true,
-						classes: "govuk-fieldset__legend--xl"
-					}
+					text: "What percentage of your pay bill goes to employees living in England?"
 				},
 				hint:
 				{
-					text: ""
+					text: "This only needs to be an estimate. Enter '100' if you’re unsure"
 				},
-				items:[
-				{
-					value: "over-50",
-					text: "Yes"
-				},
-				{
-					value: "under-50",
-					text: "No"
-				}],
+				id: "english-percentage",
+				name: "english-percentage",
+				classes: "govuk-input--width-3",
+				type: "number",
 				attributes:
 				{
-					required: "required"
+					max: '100',
+					min: '0'
 				}
 			}) }}
 

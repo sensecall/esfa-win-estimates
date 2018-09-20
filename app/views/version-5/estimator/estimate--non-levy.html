@@ -25,7 +25,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
 		<h1 class="govuk-heading-l">
-			Estimated cost of your apprenticeships
+			Estimated cost of apprenticeship training
 		</h1>
 	</div>
 </div>
@@ -53,20 +53,27 @@
 </div>
 
 <div class="govuk-grid-row">
-	<div class="govuk-grid-column-full">
-		{{ govukPanel({
-			titleText: 'You would pay no more than £' + (totalCost) | numeral().format('0,0'),
-			text: "Government will pay at least £" + (totalCost * 9) | numeral().format('0,0') + " towards the cost of your apprenticeship training",
-			classes: "govuk-!-margin-bottom-6"
-		}) }}
-	</div>
-</div>
-
-<div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
+		<p class="govuk-body-l">
+			You would pay no more than £{{(totalCost) | numeral().format('0,0')}} for your chosen apprenticeship training.
+		</p>
+		
+		<p>
+			Government would contribute at least £{{(totalCost * 9) | numeral().format('0,0')}} towards your costs.
+		</p>
+		{% set detailsHtml %}
+		<p>
+			You could be eligible for extra funding depending on both your and your apprentice’s circumstances.
+		</p>
+
+		<p>
+			Given your annual paybill is less than £3 million, you will only have to pay 10% toward the cost of apprenticeship training and the government will pay the rest. This means you pay £{{(totalCost) | numeral().format('0,0')}} instead of £{{(totalCost * 10) | numeral().format('0,0')}}
+		</p>
+		{%- endset %}
+
 		{{ govukDetails({
-			summaryText: "What you told us",
-			html: 'Your annual payroll is £' + (data['annual-payroll'] | numeral().format('0,0')) + ' <a href="business-details">Change</a>'
+			summaryText: "More information",
+			html: detailsHtml
 		}) }}
 	</div>
 </div>
@@ -132,7 +139,7 @@
 		<div class="govuk-grid-row govuk-!-margin-top-8">
 			<div class="govuk-grid-column-two-thirds">
 				<h2 class="govuk-heading-m">
-					Register to access funds to pay for these apprenticeships
+					Register to reserve funds to pay for these apprenticeships
 				</h2>
 				<p>
 					If you are ready to register on the apprenticeship service, you need to set up your account.
@@ -147,6 +154,11 @@
 				</p>
 			</div>
 		</div>
+
+		{{ govukDetails({
+			summaryText: "Previous answers",
+			html: 'Your annual payroll is less than £3 million <a href="business-details">Change</a>'
+		}) }}
 	</div>
 </div>
 {% endblock %}
