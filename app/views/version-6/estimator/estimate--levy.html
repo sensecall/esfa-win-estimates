@@ -57,15 +57,21 @@
 		{% if totalCost < data['annual-levy-amount'] %}
 		<div class="govuk-grid-row">
 			<div class="govuk-grid-column-two-thirds">
+				<div class="govuk-inset-text govuk-inset-text--success govuk-!-margin-top-0">
+					<p class="govuk-heading-m">
+						You can afford your chosen apprenticeship training
+					</p>
+				</div>
+
 				<p class="govuk-body-l">
-					You can afford your chosen apprenticeship training
+					You would have around £{{ ((data['annual-levy-amount'] / 12) - (totalCost * 0.8 / 12)) | numeral().format("0,0") }} left to spend each month after payments have been taken from your levy balance
 				</p>
 
 				<p>
-					The cost of your chosen apprenticeship training would be no more than £{{(totalCost * 0.8 / 12) | numeral().format("0,0")}} per month. You would also pay a total of £{{(totalCost * 0.2) | numeral().format("0,0")}} for the completion of your chosen apprenticeships.
+					Your chosen apprenticeship training would cost around £{{(totalCost * 0.8 / 12) | numeral().format("0,0")}} per month
 				</p>
 				<p>
-					These costs would be deducted from your levy balance, leaving around £{{ ((data['annual-levy-amount'] / 12) - (totalCost * 0.8 / 12)) | numeral().format("0,0") }} to spend each month.
+					You would pay a total of about £{{(totalCost * 0.2) | numeral().format("0,0")}} in completion payments
 				</p>
 			</div>
 		</div>
@@ -89,15 +95,6 @@
 			</div>
 		</div>
 		{% endif %}
-	</div>
-</div>
-
-<div class="govuk-grid-row">
-	<div class="govuk-grid-column-two-thirds">
-		{{ govukDetails({
-			summaryText: "What you told us",
-			html: '<p>Your annual payroll is £' + (data["annual-payroll"] | numeral().format("0,0")) + ' <a href="business-details">Change</a></p><p>The percentage of your workforce living in England is ' + (data["english-percentage"] | numeral().format("0,0")) + '% <a href="business-details">Change</a></p>'
-		}) }}
 	</div>
 </div>
 
@@ -177,6 +174,58 @@
 				</p>
 			</div>
 		</div>
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-m">
+			Previous answers
+		</h2>
+
+		<dl class="app-check-your-answers app-check-your-answers--long">
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="/{{version}}/estimator">
+						Start again
+					</a>
+				</dd>
+			</div>
+
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					Your monthly payroll
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					£{{data['monthly-payroll'] | numeral().format(0,0)}}
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="business-details">
+						Change
+					</a>
+				</dd>
+			</div>
+
+			<div class="app-check-your-answers__contents">
+				<dt class="app-check-your-answers__question">
+					Percentage of employes in England
+				</dt>
+				<dd class="app-check-your-answers__answer">
+					{{data['english-percentage']}}%
+				</dd>
+				<dd class="app-check-your-answers__change">
+					<a href="english-percentage">
+						Change
+					</a>
+				</dd>
+			</div>
+		</dl>
 	</div>
 </div>
 {% endblock %}
