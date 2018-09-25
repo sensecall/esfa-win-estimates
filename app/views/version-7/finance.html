@@ -1,0 +1,146 @@
+{% extends "layout-account.html" %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+	items: [
+	{
+		text: "Home",
+		href: "account-home"
+	},
+	{
+		text: "Finance"
+	}
+	]
+}) }}
+{% endblock %}
+
+{% block content %}
+<h1 class="govuk-heading-xl heading-dashboard" id="company-Name">
+	Finance
+</h1>
+
+<div class="govuk-grid-row" id="page-transactions">
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--purple">
+					<dt>
+						Current funds
+					</dt>
+
+					<dd class="govuk-!-font-size-36">£{{ data["levy-funds"] or "0" }}</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--grey">
+					<dt>
+						Future outgoings
+					</dt>
+
+					<dd class="govuk-!-font-size-36">£0</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--red-border">
+					<dt>	
+						Funds expiring in Sep 19
+					</dt>
+
+					<dd class="govuk-!-font-size-36">£132,853</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-bottom-8" id="page-transactions">
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--grey">
+					<dt>
+						Committed spend next month
+					</dt>
+
+					<dd class="govuk-!-font-size-36">£0</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--grey">
+					<dt>
+						Government co-funding next month
+					</dt>
+
+					<dd class="govuk-!-font-size-36">£0</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--grey">
+					<dt>
+						Employer contribution cost next month
+					</dt>
+
+					<dd class="govuk-!-font-size-36">£0</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title="View transactions" href="/accounts/8MGY6M/finance/2018/6">
+				Transaction history
+			</a>
+		</h2>
+		<p>View payments made into and out of your apprenticeship service account. </p>
+	</div>
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title="Download transactions" href="/accounts/8MGY6M/finance/downloadtransactions">
+				Download transactions
+			</a>
+		</h2>
+		<p>Download your financial transactions within a specific date range. </p>
+	</div>
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title="Download transactions" href="/{{version}}/existing-estimate">
+				Estimate future spending
+			</a>
+		</h2>
+		<p>
+			Lorem ipsum ex consequat elit laborum dolor aliquip ut fugiat minim nostrud laborum ut dolor.
+		</p>
+	</div>
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title="Manage transfers" href="/accounts/8MGY6M/transfers">
+				Transfers
+			</a>
+		</h2>
+		<p>Connect with other employers and send or receive transfer funds. </p>
+	</div>
+</div>
+{% endblock %}

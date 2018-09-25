@@ -78,7 +78,7 @@
 			}
 		}
 		&.data--grey {
-			background: govuk-colour("grey-2");
+			background: govuk-colour("grey-3");
 			* {
 				color: govuk-colour("black")
 			}
@@ -112,10 +112,15 @@
 	}
 }
 
-#page-transactions .govuk-grid-column-one-half .data {
+#page-transactions .data {
 	dl {
 		position: relative;
-		min-height: 170px;
-		padding-bottom: 50px;
+		min-height: 120px;
+		padding-bottom: 20px;
+	}
+
+	dt {
+		@include govuk-font($size: 19, $weight: bold, $line-height: 1);
+		height: 2.25em;
 	}
 }
