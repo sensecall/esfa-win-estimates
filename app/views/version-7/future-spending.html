@@ -45,17 +45,9 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		<h1 class="govuk-heading-xl {{'heading-dashboard' if data['logged-in'] === true}} govuk-!-margin-bottom-4">
+		<h1 class="govuk-heading-xl">
 			Estimate your future spending
 		</h1>
-
-		<p>
-			You can use this tool to estimate how many apprenticeships you could fund in the future.
-		</p>
-
-		<div class="govuk-inset-text">
-			Estimated figures do not include any future apprenticeship starts or apprentices who’ve already started and payment has not yet been made to their training provider.
-		</div>
 	</div>
 </div>
 
@@ -95,11 +87,13 @@
 						</a>
 					</li>
 
+					{% if apprenticeshipCount != 0 %}
 					<li role="tab" id="tab-planned" aria-controls="pane-planned">
 						<a href="#pane-planned">
-							Apprenticeships added by you{% if apprenticeshipCount > 0 %}<span class="govuk-tag govuk-!-margin-left-2 govuk-!-font-size-14" style="padding: 2px 7px;">{{apprenticeshipCount}}</span>{% endif %}
+							Estimated apprenticeships{% if apprenticeshipCount > 0 %}<span class="govuk-tag govuk-!-margin-left-2 govuk-!-font-size-14" style="padding: 2px 7px;">{{apprenticeshipCount}}</span>{% endif %}
 						</a>
 					</li>
+					{% endif %}
 
 					<li role="tab" id="tab-current" aria-controls="pane-current">
 						<a href="#pane-current">
@@ -168,7 +162,7 @@
 					<div class="govuk-grid-row">
 						<div class="govuk-grid-column-two-thirds">
 							<h2 class="govuk-heading-l govuk-!-margin-top-4">
-								Apprenticeships added by you
+								Estimated apprenticeships
 							</h2>
 
 							<p>
@@ -230,7 +224,7 @@
 
 					<p>
 						<a href="add-apprenticeship" class="govuk-button">
-							Add or remove apprenticeships to this estimate
+							Add apprenticeships to this estimate
 						</a>
 					</p>
 				</div>
@@ -247,6 +241,10 @@
 							<p>
 								These figures are based on the current information in your account and the data provided by your training provider which is used to calculate funding.
 							</p>
+
+							<a href="add-apprenticeship" class="govuk-button">
+								Add apprenticeships to this estimate
+							</a>
 
 							<p>
 								<a href="#" class="govuk-!-font-weight-bold">Download this data (CSV, 90kB)</a>
