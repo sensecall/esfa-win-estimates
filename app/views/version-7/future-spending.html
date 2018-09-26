@@ -50,10 +50,6 @@
 		</h1>
 
 		<p>
-			These figures are based on the current information in your account and the data provided by your training provider which is used to calculate funding.
-		</p>
-
-		<p>
 			You can use this tool to estimate how many apprenticeships you could fund in the future.
 		</p>
 
@@ -66,7 +62,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
 		{%- set closeButton %}
-		<a href="#" onclick="$(this).parent().hide()" style="float: right !important">Close</a>
+		<a href="?apprenticeship-added=false&apprenticeship-updated=false&apprenticeship-removed=false" onclick="$(this).parent().hide()" style="float: right !important">Close</a>
 		{% endset %}
 
 		{% if data["apprenticeship-added"] === 'true' %}
@@ -95,7 +91,7 @@
 				<ul class="js-tabs" role="tablist">
 					<li role="tab" id="tab-table" aria-controls="pane-table">
 						<a href="#pane-table">
-							Monthly spending breakdown
+							Future spending breakdown
 						</a>
 					</li>
 
@@ -116,9 +112,21 @@
 			<div class="panes">
 				<!-- START PANE -->
 				<div class="js-tab-pane" id="pane-current" role="tabpanel">
-					<h2 class="govuk-heading-l govuk-!-margin-top-4">
-						Current apprenticeships
-					</h2>
+					<div class="govuk-grid-row">
+						<div class="govuk-grid-column-two-thirds">
+							<h2 class="govuk-heading-l govuk-!-margin-top-4">
+								Current apprenticeships
+							</h2>
+
+							<p>
+								Commodo proident aliqua laboris sit eiusmod qui reprehenderit exercitation exercitation laborum voluptate culpa aliquip dolore qui nostrud elit sit aliquip.
+							</p>
+
+							<p>
+								<a href="#" class="govuk-!-font-weight-bold">Download this data (CSV, 90kB)</a>
+							</p>
+						</div>
+					</div>
 
 					<table class="govuk-table govuk-table--font-small">
 						<thead class="govuk-table__head">
@@ -157,9 +165,21 @@
 
 				<!-- START PANE -->
 				<div class="js-tab-pane" id="pane-planned" role="tabpanel">
-					<h2 class="govuk-heading-l govuk-!-margin-top-4">
-						Apprenticeships added by you
-					</h2>
+					<div class="govuk-grid-row">
+						<div class="govuk-grid-column-two-thirds">
+							<h2 class="govuk-heading-l govuk-!-margin-top-4">
+								Apprenticeships added by you
+							</h2>
+
+							<p>
+								Cupidatat laborum culpa in in qui dolor in voluptate irure amet irure cillum deserunt sint et qui veniam sunt dolore eiusmod ullamco velit dolor excepteur commodo sed.
+							</p>
+
+							<p>
+								<a href="#" class="govuk-!-font-weight-bold">Download this data (CSV, 90kB)</a>
+							</p>
+						</div>
+					</div>
 
 					<table class="govuk-table govuk-table--font-small">
 						<thead class="govuk-table__head">
@@ -219,15 +239,23 @@
 				<!-- START PANE -->
 				<div class="js-tab-pane" id="pane-table" role="tabpanel">
 					<div class="govuk-grid-row govuk-!-margin-top-4">
-						<div class="govuk-grid-column-full">
+						<div class="govuk-grid-column-two-thirds">
 							<h2 class="govuk-heading-l">
-								Monthly spending breakdown
+								Future spending breakdown
 							</h2>
+
+							<p>
+								These figures are based on the current information in your account and the data provided by your training provider which is used to calculate funding.
+							</p>
 
 							<p>
 								<a href="#" class="govuk-!-font-weight-bold">Download this data (CSV, 90kB)</a>
 							</p>
+						</div>
+					</div>
 
+					<div class="govuk-grid-row govuk-!-margin-top-4">
+						<div class="govuk-grid-column-full">
 							<h3 class="govuk-heading-m govuk-!-margin-top-6">April 2018 to March 2019</h3>
 							<table class="govuk-table govuk-table--font-small">
 								<thead class="govuk-table__head">
@@ -615,30 +643,6 @@
 									</tr>
 								</tbody>
 							</table>
-						</div>
-					</div>
-				</div>
-				<!-- END PANE -->
-
-				<!-- START PANE -->
-				<div class="js-tab-pane" id="pane-summary" role="tabpanel">
-					<div class="govuk-grid-row govuk-!-margin-top-4">
-						<div class="govuk-grid-column-two-thirds">
-							<h2 class="govuk-heading-l govuk-!-margin-bottom-4">
-								Downloads
-							</h2>
-
-							<ul class="govuk-list govuk-list--bullet">				
-								<li>
-									<a href="#">Ut amet amet</a>
-								</li>
-								<li>
-									<a href="#">Ut amet amet</a>
-								</li>
-								<li>
-									<a href="#">Ut amet amet</a>
-								</li>
-							</ul>
 						</div>
 					</div>
 				</div>
