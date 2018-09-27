@@ -44,8 +44,8 @@
 {% endfor %}
 
 <div class="govuk-grid-row">
-	<div class="govuk-grid-column-two-thirds">
-		<h1 class="govuk-heading-xl">
+	<div class="govuk-grid-column-full">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
 			Estimate your future spending
 		</h1>
 	</div>
@@ -54,7 +54,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
 		{%- set closeButton %}
-		<a href="?apprenticeship-added=false&apprenticeship-updated=false&apprenticeship-removed=false" onclick="$(this).parent().hide()" style="float: right !important">Close</a>
+		<a href="?apprenticeship-added=false&apprenticeship-updated=false&apprenticeship-removed=false" style="float: right !important">Close</a>
 		{% endset %}
 
 		{% if data["apprenticeship-added"] === 'true' %}
@@ -166,7 +166,7 @@
 							</h2>
 
 							<p>
-								These are the apprenticeships you've added to this estimate.  You can save this estimate and create a new estimate - or save this one and come back to add/remove apprenticehsips.
+								These are the apprenticeships you've added to this estimate.  You can save this estimate and create a new estimate - or save this one and come back to add/remove apprenticeships.
 							</p>
 
 							<p>
@@ -179,10 +179,12 @@
 						<thead class="govuk-table__head">
 							<tr class="govuk-table__row">
 								<th class="govuk-table__header" scope="col">Apprenticeship</th>
-								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Apprentices</th>
+								<!-- <th class="govuk-table__header govuk-table__header--numeric" scope="col">Apprentices</th> -->
 								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Start date</th>
-								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Cost</th>
-								<th class="govuk-table__header" scope="col"></th>
+								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Total cost</th>
+								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Monthly payments</th>
+								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Completion payment</th>
+								<th class="govuk-table__header" scope="col">Transfer</th>
 								<th class="govuk-table__header" scope="col"></th>
 							</tr>
 						</thead>
@@ -202,19 +204,25 @@
 							{% set startDate = apprenticeship(i,'name').split("|")[4] %}
 
 							<tr class="govuk-table__row">
-								<th class="govuk-table__header" scope="row">
-									{{name}}{{" (Standard)" if standard === 'true'}}<br>
+								<td class="govuk-table__cell" scope="row">
+									{{ apprenticeship(i,'count') }}x {{name}}{{" (Standard)" if standard === 'true'}}<br>
 									<span class="govuk-!-font-weight-regular">Level: {{level}}</span><br>
 									<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{'Standard' if standard === 'true' else 'Framework'}}/{{id}}" target="_blank" class="govuk-!-font-weight-regular">More details</a>
-								</th>
-								<td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td>
+								</td>
+								<!-- <td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td> -->
 								<td class="govuk-table__cell govuk-table__cell--numeric">{{data['startDate_' + i + '-month']}} {{data['startDate_' + i + '-year']}}</td>
 								<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * apprenticeshipCost) | numeral().format('0,0')}}</td>
 								<td class="govuk-table__cell govuk-table__cell--numeric">
-									<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Edit</a>
+									£{{ (apprenticeship(i,'count') * apprenticeshipCost * 0.8 / 24) | numeral().format('0,0')}} x 24
 								</td>
 								<td class="govuk-table__cell govuk-table__cell--numeric">
-									<a href="?apprenticeship-removed=true&apprenticeship-added=false&apprenticeship_{{i}}-count=&apprenticeship_{{i}}-name=">Remove</a>
+										£{{ (apprenticeship(i,'count') * apprenticeshipCost * 0.2) | numeral().format('0,0')}}
+								</td>
+								<td class="govuk-table__cell">
+									No
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Change</a>
 								</td>
 							</tr>
 							{% endif %}

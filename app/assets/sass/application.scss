@@ -80,4 +80,28 @@ $govuk-global-styles: true;
 			background-color: $govuk-button--secondary-hover-colour;
 		}
 	}
+
+	&.govuk-button--red {
+		$govuk-button--red-colour: govuk-colour("red");
+		$govuk-button--red-hover-colour: darken($govuk-button--red-colour,10%);
+		$govuk-button--red-shadow-colour: darken($govuk-button--red-colour,20%);
+		$govuk-button--red-text-colour: govuk-colour("white");
+
+		color: $govuk-button--red-text-colour;
+		background-color: $govuk-button--red-colour;
+		-webkit-box-shadow: 0 $button-shadow-size 0 $govuk-button--red-shadow-colour;
+		box-shadow: 0 $button-shadow-size 0 $govuk-button--red-shadow-colour; // s0
+
+		&:link,
+		&:visited,
+		&:active,
+		&:hover {
+			color: $govuk-button--red-text-colour;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: $govuk-button--red-hover-colour;
+		}
+	}
 }
