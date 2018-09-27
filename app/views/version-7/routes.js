@@ -55,14 +55,18 @@ router.post('/estimator/know-apprenticeship', (req, res) => {
 
 router.post('/estimator/job-role-search', (req, res) => {
 	var searchQuery = req.session.data['job-role']
-	request({
-		uri: 'https://findapprenticeshiptraining-api.sfa.bis.gov.uk/apprenticeship-programmes/search',
-		qs: {
-			keywords: searchQuery
-		}
-	}).pipe(res);
+	var response = []
 
-	// res.redirect(`/${req.version}/estimator/estimate`)
+	request.get(
+		'https://findapprenticeshiptraining-api.sfa.bis.gov.uk/apprenticeship-programmes/search?keywords=' + searchQuery,
+		{
+			json: true,
+			encoding: undefined
+		},
+		(error, response, body) => {
+			req.session.data['search-results'] = body
+			res.redirect(`/${req.version}/estimator/estimate`)
+		});
 })
 
 router.post('/used-service-before', (req, res) => {

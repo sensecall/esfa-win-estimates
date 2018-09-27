@@ -29,7 +29,21 @@
 		</h1>
 
 		<div class="govuk-inset-text govuk-inset-text--info">
-			There are <a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/SearchResults?Keywords={{data['job-role']}}">6 apprenticeships</a> matching your search for "{{data['job-role']}}"
+			<p>
+				There are <a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/SearchResults?Keywords={{data['job-role']}}">{{data['search-results'].length}} apprenticeships</a> matching your search for "{{data['job-role']}}", including:
+			</p>
+
+			<ul class="govuk-list govuk-list--bullet">
+				{% set i = 0 %}
+				{% for result in data['search-results'] %}
+				{% if result.Title.length < 50 %}
+				{% if i < 4 %}
+				<li>{{result.Title}}</li>
+				{% set i = i + 1 %}
+				{% endif %}
+				{% endif %}
+				{% endfor %}
+			</ul>
 		</div>
 	</div>
 </div>
