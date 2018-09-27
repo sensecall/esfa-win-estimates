@@ -28,84 +28,26 @@
 			Cost of apprenticeship training
 		</h1>
 
-		{% macro apprenticeship(id, attribute) %}
-		{{ data['apprenticeship_' + id + '-' + attribute] }}
-		{% endmacro %}
-
-		<div class="govuk-grid-row govuk-!-margin-bottom-2">
-			{% for i in range(1, 999) %}
-			{% set el = 'apprenticeship_' + i %}
-			{% if data[el + '-name'] and data[el + '-count'] %}
-
-			{% set name = apprenticeship(i,'name').split("|")[0] %}
-			{% set level = apprenticeship(i,'name').split("|")[1] %}
-			{% set standard = apprenticeship(i,'name').split("|")[2] %}
-			{% set id = apprenticeship(i,'name').split("|")[3] %}
-			{% set startDate = apprenticeship(i,'name').split("|")[4] %}
-
-			<div class="govuk-grid-column-two-thirds">
-				<div class="govuk-inset-text govuk-!-margin-top-0">
-					<h2 class="govuk-heading-m govuk-!-margin-bottom-2">
-						{{name}} Level: {{level}} {{" (Standard)" if standard === 'true'}}
-					</h2>
-					<p>
-						<a href="../edit-apprenticeship?edit-apprenticeship_id={{i}}">Change your selection</a>
-					</p>
-						<!-- <li>
-							You pay: £{{ (apprenticeship(i,'count') * apprenticeshipCost) | numeral().format('0,0')}}
-						</li>
-						<li>
-							Government pays: £{{ (apprenticeship(i,'count') * apprenticeshipCost * 9) | numeral().format('0,0')}}
-						</li> -->
-					</div>
-					<!-- <p>
-						<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{'Standard' if standard === 'true' else 'Framework'}}/{{id}}" target="_blank">Find out more about this apprenticeship</a>  on the Find apprenticeship training service.
-					</p>
- -->
-				</div>
-
-				{% endif %}
-				{% endfor %}
-			</div>
+		<div class="govuk-inset-text govuk-inset-text--info">
+			There are <a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/SearchResults?Keywords={{data['job-role']}}">6 apprenticeships</a> matching your search for "{{data['job-role']}}"
 		</div>
-	</div>
-
-	<div class="govuk-grid-row">
-		<div class="govuk-grid-column-full">
-			{% if data["apprenticeship-added"] === 'true' %}
-		<!-- <div class="govuk-inset-text govuk-inset-text--success">
-			Apprenticeships added.
-		</div> -->
-		{% endif %}
-
-		{% if data["apprenticeship-removed"] === 'true' %}
-		<!-- <div class="govuk-inset-text govuk-inset-text--warning">
-			Apprenticeships removed.
-		</div> -->
-		{% endif %}
-
-		{% if data["apprenticeship-updated"] === 'true' %}
-		<!-- <div class="govuk-inset-text govuk-inset-text--info">
-			Apprenticeships updated.
-		</div> -->
-		{% endif %}
 	</div>
 </div>
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<p class="govuk-body-l govuk-!-margin-bottom-4">
-			You would pay no more than
+			You would pay between
 
 			<span class="govuk-heading-xl govuk-!-margin-top-2 govuk-!-margin-bottom-0">
-				£{{(totalCost) | numeral().format('0,0')}}
+				£400 - £2,700
 			</span>
 		</p>
 
 		<p>
-			Government will contribute at least
+			Government will contribute between
 			<span class="govuk-heading-l govuk-!-margin-top-2 govuk-!-margin-bottom-0">
-				£{{(totalCost * 9) | numeral().format('0,0')}} <span class="govuk-!-font-size-19"> towards your training costs</span>
+				£{{(400 * 9) | numeral().format('0,0')}} - £{{(2700 * 9) | numeral().format('0,0')}} <span class="govuk-!-font-size-19"> towards your training costs</span>
 			</span>
 		</p>
 	</div>
@@ -114,10 +56,10 @@
 <div class="govuk-grid-row govuk-!-margin-top-8 govuk-!-margin-bottom-8">
 	<div class="govuk-grid-column-two-thirds">
 		<h2 class="govuk-heading-m">
-			Register to reserve funds to pay for these apprenticeships
+			Now go to the Find apprenticeship training service
 		</h2>
 		<p>
-			If you are ready to register on the apprenticeship service, you need to set up your account.
+			If you want to find out more about the apprenticeships that are suitable for your planned job role, you need to visit the Find apprenticeship training service.
 		</p>
 
 		<p class="govuk-!-margin-bottom-0">
