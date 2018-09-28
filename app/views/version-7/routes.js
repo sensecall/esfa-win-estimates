@@ -1,6 +1,6 @@
 const express = require('express')
-
 const router = new express.Router()
+var request = require('request');
 
 router.get('/', (req, res) => {
 	res.redirect(`/${req.version}/start`)
@@ -42,6 +42,31 @@ router.post('/estimator/account-check', (req, res) => {
 		req.session.data['logged-in'] = 'false'
 		res.redirect(`business-details`)
 	}
+})
+
+router.post('/estimator/know-apprenticeship', (req, res) => {
+	var knowApp = req.session.data['know-apprenticeship']
+	if (knowApp === 'yes') {
+		res.redirect(`/${req.version}/add-apprenticeship`)
+	} else {
+		res.redirect(`/${req.version}/estimator/job-role-search`)
+	}
+})
+
+router.post('/estimator/job-role-search', (req, res) => {
+	var searchQuery = req.session.data['job-role']
+	var response = []
+
+	request.get(
+		'https://findapprenticeshiptraining-api.sfa.bis.gov.uk/apprenticeship-programmes/search?keywords=' + searchQuery,
+		{
+			json: true,
+			encoding: undefined
+		},
+		(error, response, body) => {
+			req.session.data['search-results'] = body
+			res.redirect(`/${req.version}/estimator/estimate`)
+		});
 })
 
 router.post('/used-service-before', (req, res) => {
@@ -87,10 +112,17 @@ router.get('/estimator/levy-outcome', (req, res) => {
 })
 
 router.get('/estimator/estimate', (req, res) => {
-	if (req.session.data['annual-payroll'] >= 36000000) {
+	var payroll = req.session.data['annual-payroll']
+	var knowApp = req.session.data['know-apprenticeship']
+
+	if (payroll >= 36000000) {
 		res.render(`${req.version}/estimator/estimate--levy`)
 	} else {
-		res.render(`${req.version}/estimator/estimate--non-levy`)
+		if(! req.session.data['job-role']) {
+			res.render(`${req.version}/estimator/estimate--non-levy`)
+		} else {
+			res.render(`${req.version}/estimator/estimate--non-levy--jobs`)
+		}
 	}
 })
 

@@ -44,25 +44,17 @@
 {% endfor %}
 
 <div class="govuk-grid-row">
-	<div class="govuk-grid-column-two-thirds">
-		<h1 class="govuk-heading-xl {{'heading-dashboard' if data['logged-in'] === true}} govuk-!-margin-bottom-4">
+	<div class="govuk-grid-column-full">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
 			Estimate your future spending
 		</h1>
-
-		<p>
-			You can use this tool to estimate how many apprenticeships you could fund in the future.
-		</p>
-
-		<div class="govuk-inset-text">
-			Estimated figures do not include any future apprenticeship starts or apprentices who’ve already started and payment has not yet been made to their training provider.
-		</div>
 	</div>
 </div>
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
 		{%- set closeButton %}
-		<a href="?apprenticeship-added=false&apprenticeship-updated=false&apprenticeship-removed=false" onclick="$(this).parent().hide()" style="float: right !important">Close</a>
+		<a href="?apprenticeship-added=false&apprenticeship-updated=false&apprenticeship-removed=false" style="float: right !important">Close</a>
 		{% endset %}
 
 		{% if data["apprenticeship-added"] === 'true' %}
@@ -95,11 +87,13 @@
 						</a>
 					</li>
 
+					{% if apprenticeshipCount != 0 %}
 					<li role="tab" id="tab-planned" aria-controls="pane-planned">
 						<a href="#pane-planned">
-							Apprenticeships added by you{% if apprenticeshipCount > 0 %}<span class="govuk-tag govuk-!-margin-left-2 govuk-!-font-size-14" style="padding: 2px 7px;">{{apprenticeshipCount}}</span>{% endif %}
+							Estimated apprenticeships{% if apprenticeshipCount > 0 %}<span class="govuk-tag govuk-!-margin-left-2 govuk-!-font-size-14" style="padding: 2px 7px;">{{apprenticeshipCount}}</span>{% endif %}
 						</a>
 					</li>
+					{% endif %}
 
 					<li role="tab" id="tab-current" aria-controls="pane-current">
 						<a href="#pane-current">
@@ -168,11 +162,11 @@
 					<div class="govuk-grid-row">
 						<div class="govuk-grid-column-two-thirds">
 							<h2 class="govuk-heading-l govuk-!-margin-top-4">
-								Apprenticeships added by you
+								Estimated apprenticeships
 							</h2>
 
 							<p>
-								These are the apprenticeships you've added to this estimate.  You can save this estimate and create a new estimate - or save this one and come back to add/remove apprenticehsips.
+								These are the apprenticeships you've added to this estimate.  You can save this estimate and create a new estimate - or save this one and come back to add/remove apprenticeships.
 							</p>
 
 							<p>
@@ -185,10 +179,12 @@
 						<thead class="govuk-table__head">
 							<tr class="govuk-table__row">
 								<th class="govuk-table__header" scope="col">Apprenticeship</th>
-								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Apprentices</th>
+								<!-- <th class="govuk-table__header govuk-table__header--numeric" scope="col">Apprentices</th> -->
 								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Start date</th>
-								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Cost</th>
-								<th class="govuk-table__header" scope="col"></th>
+								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Total cost</th>
+								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Monthly payments</th>
+								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Completion payment</th>
+								<th class="govuk-table__header" scope="col">Transfer</th>
 								<th class="govuk-table__header" scope="col"></th>
 							</tr>
 						</thead>
@@ -208,19 +204,25 @@
 							{% set startDate = apprenticeship(i,'name').split("|")[4] %}
 
 							<tr class="govuk-table__row">
-								<th class="govuk-table__header" scope="row">
-									{{name}}{{" (Standard)" if standard === 'true'}}<br>
+								<td class="govuk-table__cell" scope="row">
+									{{ apprenticeship(i,'count') }}x {{name}}{{" (Standard)" if standard === 'true'}}<br>
 									<span class="govuk-!-font-weight-regular">Level: {{level}}</span><br>
 									<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{'Standard' if standard === 'true' else 'Framework'}}/{{id}}" target="_blank" class="govuk-!-font-weight-regular">More details</a>
-								</th>
-								<td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td>
+								</td>
+								<!-- <td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td> -->
 								<td class="govuk-table__cell govuk-table__cell--numeric">{{data['startDate_' + i + '-month']}} {{data['startDate_' + i + '-year']}}</td>
 								<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * apprenticeshipCost) | numeral().format('0,0')}}</td>
 								<td class="govuk-table__cell govuk-table__cell--numeric">
-									<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Edit</a>
+									£{{ (apprenticeship(i,'count') * apprenticeshipCost * 0.8 / 24) | numeral().format('0,0')}} x 24
 								</td>
 								<td class="govuk-table__cell govuk-table__cell--numeric">
-									<a href="?apprenticeship-removed=true&apprenticeship-added=false&apprenticeship_{{i}}-count=&apprenticeship_{{i}}-name=">Remove</a>
+										£{{ (apprenticeship(i,'count') * apprenticeshipCost * 0.2) | numeral().format('0,0')}}
+								</td>
+								<td class="govuk-table__cell">
+									No
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">
+									<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Change</a>
 								</td>
 							</tr>
 							{% endif %}
@@ -230,7 +232,7 @@
 
 					<p>
 						<a href="add-apprenticeship" class="govuk-button">
-							Add or remove apprenticeships to this estimate
+							Add apprenticeships to this estimate
 						</a>
 					</p>
 				</div>
@@ -247,6 +249,10 @@
 							<p>
 								These figures are based on the current information in your account and the data provided by your training provider which is used to calculate funding.
 							</p>
+
+							<a href="add-apprenticeship" class="govuk-button">
+								Add apprenticeships to this estimate
+							</a>
 
 							<p>
 								<a href="#" class="govuk-!-font-weight-bold">Download this data (CSV, 90kB)</a>
