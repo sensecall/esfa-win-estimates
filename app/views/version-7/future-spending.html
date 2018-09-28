@@ -276,8 +276,15 @@
 									</tr>
 								</thead>
 								<tbody class="govuk-table__body">
-									{% import './_initial-forecast-data.html' as initialForecast %}
-									{% for month in initialForecast.data %}
+									{% if apprenticeshipCount > 0 %}
+									{% set forecastData = 'revised' %}
+									{% else %}
+									{% set forecastData = 'initial' %}
+									{% endif %}
+
+									{% import './_' + forecastData + '-forecast-data.html' as forecast %}
+									
+									{% for month in forecast.data %}
 
 									{% set years = [19,20,21,22] %}
 									{% for year in years %}
