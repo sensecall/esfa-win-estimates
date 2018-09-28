@@ -110,6 +110,10 @@ $govuk-global-styles: true;
 	background: mix(white, govuk-colour("bright-red"), 95%);
 	td:first-of-type {
 		padding-left: 5px;
-		border-left: 4px solid govuk-colour("bright-red");
+		border-left: 4px solid govuk-colour("red");
 	}
+}
+.govuk-table__cell--warning {
+	color: govuk-colour("red");
+	font-weight: bold
 }

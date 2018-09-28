@@ -129,10 +129,6 @@
 								<!-- <th class="govuk-table__header govuk-table__header--numeric" scope="col">Apprentices</th> -->
 								<th class="govuk-table__header" scope="col">Start date</th>
 								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Total cost</th>
-								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Monthly payments</th>
-								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Completion payment</th>
-								<th class="govuk-table__header" scope="col">Transfer</th>
-								<th class="govuk-table__header" scope="col"></th>
 							</tr>
 						</thead>
 						<tbody class="govuk-table__body">
@@ -145,15 +141,6 @@
 								</td>
 								<td class="govuk-table__cell">{{apprenticeship.startDate}}</td>
 								<td class="govuk-table__cell govuk-table__cell--numeric">£{{(apprenticeship.cost * apprenticeship.count) | numeral().format('0,0')}}</td>
-								<td class="govuk-table__cell govuk-table__cell--numeric">
-									£{{ (apprenticeship.cost * apprenticeship.count * 0.8 / apprenticeship.monthlyPayments) | numeral().format('0,0')}} x {{apprenticeship.monthlyPayments}}
-								</td>
-								<td class="govuk-table__cell govuk-table__cell--numeric">
-									£{{ (apprenticeship.cost * 0.2) | numeral().format('0,0')}}
-								</td>
-								<td class="govuk-table__cell">
-									{{"No" if apprenticeship.transfer === false else "Yes"}}
-								</td>
 							</tr>
 							{% endfor %}
 						</tbody>
@@ -316,7 +303,7 @@
 										<td class="govuk-table__cell govuk-table__cell--numeric">
 											£{{month.CompletionPayments | numeral().format('0,0')}}
 										</td>
-										<td class="govuk-table__cell govuk-table__cell--numeric">
+										<td class="govuk-table__cell govuk-table__cell--numeric {{ 'govuk-table__cell--warning' if month.Expired > 0 }}">
 											{{"£"+(month.Expired | numeral().format('0,0')) if month.Expired != '-' else '-'}}
 										</td>
 										<td class="govuk-table__cell govuk-table__cell--numeric">
