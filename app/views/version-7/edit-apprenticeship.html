@@ -114,6 +114,7 @@
 			}) }}
 		</form>
 
+		{% if data['annual-payroll'] >= 36000000 %}
 		<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 		
 		<form action="future-spending">
@@ -127,6 +128,7 @@
 				classes: "govuk-button--red"
 			}) }}
 		</form>
+		{% endif %}
 	</div>
 </div>
 {% endblock %}
