@@ -266,7 +266,7 @@
 
 					<div class="govuk-grid-row govuk-!-margin-top-4">
 						<div class="govuk-grid-column-full">
-							<h3 class="govuk-heading-m govuk-!-margin-top-6">October 2018 to March 2019</h3>
+							<h3 class="govuk-heading-m govuk-!-margin-top-6">Tax year 2018 / 2019</h3>
 							<table class="govuk-table govuk-table--font-small">
 								<thead class="govuk-table__head">
 									<tr class="govuk-table__row">
@@ -297,13 +297,13 @@
 									{% if month.Month === "Apr-" + year %}
 									<tr class="govuk-table__row">
 										<th class="govuk-table__header" colspan="6">
-											<h3 class="govuk-heading-m govuk-!-margin-top-6">April 20{{year}} to March 20{{year + 1}}</h3>
+											<h3 class="govuk-heading-m govuk-!-margin-top-6">Tax year 20{{year}} / 20{{year + 1}}</h3>
 										</th>
 									</tr>
 									{% endif %}
 									{% endfor %}
 
-									<tr class="govuk-table__row">
+									<tr class="govuk-table__row {{ 'govuk-table__row--warning' if month.Expired > 0 }}">
 										<td class="govuk-table__cell">
 											{{month.Month}}
 										</td>
@@ -317,7 +317,7 @@
 											£{{month.CompletionPayments | numeral().format('0,0')}}
 										</td>
 										<td class="govuk-table__cell govuk-table__cell--numeric">
-											£{{month.Expired | numeral().format('0,0')}}
+											{{"£"+(month.Expired | numeral().format('0,0')) if month.Expired != '-' else '-'}}
 										</td>
 										<td class="govuk-table__cell govuk-table__cell--numeric">
 											£{{month.FutureFunds | numeral().format('0,0')}}
