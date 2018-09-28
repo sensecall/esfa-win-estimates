@@ -59,21 +59,21 @@
 
 		{% if data["apprenticeship-added"] === 'true' %}
 		<div class="govuk-inset-text govuk-inset-text--success">
-			Apprenticeships added.
+			Apprenticeships added. Your estimate has been recalculated.
 			{{ closeButton | safe }}
 		</div>
 		{% endif %}
 
 		{% if data["apprenticeship-removed"] === 'true' %}
 		<div class="govuk-inset-text govuk-inset-text--warning">
-			Apprenticeships removed.
+			Apprenticeships removed. Your estimate has been recalculated.
 			{{ closeButton | safe }}
 		</div>
 		{% endif %}
 
 		{% if data["apprenticeship-updated"] === 'true' %}
 		<div class="govuk-inset-text govuk-inset-text--info">
-			Apprenticeships updated.
+			Apprenticeships updated. Your estimate has been recalculated.
 			{{closeButton | safe}}
 		</div>
 		{% endif %}
