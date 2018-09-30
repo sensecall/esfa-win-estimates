@@ -59,6 +59,30 @@
 		<form method="post">
 			<input type="hidden" value="{{apprenticeshipId}}" name="apprenticeship-id">
 
+			{{ govukCheckboxes(
+				{
+					idPrefix: "IsTransferFunded",
+					name: "IsTransferFunded",
+					fieldset:
+					{
+						legend:
+						{
+							text: "Will this apprenticeship be funded by your transfer allowance?",
+							isPageHeading: false,
+							classes: "govuk-fieldset__legend--s"
+						}
+					},
+					hint: {
+					text: ""
+				},
+				items: [
+				{
+					value: "true",
+					text: "Use transfer allowance"
+				}
+				]
+			}) }}
+
 			<div class="govuk-form-group">
 				<label class="govuk-label" for="choose-apprenticeship">
 					Choose apprenticeship
@@ -95,6 +119,20 @@
 			{% endif %}
 
 			{% if data['logged-in'] == 'true' %}
+			{{ govukInput({
+				label:
+				{
+					text: "Number of months"
+				},
+				hint: 
+				{
+					text: "Apprenticeships must be a minimum of 12 months"
+				},
+				id: "apprenticeship-length",
+				name: "TotalInstallments",
+				classes: "govuk-input--width-2"
+			}) }}
+			
 			{{ govukDateInput({
 				id: "startDate_" + apprenticeshipId,
 				name: "startDate_" + apprenticeshipId,
