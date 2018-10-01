@@ -197,7 +197,7 @@
 							<tr class="govuk-table__row">
 								<td class="govuk-table__cell" scope="row">
 									{{ apprenticeship(i,'count') }}x {{name}}{{" (Standard)" if standard === 'true'}}<br>
-									<span class="govuk-!-font-weight-regular">Level: {{level}}</span><br>
+									<span class="govuk-!-font-weight-regular">Level: {{level}}</span><br class="govuk-!-margin-bottom-1">
 									<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{'Standard' if standard === 'true' else 'Framework'}}/{{id}}" target="_blank" class="govuk-!-font-weight-regular">More details (opens in new tab)</a>
 								</td>
 								<!-- <td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td> -->
