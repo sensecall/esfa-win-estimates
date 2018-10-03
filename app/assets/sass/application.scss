@@ -117,3 +117,19 @@ $govuk-global-styles: true;
 	color: govuk-colour("red");
 	font-weight: bold
 }
+
+.fat-service-header {
+	.govuk-header__container {
+		border-bottom-color: #777
+	}
+	.govuk-header__logo {
+		display:none
+	}
+	.govuk-header__content {
+		padding: 16px 0;
+
+		.govuk-header__link--service-name {
+			font-size: 32px
+		}
+	}
+}
