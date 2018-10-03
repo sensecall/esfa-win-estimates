@@ -1,5 +1,4 @@
 {% extends "./layout--fat.html" %}
-
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
@@ -17,199 +16,180 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <form action="/Apprenticeship/SearchResults" class="search-box" method="get">                
+        <form action="/Apprenticeship/SearchResults" class="search-box" method="get">
             <div class="govuk-form-group">
-              <label class="govuk-label govuk-!-font-weight-bold govuk-!-width-three-quarters" for="name">
-                  Showing search results for
-              </label>
-
-              <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-0" id="name" name="name" type="text">
-
-              {{ govukButton({
-                text: "Search"
-            }) }}
-        </div>
-    </form>
-</div>
+                <label class="govuk-label govuk-!-font-weight-bold govuk-!-width-three-quarters" for="name">
+                    Showing search results for
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds govuk-!-margin-bottom-0" id="name" name="name" type="text">
+                {{ govukButton({
+                    text: "Search"
+                }) }}
+            </div>
+        </form>
+    </div>
 </div>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-third">
         <div class="editSearch">
             <h2 class="govuk-heading-m">
-                <a href="#EditSearch">Filter results</a>
+                Filter results
             </h2>
             <div id="EditSearch">
                 <div class="filters-block filter-box">
                     <form method="get" autocomplete="off">
-                        <input type="hidden" name="Keywords" value="fish" />
-                        <input type="hidden" name="order" value="1" />
-
                         <fieldset class="filters filters-accordion">
                             <h2 class="toggler govuk-heading-s">Apprenticeship level</h2>
                             <div class="toggled-content">
-                                <ul name="alist22">
+                                <ul class="govuk-!-margin-top-0 govuk-list">
                                     <li>
-                                        <input value="2" id="SelectedLevels_2" name="SelectedLevels" type="checkbox"   />
-                                        <label for="SelectedLevels_2" class="">level 2 (2)</label>
+                                        <input value="2" id="SelectedLevels_2" name="SelectedLevels" type="checkbox" />
+                                        <label for="SelectedLevels_2" class="govuk-body-m">level 2 (2)</label>
                                     </li>
                                     <li>
-                                        <input value="3" id="SelectedLevels_3" name="SelectedLevels" type="checkbox"   />
-                                        <label for="SelectedLevels_3" class="">level 3 (3)</label>
+                                        <input value="3" id="SelectedLevels_3" name="SelectedLevels" type="checkbox" />
+                                        <label for="SelectedLevels_3" class="govuk-body-m">level 3 (3)</label>
                                     </li>
                                     <li>
-                                        <input value="4" id="SelectedLevels_4" name="SelectedLevels" type="checkbox"  disabled />
-                                        <label for="SelectedLevels_4" class="disabled">level 4 (0)</label>
+                                        <input value="4" id="SelectedLevels_4" name="SelectedLevels" type="checkbox" disabled />
+                                        <label for="SelectedLevels_4" class="govuk-body-m disabled">level 4 (0)</label>
                                     </li>
                                     <li>
-                                        <input value="5" id="SelectedLevels_5" name="SelectedLevels" type="checkbox"  disabled />
-                                        <label for="SelectedLevels_5" class="disabled">level 5 (0)</label>
+                                        <input value="5" id="SelectedLevels_5" name="SelectedLevels" type="checkbox" disabled />
+                                        <label for="SelectedLevels_5" class="govuk-body-m disabled">level 5 (0)</label>
                                     </li>
                                     <li>
-                                        <input value="6" id="SelectedLevels_6" name="SelectedLevels" type="checkbox"  disabled />
-                                        <label for="SelectedLevels_6" class="disabled">level 6 (0)</label>
+                                        <input value="6" id="SelectedLevels_6" name="SelectedLevels" type="checkbox" disabled />
+                                        <label for="SelectedLevels_6" class="govuk-body-m disabled">level 6 (0)</label>
                                     </li>
                                     <li>
-                                        <input value="7" id="SelectedLevels_7" name="SelectedLevels" type="checkbox"  disabled />
-                                        <label for="SelectedLevels_7" class="disabled">level 7 (0)</label>
+                                        <input value="7" id="SelectedLevels_7" name="SelectedLevels" type="checkbox" disabled />
+                                        <label for="SelectedLevels_7" class="govuk-body-m disabled">level 7 (0)</label>
                                     </li>
                                 </ul>
 
-                                <details>
-                                    <summary>Explain levels</summary>
-                                    <div class="panel panel-border-narrow">
-                                        <p>Apprenticeships are set at different levels of difficulty from the equivalent of GCSE (level 2) up to postgraduate (level 7)</p>
-                                        <p><a href="https://www.gov.uk/what-different-qualification-levels-mean/overview" target="_blank" rel="external">More about levels</a></p>
-                                    </div>
-                                </details>
+                                {{ govukDetails({
+                                  summaryText: "Explain levels",
+                                  html: '<p>Apprenticeships are set at different levels of difficulty from the equivalent of GCSE (level 2) up to postgraduate (level 7)</p>
+                                  <p><a href="https://www.gov.uk/what-different-qualification-levels-mean/overview" target="_blank" rel="external">More about levels</a></p>',
+                                  classes: "govuk-!-margin-bottom-0"
+                              }) }}
+                          </div>
+                      </fieldset>
 
+                      <input type="submit" class="govuk-button" value="Update results" />
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
 
-                            </div>
-                        </fieldset>
-                        <input type="submit" class="button" value="Update results" />
-                    </form>
+  <div id="apprenticeship-results" class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+            &nbsp;
+        </div>
+        <div class="govuk-grid-column-one-half">
+            <form method="GET" id="search-results-order">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="sort" style="display: inline-block">
+                        Sort by
+                    </label>
+                    <select class="govuk-select" id="sort" name="sort" style="display: inline-block; width: auto">
+                        <option selected="selected" value="1">Best match</option>
+                        <option value="2">Level (high to low)</option>
+                        <option value="3">Level (low to high)</option>
+                    </select>
                 </div>
-
-            </div>
+            </form>
         </div>
     </div>
-    <div id="apprenticeship-results" class="govuk-grid-column-two-thirds">
-        <form method="GET" id="search-results-order">
-            <input type="hidden" name="Keyword" value="fish" />
-            <input type="hidden" name="page" value="1" />
-            <div class="form-block">
-                <label for="select-order" class="form-label-bold">Sort by</label>
-                <select name="order" id="select-order" class="form-control form-control-1-3">
-                    <option selected="selected" value="1">Best match</option>
-                    <option value="2">Level (high to low)</option>
-                    <option value="3">Level (low to high)</option>
-                </select>
-                <button type="submit" value="Sort" class="button">Sort</button>
-            </div>
-        </form>
 
-
-        <article class="result framework-result"
-        id="framework-560-3-2">
+    <article class="app-search-result framework-result" id="framework-560-3-2">
         <header>
             <h2 class="result-title">
                 <a attr-ga-result-interval="1-3" href="/Apprenticeship/Framework/560-3-2?keyword=fish">Maritime Occupations: Sea Fishing</a>
             </h2>
-
         </header>
         <ul class="govuk-list">
             <li>
                 <span class="govuk-!-font-weight-bold">Level:</span> 2 (equivalent to GCSEs at grades A* to C)
             </li>
             <li>
-             <span class="govuk-!-font-weight-bold">Typical length:</span>
-             12 months
-         </li>
-     </ul>
- </article>
+                <span class="govuk-!-font-weight-bold">Typical length:</span> 12 months
+            </li>
+        </ul>
+    </article>
 
- <article class="result framework-result"
- id="framework-403-2-7">
- <header>
-    <h2 class="result-title">
-        <a attr-ga-result-interval="1-3" href="/Apprenticeship/Framework/403-2-7?keyword=fish">Food and Drink: Fish and Shellfish Industry Skills</a>
-    </h2>
-</header>
-<ul class="govuk-list">
-    <li>
-        <span class="govuk-!-font-weight-bold">Level:</span> 
-        3 (equivalent to A levels at grades A to E) 
-    </li>
-    <li>
-        <span class="govuk-!-font-weight-bold">Typical length:</span>
-        12 months
-    </li>
-</ul>
-</article>
-<article class="result standard-result"
-id="standard-172">
-<header>
-    <h2 class="result-title">
-        <a attr-ga-result-interval="1-3" href="/Apprenticeship/Standard/172?keyword=fish">Fishmonger</a>
-        <span class="govuk-tag">New</span>
-    </h2>
+    <article  class="app-search-result" id="framework-403-2-7">
+        <header>
+            <h2 class="result-title">
+                <a attr-ga-result-interval="1-3" href="/Apprenticeship/Framework/403-2-7?keyword=fish">Food and Drink: Fish and Shellfish Industry Skills</a>
+            </h2>
+        </header>
+        <ul class="govuk-list">
+            <li>
+                <span class="govuk-!-font-weight-bold">Level:</span>
+                3 (equivalent to A levels at grades A to E)
+            </li>
+            <li>
+                <span class="govuk-!-font-weight-bold">Typical length:</span>
+                12 months
+            </li>
+        </ul>
+    </article>
 
-</header>
-<ul class="govuk-list">
-    <li>
-        <span class="govuk-!-font-weight-bold">Level:</span> 
-        2 (equivalent to GCSEs at grades A* to C) 
-    </li>
-    <li>
-        <span class="govuk-!-font-weight-bold">Typical length:</span>
-        24 months
-    </li>
-</ul>
-</article>
-<article class="result framework-result"
-id="framework-529-2-1">
-<header>
-    <h2 class="result-title">
-        <a attr-ga-result-interval="4-6" href="/Apprenticeship/Framework/529-2-1?keyword=fish">Veterinary Nursing: Small Animal</a>
-    </h2>
-
-</header>
-<ul class="govuk-list">
-    <li>
-        <span class="govuk-!-font-weight-bold">Level:</span> 
-        3 (equivalent to A levels at grades A to E) 
-    </li>
-    <li>
-        <span class="govuk-!-font-weight-bold">Typical length:</span>
-        36 months
-    </li>
-</ul>
-</article>
-<article class="result framework-result"
-id="framework-439-2-1">
-<header>
-    <h2 class="result-title">
-        <a attr-ga-result-interval="4-6" href="/Apprenticeship/Framework/439-2-1?keyword=fish">Animal Care</a>
-    </h2>
-
-</header>
-<ul class="govuk-list">
-    <li>
-        <span class="govuk-!-font-weight-bold">Level:</span> 
-        3 (equivalent to A levels at grades A to E) 
-    </li>
-    <li>
-        <span class="govuk-!-font-weight-bold">Typical length:</span>
-        24 months
-    </li>
-</ul>
-</article>
-<div class="page-navigation">
-
-
-</div>
-</div>
-
-</div>
-</main>
-{% endblock %}
+    <article class="app-search-result" id="standard-172">
+        <header>
+            <h2 class="result-title">
+                <a attr-ga-result-interval="1-3" href="/Apprenticeship/Standard/172?keyword=fish">Fishmonger</a>
+                <span class="govuk-tag">New</span>
+            </h2>
+        </header>
+        <ul class="govuk-list">
+            <li>
+                <span class="govuk-!-font-weight-bold">Level:</span>
+                2 (equivalent to GCSEs at grades A* to C)
+            </li>
+            <li>
+                <span class="govuk-!-font-weight-bold">Typical length:</span>
+                24 months
+            </li>
+        </ul>
+    </article>
+    <article  class="app-search-result" id="framework-529-2-1">
+        <header>
+            <h2 class="result-title">
+                <a attr-ga-result-interval="4-6" href="/Apprenticeship/Framework/529-2-1?keyword=fish">Veterinary Nursing: Small Animal</a>
+            </h2>
+        </header>
+        <ul class="govuk-list">
+            <li>
+                <span class="govuk-!-font-weight-bold">Level:</span>
+                3 (equivalent to A levels at grades A to E)
+            </li>
+            <li>
+                <span class="govuk-!-font-weight-bold">Typical length:</span>
+                36 months
+            </li>
+        </ul>
+    </article>
+    <article  class="app-search-result" id="framework-439-2-1">
+        <header>
+            <h2 class="result-title">
+                <a attr-ga-result-interval="4-6" href="/Apprenticeship/Framework/439-2-1?keyword=fish">Animal Care</a>
+            </h2>
+        </header>
+        <ul class="govuk-list">
+            <li>
+                <span class="govuk-!-font-weight-bold">Level:</span>
+                3 (equivalent to A levels at grades A to E)
+            </li>
+            <li>
+                <span class="govuk-!-font-weight-bold">Typical length:</span>
+                24 months
+            </li>
+        </ul>
+    </article>
+    {% endblock %}
