@@ -1,5 +1,6 @@
 {% if data['logged-in'] === 'true' %}
 {% extends "layout-account.html" %}
+{% set currentPage = 'finance' %}
 {% else %}
 {% extends "./layout-estimator.html" %}
 {% set serviceName = "Find out the cost of an apprenticeship" %}
@@ -161,6 +162,7 @@
 			{% endif %}
 
 			<input type="hidden" value="" name="job-role">
+			<input type="hidden" value="true" name="has-estimated-before">
 			
 			{{ govukButton({
 				text: "Save and continue"
