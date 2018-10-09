@@ -59,7 +59,7 @@ router.post('/current-or-estimated', (req, res) => {
 router.post('/estimator/account-check', (req, res) => {
 	var hasAccount = req.session.data['has-account']
 	if (hasAccount === 'yes') {
-		res.redirect(`/${req.version}/login?redirect=future-spending`)
+		res.redirect(`/${req.version}/login?redirect=existing-estimate`)
 	} else {
 		req.session.data['has-account'] = 'no'
 		req.session.data['logged-in'] = 'false'
@@ -104,6 +104,14 @@ router.post('/used-service-before', (req, res) => {
 router.post('/existing-estimate', (req, res) => {
 	if (req.session.data['use-existing-estimate'] == 'yes') {
 		res.redirect('estimate-apprenticeships')
+	} else {
+		res.redirect('add-apprenticeship')
+	}
+})
+
+router.get('/existing-estimate', (req, res) => {
+	if (req.session.data['has-estimated-before'] == 'true') {
+		res.render(`${req.version}/existing-estimate`)
 	} else {
 		res.redirect('add-apprenticeship')
 	}
