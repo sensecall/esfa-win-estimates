@@ -188,12 +188,12 @@
 								</td>
 								<!-- <td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td> -->
 								<td class="govuk-table__cell govuk-table__cell--numeric">{{data['startDate_' + i + '-month']}} {{data['startDate_' + i + '-year']}}</td>
-								<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * apprenticeshipCost) | numeral().format('0,0')}}</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * data['total-funding-cost_' + i]) | numeral().format('0,0')}}</td>
 								<td class="govuk-table__cell govuk-table__cell--numeric">
-									£{{ (apprenticeship(i,'count') * apprenticeshipCost * 0.8 / 24) | numeral().format('0,0')}} x 24
+									£{{ (apprenticeship(i,'count') * data['total-funding-cost_' + i] * 0.8 / data['apprenticeshipLength_' + i]) | numeral().format('0,0')}} x {{ data['apprenticeshipLength_' + i] }}
 								</td>
 								<td class="govuk-table__cell govuk-table__cell--numeric">
-									£{{ (apprenticeship(i,'count') * apprenticeshipCost * 0.2) | numeral().format('0,0')}}
+									£{{ (apprenticeship(i,'count') * data['total-funding-cost_' + i] * 0.2) | numeral().format('0,0')}}
 								</td>
 								<td class="govuk-table__cell">
 									No

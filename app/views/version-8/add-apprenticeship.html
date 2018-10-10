@@ -130,7 +130,7 @@
 					text: "Apprenticeships must be a minimum of 12 months"
 				},
 				id: "apprenticeship-length",
-				name: "TotalInstallments",
+				name: "apprenticeshipLength_" + apprenticeshipId,
 				classes: "govuk-input--width-2"
 			}) }}
 			
@@ -159,11 +159,27 @@
 				}
 				]
 			}) }}
+
+			{{ govukInput({
+				label:
+				{
+					text: "Total cost"
+				},
+				hint: 
+				{
+					text: "You can change this number but if you go above the funding band maximum value - the difference will be co-invested"
+				},
+				id: "total-funding-cos",
+				name: "total-funding-cos",
+				classes: "govuk-input--width-5"
+			}) }}
 			{% endif %}
 
 			<input type="hidden" value="" name="job-role">
 			<input type="hidden" value="true" name="has-estimated-before">
 			
+			<input type="hidden" value="{{ 2000 if apprenticeshipId == 1 else 1500 }}" name="total-funding-cost_{{apprenticeshipId}}">
+
 			{{ govukButton({
 				text: "Save and continue"
 			}) }}
