@@ -12,7 +12,7 @@
 		href: "finance"
 	},
 	{
-		text: "Estimated costs "
+		text: "Future spending"
 	}
 	]
 }) }}
@@ -27,63 +27,51 @@
 {% endif %}
 
 {% block content %}
-
-{% if levyPayer %}
-{% set apprenticeshipCost = 9000 %}
-{% else %}
-{% set apprenticeshipCost = 900 %}
-{% endif %}
-
-{% set totalCost, apprenticeshipCount = 0 %}
-
-{% for i in range(1, 999) %}
-{% if data['apprenticeship_' + i + '-name'] and data['apprenticeship_' + i + '-count'] %}
-{% set totalCost = (data['apprenticeship_' + i + '-count'] * apprenticeshipCost) + totalCost %}
-{% set apprenticeshipCount = (data['apprenticeship_' + i + '-count'] | int) + apprenticeshipCount %}
-{% endif %}
-{% endfor %}
-
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-			Estimated costs
+			Future spending
 		</h1>
 
 		<p>
-			This tool is designed to illustrate what your funds may look like based on the apprenticeships currently in your apprenticeship service account.
+			The figures below show the estimated funds that may be available to you for the duration of your apprenticeships. 
 		</p>
 
-		<p>
-			<a href="add-apprenticeship" class="govuk-button">
-				Add more apprenticeships to your estimate
-			</a>
-		</p>
+		{{ govukDetails({
+			summaryText: "More information",
+			html: '<p>
+				These figures are based on the current information in your account and the data provided by your training provider which is used to calculate funding.
+			</p>
+			<p>
+				The projection doesn’t include any future apprenticeship starts or apprentices who’ve already started and payment has not yet been made to their training provider.
+			</p>'
+		}) }}
 	</div>
 
 	<div class="govuk-grid-column-one-third">
-		<div class="app-related-items">
+		<!-- <div class="app-related-items">
 			<h2 class="govuk-heading-s">
-				Downloads
+				Related links
 			</h2>
 			<ul class="govuk-list govuk-!-font-size-16">
 				<li>
 					<p class="govuk-!-font-size-16 govuk-!-margin-bottom-2 govuk-!-margin-top-4">
-						<a href="#">Download your estimated costs data (CSV, 90kB)</a>
+						<a href="#">Download your future spending data (CSV, 90kB)</a>
 					</p>
 					<p class="govuk-!-font-size-16">
-						Download a spreadsheet containing detailed estimated costs data.
+						Download a spreadsheet containing detailed future costs data.
 					</p>
 				</li>
-				<!-- <li>
+				<li>
 					<p class="govuk-!-font-size-16 govuk-!-margin-bottom-2 govuk-!-margin-top-4">
-						<a href="/{{version}}/future-spending">View your projected actual spending</a>
+						<a href="/{{version}}/existing-estimate">Estimate the cost of taking on more apprenticeships</a>
 					</p>
 					<p class="govuk-!-font-size-16">
-						See your actual spending based on your current apprenticeships.
+						Use this tool to estimate the cost of taking on more apprentices.
 					</p>
-				</li> -->
+				</li>
 			</ul>
-		</div>
+		</div> -->
 	</div>
 </div>
 
@@ -93,61 +81,34 @@
 		<a href="?apprenticeship-added=false&apprenticeship-updated=false&apprenticeship-removed=false" style="float: right !important">Close</a>
 		{% endset %}
 
-		{% if data["apprenticeship-added"] === 'true' %}
-		<div class="govuk-inset-text govuk-inset-text--success">
-			Apprenticeships added. Your estimate has been recalculated.
-			{{ closeButton | safe }}
-		</div>
-		{% endif %}
-
-		{% if data["apprenticeship-removed"] === 'true' %}
-		<div class="govuk-inset-text govuk-inset-text--warning">
-			Apprenticeships removed. Your estimate has been recalculated.
-			{{ closeButton | safe }}
-		</div>
-		{% endif %}
-
-		{% if data["apprenticeship-updated"] === 'true' %}
-		<div class="govuk-inset-text govuk-inset-text--info">
-			Apprenticeships updated. Your estimate has been recalculated.
-			{{closeButton | safe}}
-		</div>
-		{% endif %}
-
 		<section>
 			<nav>
 				<ul class="js-tabs" role="tablist">
 					<li role="tab" id="tab-table" aria-controls="pane-table">
 						<a href="#pane-table">
-							Account funds
+							Your account projection
 						</a>
 					</li>
 
-					{% if apprenticeshipCount != 0 %}
-					<li role="tab" id="tab-planned" aria-controls="pane-planned">
-						<a href="#pane-planned">
-							Apprenticeships added{% if apprenticeshipCount > 0 %}<span class="govuk-tag govuk-!-margin-left-2 govuk-!-font-size-14" style="padding: 2px 7px;">{{apprenticeshipCount}}</span>{% endif %}
+					<li role="tab" id="tab-current" aria-controls="pane-current">
+						<a href="#pane-current">
+							Current apprenticeships 
 						</a>
 					</li>
-					{% endif %}
 				</ul>
 			</nav>
 
 			<div class="panes">
 				<!-- START PANE -->
-				<div class="js-tab-pane" id="pane-planned" role="tabpanel">
+				<div class="js-tab-pane" id="pane-current" role="tabpanel">
 					<div class="govuk-grid-row">
 						<div class="govuk-grid-column-two-thirds">
 							<h2 class="govuk-heading-l govuk-!-margin-top-4">
-								Apprenticeships added
+								Current apprenticeships
 							</h2>
 
 							<p>
-								These are the apprenticeships you've added to the estimate.
-							</p>
-
-							<p>
-								<a href="#" class="govuk-!-font-weight-bold">Download this data (CSV, 90kB)</a>
+								The information below shows the apprenticeships that you're already funding and that you have approved to fund - these include apprenticeships that are waiting to start.
 							</p>
 						</div>
 					</div>
@@ -157,69 +118,40 @@
 							<tr class="govuk-table__row">
 								<th class="govuk-table__header" scope="col">Apprenticeship</th>
 								<!-- <th class="govuk-table__header govuk-table__header--numeric" scope="col">Apprentices</th> -->
-								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Start date</th>
+								<th class="govuk-table__header" scope="col">Start date</th>
 								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Total cost</th>
-								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Monthly payments</th>
-								<th class="govuk-table__header govuk-table__header--numeric" scope="col">Completion payment</th>
-								<th class="govuk-table__header" scope="col">Transfer</th>
-								<th class="govuk-table__header" scope="col"></th>
 							</tr>
 						</thead>
 						<tbody class="govuk-table__body">
-							{% macro apprenticeship(id, attribute) %}
-							{{ data['apprenticeship_' + id + '-' + attribute] }}
-							{% endmacro %}
-
-							{% for i in range(1, 999) %}
-							{% set el = 'apprenticeship_' + i %}
-							{% if data[el + '-name'] and data[el + '-count'] %}
-
-							{% set name = apprenticeship(i,'name').split("|")[0] %}
-							{% set level = apprenticeship(i,'name').split("|")[1] %}
-							{% set standard = apprenticeship(i,'name').split("|")[2] %}
-							{% set id = apprenticeship(i,'name').split("|")[3] %}
-							{% set startDate = apprenticeship(i,'name').split("|")[4] %}
-
+							{% import './_current-apprenticeships-data.html' as currentApprenticeships %}
+							{% for apprenticeship in currentApprenticeships.apprenticeships %}
 							<tr class="govuk-table__row">
 								<td class="govuk-table__cell" scope="row">
-									{{ apprenticeship(i,'count') }}x {{name}}{{" (Standard)" if standard === 'true'}}<br>
-									<span class="govuk-!-font-weight-regular">Level: {{level}}</span><br class="govuk-!-margin-bottom-1">
-									<a href="https://findapprenticeshiptraining.sfa.bis.gov.uk/Apprenticeship/{{'Standard' if standard === 'true' else 'Framework'}}/{{id}}" target="_blank" class="govuk-!-font-weight-regular">More details (opens in new tab)</a>
+									<span class="govuk-!-font-weight-bold">{{ apprenticeship.count }} x {{apprenticeship.name}}</span><br>
+									<span class="govuk-!-font-weight-regular">Level: {{apprenticeship.level}}</span><br>
 								</td>
-								<!-- <td class="govuk-table__cell govuk-table__cell--numeric">{{ apprenticeship(i,'count') }}</td> -->
-								<td class="govuk-table__cell govuk-table__cell--numeric">{{data['startDate_' + i + '-month']}} {{data['startDate_' + i + '-year']}}</td>
-								<td class="govuk-table__cell govuk-table__cell--numeric">£{{ (apprenticeship(i,'count') * data['total-funding-cost_' + i]) | numeral().format('0,0')}}</td>
-								<td class="govuk-table__cell govuk-table__cell--numeric">
-									£{{ (apprenticeship(i,'count') * data['total-funding-cost_' + i] * 0.8 / data['apprenticeshipLength_' + i]) | numeral().format('0,0')}} x {{ data['apprenticeshipLength_' + i] }}
-								</td>
-								<td class="govuk-table__cell govuk-table__cell--numeric">
-									£{{ (apprenticeship(i,'count') * data['total-funding-cost_' + i] * 0.2) | numeral().format('0,0')}}
-								</td>
-								<td class="govuk-table__cell">
-									No
-								</td>
-								<td class="govuk-table__cell govuk-table__cell--numeric">
-									<a href="edit-apprenticeship?edit-apprenticeship_id={{i}}">Change</a>
-								</td>
+								<td class="govuk-table__cell">{{apprenticeship.startDate}}</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">£{{(apprenticeship.cost * apprenticeship.count) | numeral().format('0,0')}}</td>
 							</tr>
-							{% endif %}
 							{% endfor %}
 						</tbody>
 					</table>
-
-					<p>
-						<a href="add-apprenticeship" class="govuk-button">
-							Add apprenticeships to this estimate
-						</a>
-					</p>
 				</div>
 				<!-- END PANE -->
 
 				<!-- START PANE -->
 				<div class="js-tab-pane" id="pane-table" role="tabpanel">
+					<div class="govuk-grid-row govuk-!-margin-top-4">
+						<div class="govuk-grid-column-two-thirds">
+							<!-- <h2 class="govuk-heading-l govuk-!-margin-bottom-0">
+								Your account projection
+							</h2> -->
+						</div>
+					</div>
+
 					<div class="govuk-grid-row">
 						<div class="govuk-grid-column-full">
-							<h3 class="govuk-heading-m govuk-!-margin-top-6">Tax year 2018 / 2019</h3>
+							<h3 class="govuk-heading-m govuk-!-margin-top-2">Tax year 2018 / 2019</h3>
 							<table class="govuk-table govuk-table--font-small">
 								<thead class="govuk-table__head">
 									<tr class="govuk-table__row">

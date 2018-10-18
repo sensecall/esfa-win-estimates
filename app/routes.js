@@ -22,6 +22,11 @@ router.use(/\/version-([0-9]+)/, (req, res, next) => {
   require(`./views/version-${req.params[0]}/routes`)(req, res, next);
 })
 
+// VERSIONS
+router.use(/\/concept-([0-9]+)/, (req, res, next) => {
+  require(`./views/concept-${req.params[0]}/routes`)(req, res, next);
+})
+
 // Branching
 router.use(/\/campaign\/version-([0-9]+)/, (req, res, next) => {
   require(`./views/campaign/version-${req.params[0]}/routes`)(req, res, next);
