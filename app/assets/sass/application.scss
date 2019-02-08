@@ -29,7 +29,8 @@ $govuk-global-styles: true;
 @import "patterns/alerts";
 @import "components/autocomplete";
 @import "patterns/search-filters";
-
+@import "patterns/contents-list";
+@import "patterns/inverse-header";
 
 // Components that aren't in Frontend
 @import "components/cookie-banner";
