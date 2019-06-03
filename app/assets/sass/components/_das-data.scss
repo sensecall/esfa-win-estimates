@@ -127,3 +127,61 @@
 		height: 2.25em;
 	}
 }
+
+
+.app-funding-bar {
+	margin-bottom: $govuk-gutter;
+
+	.app-funding-bar__titles,
+	.app-funding-bar__values {
+		width: 100%;
+		display: flex;
+		overflow: hidden;
+
+		.app-funding-bar__stack {
+			height: 100%;
+			padding: 15px;
+			color: black;
+			display: grid;
+			flex-direction: column;
+			@include govuk-text-colour;
+
+			.app-funding-bar__value {
+				order: 1;
+				flex: 1;
+				@include govuk-font($size: 24, $weight: bold, $line-height: 1.5);
+			}
+
+			.app-funding-bar__title {
+				order: 99;
+				margin-bottom: $govuk-gutter / 2;
+				@include govuk-font($size: 19, $weight: regular, $line-height: 1.15);
+			}
+
+			&:last-of-type {
+				flex: auto;
+
+				.app-funding-bar__title,
+				.app-funding-bar__value {
+					align-self: flex-end;
+					text-align: right;
+				}
+			}
+		}
+	}
+
+	.app-funding-bar__values {
+		margin-bottom: $govuk-gutter / 2;
+
+		.app-funding-bar__stack {
+			&:nth-of-type(1) {
+				color: white;
+				background: govuk-colour('blue');
+			}
+
+			&:nth-of-type(2) {
+				background: govuk-colour('grey-3');
+			}
+		}
+	}
+}

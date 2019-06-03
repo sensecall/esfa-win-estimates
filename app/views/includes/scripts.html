@@ -4,5 +4,14 @@
 <script src="/public/javascripts/application.js"></script>
 
 {% if useAutoStoreData %}
-  <script src="/public/javascripts/auto-store-data.js"></script>
+<script src="/public/javascripts/auto-store-data.js"></script>
 {% endif %}
+
+<script>
+	function alertUser(evt) {
+		evt.preventDefault();
+		alert('Sorry, this is unavailable in this prototype');
+	}
+
+	$('body').on('click', 'a[href="#"]', alertUser);
+</script>
