@@ -1,0 +1,149 @@
+{% extends "layout-account.html" %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+	items: [
+	{
+		text: "Home",
+		href: "account-home"
+	},
+	{
+		text: "Finance"
+	}
+	]
+}) }}
+{% endblock %}
+
+{% block content %}
+<h1 class="govuk-heading-xl govuk-!-margin-bottom-3 govuk-!-margin-top-7" id="company-Name">
+	Finance
+</h1>
+
+<div class="govuk-grid-row" id="page-transactions">
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--purple">
+					<dt>
+						Total funding expected in the next 12 months
+					</dt>
+
+					<dd class="govuk-!-font-size-36 govuk-!-margin-top-2 govuk-!-display-block govuk-!-margin-left-0">
+						£39,038
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--red">
+					<dt>
+						Funds that could expire in <strong>August 2019</strong>
+					</dt>
+
+					<dd class="govuk-!-font-size-36 govuk-!-margin-top-2 govuk-!-display-block govuk-!-margin-left-0">
+						£0
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-bottom-4" id="page-transactions">
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--grey">
+					<dt>
+						Funds available to spend for the next 12 months
+					</dt>
+
+					<dd class="govuk-!-font-size-36">£0</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--grey">
+					<dt>	
+						Payments committed for the next 12 months
+					</dt>
+
+					<dd class="govuk-!-font-size-36">£2,933</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--grey">
+					<dt>
+						Total spent in the last 12 months
+					</dt>
+
+					<dd class="govuk-!-font-size-36">£0</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>
+
+<h2 class="govuk-heading-m govuk-!-margin-bottom-9">
+	Current funds: <span class="govuk-!-font-weight-regular">£1,100</span>
+</h2>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title=" View transactions" href="#">
+				View transactions 
+			</a>
+		</h2>
+		<p>
+			View payments made into and out of your apprenticeship service account. 
+		</p>
+	</div>
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title="Download transactions" href="/{{version}}/future-spending">
+				Download transactions
+			</a>
+		</h2>
+		<p>
+			Download your financial transactions within a specific date range.
+		</p>
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-8">
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title="Funding projection" href="/{{version}}/existing-estimate">
+				Funding projection
+			</a>
+		</h2>
+		<p>
+			View funding projection to plan your future spending.
+		</p>
+	</div>
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title="Download transactions" href="#">
+				Transfers
+			</a>
+		</h2>
+		<p>
+			Connect with other employers and send or receive transfer funds. 
+		</p>
+	</div>
+</div>
+{% endblock %}
