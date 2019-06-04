@@ -146,18 +146,6 @@
 			flex-direction: column;
 			@include govuk-text-colour;
 
-			.app-funding-bar__value {
-				order: 1;
-				flex: 1;
-				@include govuk-font($size: 24, $weight: bold, $line-height: 1.5);
-			}
-
-			.app-funding-bar__title {
-				order: 99;
-				margin-bottom: $govuk-gutter / 2;
-				@include govuk-font($size: 19, $weight: regular, $line-height: 1.15);
-			}
-
 			&:last-of-type {
 				flex: auto;
 
@@ -170,10 +158,34 @@
 		}
 	}
 
+	.app-funding-bar__titles {
+		.app-funding-bar__stack {
+			&:first-of-type .app-funding-bar__title {
+				margin-right: $govuk-gutter;
+			}
+
+			&:last-of-type .app-funding-bar__title {
+				margin-left: $govuk-gutter;	
+			}
+
+			.app-funding-bar__title {
+				order: 99;
+				margin-bottom: $govuk-gutter / 2;
+				@include govuk-font($size: 19, $weight: regular, $line-height: 1.15);
+			}
+		}
+	}
+
 	.app-funding-bar__values {
 		margin-bottom: $govuk-gutter / 2;
 
 		.app-funding-bar__stack {
+			.app-funding-bar__value {
+				order: 1;
+				flex: 1;
+				@include govuk-font($size: 24, $weight: bold, $line-height: 1.5);
+			}
+			
 			&:nth-of-type(1) {
 				color: white;
 				background: govuk-colour('blue');
