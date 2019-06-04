@@ -181,10 +181,18 @@
 
 		.app-funding-bar__stack {
 			.app-funding-bar__value {
+				z-index: 99;
 				order: 1;
 				flex: 1;
 				@include govuk-font($size: 24, $weight: bold, $line-height: 1.5);
 			}
+
+			// if the bar is too small to fit the number
+			// &:first-of-type .app-funding-bar__value {
+			// 	background: #fff;
+			// 	color: govuk-colour('blue');
+			// 	padding: 0 $govuk-gutter-half;
+			// }
 			
 			&:nth-of-type(1) {
 				color: white;
