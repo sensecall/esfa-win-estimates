@@ -19,6 +19,6 @@ Example usage:
 
 module.exports = {
 
-  // Insert values here
+  'expired_funds': ['239,012', '1']
 
 }
