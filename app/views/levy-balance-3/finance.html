@@ -26,16 +26,12 @@
 				Your levy funds
 			</h2>
 			<p class="govuk-!-display-block govuk-!-font-size-19 govuk-!-font-weight-regular govuk-!-margin-top-2">
-				We estimate that you will spend <strong>£439,038 less</strong> than what we predict will be paid in to your levy account over the next 12 months.
+				We estimate that you will spend <strong>£{{data['unspent_levy'][0] if data['scenario'] == 'a' else data['unspent_levy'][1]}} {{'less' if data['scenario'] != 'a' else 'more'}}</strong> than what we predict will be paid in to your levy account over the next 12 months.
 			</p>
 
+			{% if data['scenario'] === 'b' %}
 			<p class="govuk-!-display-block govuk-!-font-size-19 govuk-!-margin-top-2">
-				<strong>£12,650</strong> of your current levy funds could expire in August 2019.
-			</p>
-
-			{% if data['scenario'] == 'a' %}
-			<p class="govuk-!-display-block govuk-!-font-size-19 govuk-!-margin-top-2">
-				<strong>£12,650</strong> of your current levy funds will expire in August 2019.
+				<strong>£{{data['expired_funds'][0]}}</strong> of your current levy funds will expire in August 2019.
 			</p>
 			{% endif %}			
 
