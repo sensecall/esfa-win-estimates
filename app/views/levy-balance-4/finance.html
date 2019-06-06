@@ -1,0 +1,177 @@
+{% extends "layout-account.html" %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+	items: [
+	{
+		text: "Home",
+		href: "account-home"
+	},
+	{
+		text: "Finance"
+	}
+	]
+}) }}
+{% endblock %}
+
+{% block content %}
+<h1 class="govuk-heading-xl govuk-!-margin-bottom-4 govuk-!-margin-top-7" id="company-Name">
+	Finance
+</h1>
+
+<div class="app-finance-summary-box">
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-one-third">
+			<h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+				Next 12 months
+			</h2>
+
+			<hr class="govuk-section-break govuk-section-break-s govuk-section-break--visible govuk-!-margin-bottom-3">
+			<h3 class="govuk-heading-l govuk-!-margin-bottom-0">
+				£231,812
+			</h3>
+			<p class="govuk-!-margin-bottom-3">
+				estimated unspent levy
+			</p>
+			<hr class="govuk-section-break govuk-section-break-s govuk-section-break--visible govuk-!-margin-bottom-3">
+
+			
+
+			<h3 class="govuk-heading-l govuk-!-margin-bottom-0">
+				£439,038
+			</h3>
+			<p class="govuk-!-margin-bottom-0">
+				estimated levy income
+			</p>
+
+			<h3 class="govuk-heading-l govuk-!-margin-bottom-0">
+				£12,482
+			</h3>
+			<p class="govuk-!-margin-bottom-6">
+				expiring in August 2019
+			</p>
+
+			<p class="govuk-!-margin-bottom-2">
+				<a href="#">View your funding projection</a>
+			</p>
+		</div>
+
+		<div class="govuk-grid-column-one-third">
+			<h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+				Summary
+			</h2>
+
+			<hr class="govuk-section-break govuk-section-break-s govuk-section-break--visible govuk-!-margin-bottom-3">
+			<h3 class="govuk-heading-l govuk-!-margin-bottom-0">
+				£170,029
+			</h3>
+			<p class="govuk-!-margin-bottom-3">
+				spent (past 12 months)
+			</p>
+			<hr class="govuk-section-break govuk-section-break-s govuk-section-break--visible govuk-!-margin-bottom-3">
+
+			<h3 class="govuk-heading-l govuk-!-margin-bottom-0">
+				£207,226
+			</h3>
+			<p class="govuk-!-margin-bottom-0">
+				committed (next 12 months)
+			</p>
+
+			<h3 class="govuk-heading-l govuk-!-margin-bottom-0">
+				£202,011
+			</h3>
+			<p>
+				current funds
+			</p>
+		</div>
+	</div>
+</div>
+
+<!-- <div class="app-funding-bar">
+	<div class="app-funding-bar__values">
+		<div class="app-funding-bar__stack" style="width: 47.2%;">
+			<div class="app-funding-bar__value">
+				£207,226
+			</div>
+		</div>
+
+		<div class="app-funding-bar__stack" style="width: 52.8%;">
+			<div class="app-funding-bar__value">
+				£231,812
+			</div>
+		</div>
+	</div>
+
+	<div class="app-funding-bar__titles">
+		<div class="app-funding-bar__stack" style="width: 47.2%; padding: 0">
+			<div class="app-funding-bar__title">
+				Planned spending for the next 12 months
+			</div>
+		</div>
+
+		<div class="app-funding-bar__stack" style="width: 52.8%; padding: 0">		
+			<div class="app-funding-bar__title">
+				Funds available to spend for the next 12 months 
+			</div>
+		</div>
+	</div>
+</div> -->
+
+<!-- <h2 class="govuk-heading-m govuk-!-margin-bottom-3" style="color: #b10e1e">
+	Funds that could expire in August 2019: <span class="govuk-!-font-weight-regular">£12,650</span>
+</h2>
+
+<h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+	Funds spent in the last 12 months: <span class="govuk-!-font-weight-regular">£170,029</span>
+</h2>
+
+<h2 class="govuk-heading-m govuk-!-margin-bottom-9">
+	Current funds: <span class="govuk-!-font-weight-regular">£280,010</span>
+</h2> -->
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title=" View transactions" href="#">
+				View transactions 
+			</a>
+		</h2>
+		<p>
+			View payments made into and out of your apprenticeship service account. 
+		</p>
+	</div>
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title="Download transactions" href="#">
+				Download transactions
+			</a>
+		</h2>
+		<p>
+			Download your financial transactions within a specific date range.
+		</p>
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-top-8">
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title="Funding projection" href="#">
+				Funding projection
+			</a>
+		</h2>
+		<p>
+			View funding projection to plan your future spending.
+		</p>
+	</div>
+	<div class="govuk-grid-column-one-half">
+		<h2 class="govuk-heading-m">
+			<a title="Download transactions" href="#">
+				Transfers
+			</a>
+		</h2>
+		<p>
+			Connect with other employers and send or receive transfer funds. 
+		</p>
+	</div>
+</div>
+{% endblock %}

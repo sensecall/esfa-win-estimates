@@ -205,3 +205,9 @@
 		}
 	}
 }
+
+.app-finance-summary-box {
+	padding: $govuk-gutter / 3 * 2;
+	border: 1px solid $govuk-border-colour;
+	margin-bottom: $govuk-gutter * 2;
+}
