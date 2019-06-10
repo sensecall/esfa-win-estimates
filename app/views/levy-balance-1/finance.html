@@ -23,46 +23,6 @@
 	<div class="govuk-grid-column-one-third">
 		<div class="data-wrap">
 			<div class="data">
-				<dl class="data--purple">
-					<dd class="govuk-!-font-size-36 govuk-!-display-block govuk-!-margin-left-0 govuk-!-margin-bottom-1">
-						{% if data['scenario'] != 'b' %}
-						£23,180
-						{% else %}
-						– £8,550
-						{% endif %}
-					</dd>
-
-					<dt class="govuk-!-display-block">
-						available to spend for the next 12 months
-					</dt>
-				</dl>
-			</div>
-		</div>
-	</div>
-
-	<div class="govuk-grid-column-one-third">
-		{% if data['scenario'] != 'b' %}
-		<div class="data-wrap">
-			<div class="data">
-				<dl class="data--red-border">
-					<dd class="govuk-!-font-size-36 govuk-!-display-block govuk-!-margin-left-0 govuk-!-margin-bottom-1">
-						£2,650
-					</dd>
-
-					<dt class="govuk-!-display-block">
-						could expire in <strong>December 2019</strong>
-					</dt>
-				</dl>
-			</div>
-		</div>
-		{% endif %}
-	</div>
-</div>
-
-<div class="govuk-grid-row govuk-!-margin-bottom-4" id="page-transactions">
-	<div class="govuk-grid-column-one-third">
-		<div class="data-wrap">
-			<div class="data">
 				<dl class="data--grey">
 					<dt>
 						Total funding expected for the next 12 months:
@@ -89,6 +49,46 @@
 					</dt>
 
 					<dd class="govuk-!-font-size-36">£20,750</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		{% if data['scenario'] != 'b' %}
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--purple">
+					<dd class="govuk-!-font-size-36 govuk-!-display-block govuk-!-margin-left-0 govuk-!-margin-bottom-1">
+						{% if data['scenario'] != 'b' %}
+						£23,180
+						{% else %}
+						– £8,550
+						{% endif %}
+					</dd>
+
+					<dt class="govuk-!-display-block">
+						expected levy funds available after planned spending
+					</dt>
+				</dl>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-bottom-4" id="page-transactions">
+	<div class="govuk-grid-column-one-third">
+		<div class="data-wrap">
+			<div class="data">
+				<dl class="data--red-border">
+					<dd class="govuk-!-font-size-36 govuk-!-display-block govuk-!-margin-left-0 govuk-!-margin-bottom-1">
+						£2,650
+					</dd>
+
+					<dt class="govuk-!-display-block">
+						could expire in <strong>December 2019</strong>
+					</dt>
 				</dl>
 			</div>
 		</div>
