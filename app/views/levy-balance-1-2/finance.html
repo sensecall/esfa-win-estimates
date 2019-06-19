@@ -22,10 +22,10 @@
 <h2 class="govuk-heading-m">
 	Projections
 </h2>
-<div class="govuk-grid-row app-finance-mini-box__wrapper">
+<div class="govuk-grid-row app-finance-mini-box--v2__wrapper">
 	<div class="govuk-grid-column-one-third app-finance-mini-box__item">
 		<div class="app-finance-mini-box">
-			<span class="app-finance-mini-box__figure">
+			<span class="app-finance-mini-box__figure app-finance-mini-box__figure--blue">
 				{% if data['scenario'] != 'b' %}
 				£43,930
 				{% else %}
@@ -41,7 +41,7 @@
 
 	<div class="govuk-grid-column-one-third app-finance-mini-box__item">
 		<div class="app-finance-mini-box">
-			<span class="app-finance-mini-box__figure">
+			<span class="app-finance-mini-box__figure app-finance-mini-box__figure--light-blue">
 				£20,750
 			</span>
 
@@ -91,10 +91,10 @@
 	</div>
 </div>
 
-<h2 class="govuk-heading-m">
-	History
+<h2 class="govuk-heading-m govuk-!-margin-top-6">
+	Current
 </h2>
-<div class="govuk-grid-row app-finance-mini-box__wrapper">
+<div class="govuk-grid-row app-finance-mini-box--v2__wrapper">
 	<div class="govuk-grid-column-one-third app-finance-mini-box__item">
 		<div class="app-finance-mini-box app-finance-mini-box--subtle">
 			<span class="app-finance-mini-box__figure">
@@ -126,7 +126,7 @@
 	{% if data['scenario'] != 'b' %}
 	<div class="govuk-grid-column-one-third app-finance-mini-box__item">
 		<div class="app-finance-mini-box app-finance-mini-box--subtle">
-			<span class="app-finance-mini-box__figure">
+			<span class="app-finance-mini-box__figure app-finance-mini-box__figure--red">
 				£2,650
 			</span>
 
