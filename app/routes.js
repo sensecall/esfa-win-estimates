@@ -23,8 +23,8 @@ router.use(/\/version-([0-9]+)/, (req, res, next) => {
 })
 
 
-router.use(/\/levy-balance-([0-9]+)/, (req, res, next) => {
-  require(`./views/levy-balance-${req.params[0]}/routes`)(req, res, next);
+router.use(/\/levy-balance-([0-9]+)-([0-9]+)/, (req, res, next) => {
+  require(`./views/levy-balance-${req.params[0]}-${req.params[0]}/routes`)(req, res, next);
 })
 
 // VERSIONS
