@@ -65,7 +65,7 @@
 			</span>
 
 			<span class="app-finance-mini-box__description">
-				Total funding for the next 12 months (based on funds entering your Apprenticeship service account, including the 10% top up)
+				Estimated total funding for the next 12 months (based on funds entering your Apprenticeship service account, including the 10% top up)
 			</span>
 		</div>
 	</div>
@@ -77,7 +77,7 @@
 			</span>
 
 			<span class="app-finance-mini-box__description">
-				Planned spending for the next 12 months
+				Estimated planned spending for the next 12 months
 			</span>
 		</div>
 	</div>
@@ -90,15 +90,28 @@
 			</span>
 
 			<span class="app-finance-mini-box__description">
-				Funds due to expire in December 2019
+				Estimated funds expiring in Dec<span class="govuk-visually-hidden">ember</span> 2020
 				<br class="govuk-!-margin-bottom-1">
-				<a href="#">Read more about expired funds (opens in a new window or tab)</a>
+				<a href="#">Find out more about expired funds</a>.
 			</span>
 		</div>
 	</div>
 	{% endif %}
 </div>
 
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{{ govukDetails({
+  summaryText: "Could these figures change?",
+  html: "<p>
+			The estimates could vary if your levy payment or apprenticeship arrangements change. For example, cost and duration of apprenticeship training, or the number of apprentices you employ.
+		</p>
+		<p>
+			You should use additional financial information when deciding or planning how to spend your funds.
+		</p>"
+}) }}
+	</div>
+</div>
 <p class="govuk-inset-text govuk-!-font-size-16">
 	This is a new feature – your <a href="#">feedback</a> will help us improve it.
 </p>
