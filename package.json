@@ -32,7 +32,7 @@
     "gulp-util": "^3.0.7",
     "marked": "^0.6.2",
     "minimist": "1.2.0",
-    "notifications-node-client": "^3.0.0",
+    "notifications-node-client": "^6.0.0",
     "numeral": "^2.0.6",
     "nunjucks": "^3.2.0",
     "nunjucks-numeral-filter": "0.0.2",
